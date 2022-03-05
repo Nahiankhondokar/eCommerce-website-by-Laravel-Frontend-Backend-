@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function(){
 
 // Admin Routes identify middleware for dashboard
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('dashboard');
+    return view('admin.index');
 })->name('dashboard');
 
 // User Routes identify middleware for dashboard
