@@ -25,6 +25,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function(){
     Route::post('/login', [AdminController::class, 'store']) -> name('admin.login');
 });
 
+// Student Routes 
+// Route::group(['prefix' => 'student', 'middleware' => ['student:student']], function(){
+//     Route::get('/login', [StudentController::class, 'loginForm']);
+//     Route::post('/login', [StudentController::class, 'store']) -> name('admin.login');
+// });
+
 // Admin Routes identify middleware for dashboard
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('dashboard');

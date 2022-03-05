@@ -26,6 +26,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
+        // Admin guard register
         $this -> app 
         -> when([ 
             AdminController::class, 
@@ -36,6 +38,20 @@ class FortifyServiceProvider extends ServiceProvider
         -> give(function(){
             return Auth::guard('admin');
         });
+
+        // Student guard register
+        // $this -> app 
+        // -> when([
+        //     StudentController::class, 
+        //     RedirectIfTwoFactorAuthenticatable::class,
+        //     AttemptToAuthenticate::class
+        //     ])
+        // -> needs(StatefulGuard::class) 
+        // -> give(function(){
+        //     return Auth::guard('student');
+        // });
+
+
     }
 
     /**
