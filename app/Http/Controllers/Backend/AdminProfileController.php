@@ -55,7 +55,22 @@ class AdminProfileController extends Controller
         $profile_update -> profile_photo_path   = $unique_name;
         $profile_update -> update();
 
-        return redirect() -> route('admin.profile');
+        $notification = [
+            'message'       => 'Admin Profile Updated Successfully',
+            'alert-type'    => 'success'
+        ];
+
+        return redirect() -> route('admin.profile') -> with($notification);
+
+    }
+
+
+     /**
+     *   admin change password
+     */
+    public function adminChangePassword(){
+        $pass_data = Admin::find(1);
+        return view('admin.admin_change_password', compact('pass_data'));
 
     }
 

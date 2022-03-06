@@ -12,6 +12,9 @@
     
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">
+
+  {{-- Toster css file --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 	  
 	<!-- Style-->  
 	<link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
@@ -65,8 +68,40 @@
   {{-- jQuer file --}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+  {{-- Toster js file --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
   {{-- custom js --}}
   <script src="{{ asset('backend/js/custom.js') }}"></script>
+
+  <script>
+    @if (Session::has('message'))
+
+    let type = "{{ Session::get('alert-type', 'info') }}"
+
+    switch(type){
+
+      case 'info':
+        toastr.info("{{ Session::get('message') }}");
+        break;
+
+      case 'success':
+      toastr.success("{{ Session::get('message') }}");
+      break;
+
+      case 'warning':
+        toastr.warning("{{ Session::get('message') }}");
+        break;
+
+      case 'error':
+      toastr.error("{{ Session::get('message') }}");
+      break;  
+
+
+    }
+      
+    @endif
+  </script>
 	
 	
 </body>
