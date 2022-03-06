@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\AdminProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,31 +20,27 @@ Route::get('/', function () {
 });
 
 
-// Admin Routes 
+// Admin Routes for multi authentication
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function(){
     Route::get('/login', [AdminController::class, 'loginForm']);
     Route::post('/login', [AdminController::class, 'store']) -> name('admin.login');
 });
 
-// Student Routes 
-// Route::group(['prefix' => 'student', 'middleware' => ['student:student']], function(){
-//     Route::get('/login', [StudentController::class, 'loginForm']);
-//     Route::post('/login', [StudentController::class, 'store']) -> name('admin.login');
-// });
 
 
-
-// Admin Routes identify middleware for dashboard
+// All Admin Routes 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
 })->name('dashboard');
 
 Route::get('admin/logout', [AdminController::class, 'destroy']) -> name('admin.logout');
+Route::get('admin/profile', [AdminProfileController::class, 'adminProfile']) -> name('admin.profile');
+Route::get('admin/profile/edit', [AdminProfileController::class, 'adminProfileEdit']) -> name('admin.profile.edit');
+Route::post('admin/profile/update', [AdminProfileController::class, 'adminProfileUpdate']) -> name('admin.profile.update');
 
 
 
-
-// User Routes identify middleware for dashboard
+// All User Routes 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

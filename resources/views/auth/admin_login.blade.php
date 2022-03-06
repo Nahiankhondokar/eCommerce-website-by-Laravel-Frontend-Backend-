@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="backend/images/favicon.ico">
 
-    <title>Sunny Admin - Log in </title>
+    <title>Ecommerce Admin - Log in </title>
   
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">
@@ -28,16 +28,20 @@
 					<div class="col-lg-4 col-md-5 col-12">
 						<div class="content-top-agile p-10">
 							<h2 class="text-white">Get started with Us</h2>
-							<p class="text-white-50">Sign in to start your session</p>							
+							<p class="text-white-50">Sign in to start your session</p>
+
+                            		
+
 						</div>
 						<div class="p-30 rounded30 box-shadowed b-2 b-dashed">
-							<form action="index.html" method="post">
+							<form action="{{ route('admin.login') }}" method="post">
+                                @csrf
 								<div class="form-group">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text bg-transparent text-white"><i class="ti-user"></i></span>
 										</div>
-										<input type="text" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Username">
+										<input name="email" type="email" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Email">
 									</div>
 								</div>
 								<div class="form-group">
@@ -45,7 +49,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text  bg-transparent text-white"><i class="ti-lock"></i></span>
 										</div>
-										<input type="password" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Password">
+										<input type="password" name="password" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Password">
 									</div>
 								</div>
 								  <div class="row">
