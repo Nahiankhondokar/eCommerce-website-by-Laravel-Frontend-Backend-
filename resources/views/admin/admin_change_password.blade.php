@@ -28,19 +28,19 @@
                                         <div class="form-group">
                                             <h5> Current Password <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" value="{{ $pass_data -> name }}" name="name" class="form-control" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                                <input type="password" value="" name="current_pass" class="form-control"> <div class="help-block"></div></div>
                                         </div>
 
                                         <div class="form-group">
                                             <h5> New Password <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" value="" name="name" class="form-control" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                                <input type="password" value="" name="new_pass" class="form-control"> <div class="help-block"></div></div>
                                         </div>
 
                                         <div class="form-group">
                                             <h5> Confirm Password <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" value="" name="name" class="form-control" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                                <input type="password" value="" name="confirm_pass" class="form-control"> <div class="help-block"></div></div>
                                         </div>
 
                                         

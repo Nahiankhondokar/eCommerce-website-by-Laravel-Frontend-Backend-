@@ -6,6 +6,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminProfileController extends Controller
 {
@@ -75,6 +76,51 @@ class AdminProfileController extends Controller
     }
 
 
+    /**
+     *   admin change password
+     */
+    public function adminPasswordUpdate(Request $request){
+        
 
+        $notification_one = [
+            'message'       => 'password does not match',
+            'alert-type'    => 'error'
+        ];
+
+        $notification_two = [
+            'message'       => 'comfirm password does not match',
+            'alert-type'    => 'warning'
+        ];
+
+        // validation
+        $this -> validate($request, [
+            'current_pass'  => 'required',
+            'new_pass'      => 'required'
+        ]);
+
+        // password update
+        $hash_pass = Admin::find(1) -> password;
+        if(Hash::check($request -> current_pass, $hash_pass)){
+
+            if($request -> new_pass == $request -> confirm_pass){
+
+                $admin = Admin::find(1);
+                $admin -> password = Hash::make($request -> new_pass);
+                $admin -> update();
+                Auth::logout();
+                return redirect() -> route('admin.logout');
+
+            }else{
+                return redirect() -> back() -> with($notification_two);
+            }
+
+        }else{
+            return redirect() -> back() -> with($notification_one);
+        }
+
+    }
+
+
+    
 
 }
