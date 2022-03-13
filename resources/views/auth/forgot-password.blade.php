@@ -23,13 +23,13 @@
 	<p class="">Forgot password ? No problem...</p>
 
 
-	<form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
+	<form method="POST" action="{{ route('password.email') }}">
             @csrf
 		<div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
 		    <input type="email" name="email" id="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
 		</div>
-	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">LogEmail Password Reset Link</button>
 	</form>		
     
     

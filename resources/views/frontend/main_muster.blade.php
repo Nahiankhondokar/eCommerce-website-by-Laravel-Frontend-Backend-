@@ -29,6 +29,11 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  {{-- Toster css file --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+	  
+  
 </head>
 <body class="cnt-home">
 <!-- ============================================== HEADER ============================================== -->   
@@ -51,6 +56,8 @@
 
 <!-- For demo purposes – can be removed on production : End --> 
 
+
+
 <!-- JavaScripts placed at the end of the document so the pages load faster --> 
 <script src="{{ asset('frontend/assets/js/jquery-1.11.1.min.js') }}"></script> 
 <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script> 
@@ -64,5 +71,46 @@
 <script src="{{ asset('frontend/assets/js/bootstrap-select.min.js') }}"></script> 
 <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script> 
 <script src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
+
+{{-- jQuer file --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    {{-- Custom js file --}}
+<script src="{{ asset('frontend/assets/js/custom.js') }}"></script>
+
+ {{-- Toster js file --}}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+ <script>
+   @if (Session::has('message'))
+
+   let type = "{{ Session::get('alert-type', 'info') }}"
+
+   switch(type){
+
+     case 'info':
+       toastr.info("{{ Session::get('message') }}");
+       break;
+
+     case 'success':
+     toastr.success("{{ Session::get('message') }}");
+     break;
+
+     case 'warning':
+       toastr.warning("{{ Session::get('message') }}");
+       break;
+
+     case 'error':
+     toastr.error("{{ Session::get('message') }}");
+     break;  
+
+
+   }
+     
+   @endif
+ </script>
+
+
+
 </body>
 </html>
