@@ -27,65 +27,38 @@ $(document).ready(function(){
     });
 
 
-    // Toster
-    if (Session::has('message')){
+    // Sweet alert for delete button
+    $(document).on('click', '#delete', function(e){
+      e.preventDefault();
 
-    let type = "{{ Session::get('alert-type', 'info') }}"
+      let link = $(this).attr('href');
 
-    switch(type){
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          
+            window.location.href = link;
+            swla(
+              'Delete !',
+              'Your file has been Deleted',
+              'success'
+            );
 
-      case 'info':
-        toastr.info("{{ Session::get('message') }}");
-        break;
+        } else {
+          swal("Your imaginary file is safe!");
+        }
+      });
 
-      case 'success':
-      toastr.success("{{ Session::get('message') }}");
-      break;
-
-      case 'warning':
-        toastr.warning("{{ Session::get('message') }}");
-        break;
-
-      case 'error':
-      toastr.error("{{ Session::get('message') }}");
-      break;  
-
-
-    }
-      
-}
-
-
-    // Sweet alert
-    //   $(document).on('click', '#del_btn', function(e){
-    //       e.preventDefault();
-
-    //       let id = $(this).attr('update_id');
+    });
 
 
-    //       swal({
-    //         title: "Are you sure?",
-    //         text: "Once deleted, you will not be able to recover this imaginary file!",
-    //         icon: "warning",
-    //         buttons: true,
-    //         dangerMode: true,
-    //       })
-    //       .then((willDelete) => {
-    //         if (willDelete) {
-              
-    //             $.ajax({
-    //                 url : 'delete/' + id,
-    //                 success : function(data){
-    //                     route('all.brand');
-    //                 }
-    //             });
 
-    //         } else {
-    //           swal("Your imaginary file is safe!");
-    //         }
-    //       });
-
-    //   });
 
 
 
