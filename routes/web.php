@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 
 /*
@@ -31,7 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function(){
 
 
 // All Admin Routes 
-Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+Route::middleware(['auth:sanctum,admin', 'verified']) -> get('/admin/dashboard', function () {
     return view('admin.index');
 })->name('dashboard');
 
@@ -59,9 +60,25 @@ Route::post('/user/password/update', [IndexController::class, 'userPasswordUpdat
 
 
 // All Admin Brand Routes
-Route::prefix('admin') -> group(function(){
+Route::prefix('brand') -> group(function(){
 
-    Route::get('/brand/view', [BrandController::class, 'brand_view']) -> name('all.brand');
+    Route::get('/view', [BrandController::class, 'brand_view']) -> name('all.brand');
+    Route::post('/store', [BrandController::class, 'brand_store']) -> name('brand.store');
+    Route::get('/edit/{id}', [BrandController::class, 'BrandEdit']) -> name('brand.edit');
+    Route::get('/delete/{id}', [BrandController::class, 'BrandDelete']) -> name('brand.delete');
+    Route::put('/update/{id}', [BrandController::class, 'BrandUpdate']) -> name('brand.update');
+
+}) ;
+
+
+// All Admin Category Routes
+Route::prefix('category') -> group(function(){
+
+    Route::get('/view', [CategoryController::class, 'CategoryView']) -> name('all.category');
+    Route::post('/store', [CategoryController::class, 'CategoryStore']) -> name('category.store');
+    Route::get('/edit/{id}', [BrandController::class, 'BrandEdit']) -> name('brand.edit');
+    Route::get('/delete/{id}', [BrandController::class, 'BrandDelete']) -> name('brand.delete');
+    Route::put('/update/{id}', [BrandController::class, 'BrandUpdate']) -> name('brand.update');
 
 }) ;
 

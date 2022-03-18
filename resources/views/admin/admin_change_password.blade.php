@@ -47,6 +47,7 @@
                                         <div class="text-xs-right text-center">
                                             <input type="submit" class="btn btn-info rounded mb-5" value="Update">
                                         </div>
+                                        </div>
                                     </div>
                                 </form>
             
