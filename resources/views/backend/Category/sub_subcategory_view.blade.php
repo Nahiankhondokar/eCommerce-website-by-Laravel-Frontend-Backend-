@@ -33,7 +33,7 @@
                                     <td>{{ $data -> subsubcategory_name_eng }}</td>
                                    
                                     <td>
-                                        <a href="{{ route('subcategory.edit', $data -> id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ url('category/sub/sub/edit/'. $data -> id.'/'. $data -> category_id.'') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
 
                                         <a id="delete" href="{{ url('category/sub/delete/' . $data -> id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </td>

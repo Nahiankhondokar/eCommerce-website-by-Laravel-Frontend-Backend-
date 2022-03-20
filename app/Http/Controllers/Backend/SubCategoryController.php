@@ -26,6 +26,15 @@ class SubCategoryController extends Controller
      */
     public function SubCategoryStore(Request $request){
 
+        // validation
+        $this -> validate($request, [
+            'eng_name'      => 'required',
+            'hin_name'     => 'required',
+            'category_id'   => 'required'
+        ], [
+            'category_id.required' => 'Category Feild is empty !'
+        ]);
+
         SubCategory::insert([
             'category_id'               => $request -> category_id,
             'subcategory_name_eng'      => $request -> eng_name,
@@ -127,7 +136,7 @@ class SubCategoryController extends Controller
         // validation
         $this -> validate($request, [
             'eng_name'      => 'required',
-            'hind_name'     => 'required',
+            'hin_name'     => 'required',
             'category_id'   => 'required',
             'subcategory_id'=> 'required'
         ], [
@@ -156,6 +165,20 @@ class SubCategoryController extends Controller
 
     }
 
+
+
+    /**
+     *  Sub -> Subcategory edit
+     */
+    public function SubSubCategoryEdit($id, $category_id){
+
+        $category       = Category::orderBy('category_name_eng', 'ASC') -> get();
+        $subcategory    = SubCategory::where('category_id', $category_id) -> get();
+        $subsubcat      = SubSubCategory::findOrFail($id);
+
+        return view('backend.Category.sub_subcategory_edit', compact('subsubcat', 'category', 'subcategory'));
+
+    }
 
 
 
