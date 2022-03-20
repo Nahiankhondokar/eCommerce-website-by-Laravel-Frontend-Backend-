@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
@@ -45,7 +46,7 @@ class SubCategoryController extends Controller
 
 
      /**
-     *  Subcategory view
+     *  Subcategory edit
      */
     public function SubCategoryEdit($id){
         
@@ -57,7 +58,7 @@ class SubCategoryController extends Controller
 
 
     /**
-     *  Subcategory view
+     *  Subcategory Update
      */
     public function SubCategoryUpdate(Request $request){
         
@@ -99,6 +100,42 @@ class SubCategoryController extends Controller
         return redirect() -> back() -> with($notify);
 
     }
+
+
+
+
+
+    // --------- This is for Sub -> SubCategory functions ----------
+
+    /**
+     *  Sub -> Subcategory view
+     */
+    public function SubSubCategoryView(){
+
+        $category = Category::orderBy('category_name_eng', 'ASC') -> get();
+        $subsubcat = SubSubCategory::latest() -> get();
+        return view('backend.Category.sub_subcategory_view', compact('subsubcat', 'category'));
+
+    }
+
+
+    /**
+     *  Sub -> Subcategory view
+     */
+    public function SubCategoryFind($id){
+
+        $subcat = SubCategory::where('category_id',$id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
+
+        return $subcat;
+
+        // return json_encode($subcat);
+
+    }
+
+
+
+
+
 
 
 }

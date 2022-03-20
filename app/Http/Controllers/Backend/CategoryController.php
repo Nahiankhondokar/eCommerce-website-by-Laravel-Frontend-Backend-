@@ -13,7 +13,7 @@ class CategoryController extends Controller
      *  Category view
      */
     public function CategoryView(){
-        $category = Category::latest() -> get();
+        $category = Category::orderBy('id', 'DESC') -> get();
         return view('backend.Category.category_view', [
             'category'      => $category
         ]);

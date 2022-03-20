@@ -59,6 +59,63 @@ $(document).ready(function(){
 
 
 
+    // Sub Category Show
+    $(document).on('change', '#SubCategorySelect', function(){
+
+      let cat_id = $(this).val();
+
+      $.ajax({
+        url : 'ajax/' + cat_id,
+        success : function(data){
+
+          $('#subcategory').empty();
+
+            /**
+             *  System 01 
+             *  array data
+             *  Array Map
+             */
+          //  data.map( (val) => {
+          //   $('#subcategory')
+          //   .append('<option value="'+ val.id +'">'+ val.subcategory_name_eng + '</option>');
+          //  });
+
+
+
+
+
+            /**
+             *  System 02 
+             *  array data
+             *  Array forof
+             */
+          for(val of data){
+            $('#subcategory')
+            .append('<option value="'+ val.id +'">'+ val.subcategory_name_eng + '</option>');
+          }
+
+
+
+          /**
+           *  System 03 
+           *  json data
+           *  if you want to use this 03 system you have to add Type : "GET", or dataType : "json"
+           *  This is foreach loop system in javaScript
+           */
+            
+          // $.each(data, function(key, value){
+          //   $('#subcategory')
+          //   .append('<option value="'+ value.id +'">'+ value.subcategory_name_eng + '</option>');
+          // });
+
+          
+
+        }
+      });
+
+    });
+
+
 
 
 

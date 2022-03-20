@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class SubSubCategory extends Model
+{
+    use HasFactory;
+
+    protected $guarded = [];
+
+    // Relationship for getting data of Categroy
+    public function category(){
+        return $this -> belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    // Relationship for getting data of SubCategroy
+    public function subCategory(){
+        return $this -> belongsTo(SubCategory::class, 'subcategory_id', 'id');
+    }
+    
+}

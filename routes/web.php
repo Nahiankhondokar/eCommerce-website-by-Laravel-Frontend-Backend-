@@ -89,8 +89,18 @@ Route::prefix('category') -> group(function(){
     Route::get('/sub/edit/{id}', [SubCategoryController::class, 'SubCategoryEdit']) -> name('subcategory.edit');
     Route::get('/sub/delete/{id}', [SubCategoryController::class, 'SubCategoryDelete']) -> name('subcategory.delete');
     Route::put('/sub/update/{id}', [SubCategoryController::class, 'SubCategoryUpdate']) -> name('subcategory.update');
+
+     // Admin All Sub -> SubCategory
+     Route::get('/sub/sub/view', [SubCategoryController::class, 'SubSubCategoryView']) -> name('all.subsubcategory');
+     Route::get('/sub/sub/ajax/{id}', [SubCategoryController::class, 'SubCategoryFind']);
     
 
 }) ;
+
+
+
+   
+
+ 
 
 
