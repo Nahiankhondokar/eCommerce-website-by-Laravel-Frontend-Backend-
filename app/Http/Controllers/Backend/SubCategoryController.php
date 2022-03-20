@@ -184,6 +184,39 @@ class SubCategoryController extends Controller
 
 
 
+    /**
+     *  Sub -> Subcategory Update
+     */
+    public function SubSubCategoryUpdate(Request $request){
+
+        // get id
+        $id = $request -> update_id;
+
+        // data update
+        $update = SubSubCategory::findOrFail($id);
+        $update -> subsubcategory_name_eng = $request -> eng_name;
+        $update -> subsubcategory_name_hin = $request -> hin_name;
+        $update -> subsubcategory_slug_eng = strtolower(str_replace(' ', '-', $request -> eng_name));
+        $update -> subsubcategory_slug_hin = str_replace(' ', '-', $request -> hin_name);
+        $update -> category_id          = $request -> category_id;
+        $update -> subcategory_id          = $request -> subcategory_id;
+        $update -> update();
+
+        // alert msg
+        $notify = [
+            'message'       => 'Sub - SubCategory Updated Successfully',
+            'alert-type'    => 'success'
+        ];
+
+        return redirect() -> route('all.subsubcategory') -> with($notify);
+
+
+    }
+
+
+
+
+
 
 
 

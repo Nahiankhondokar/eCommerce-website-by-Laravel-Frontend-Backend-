@@ -18,7 +18,7 @@
                    <div class="box-body">
                        <div class="table-responsive">
                         
-                        <form action="{{ route('subcategory.update', $subsubcat -> id) }}"  method="POST">
+                        <form action="{{ route('subsubcategory.update', $subsubcat -> id) }}"  method="POST">
                             @csrf	
                             @method('PUT')	
 
