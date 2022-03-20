@@ -120,6 +120,56 @@ class SubCategoryController extends Controller
 
 
     /**
+     *  Sub -> Subcategory store
+     */
+    public function SubSubCategoryStore(Request $request){
+
+        // validation
+        $this -> validate($request, [
+            'eng_name'      => 'required',
+            'hind_name'     => 'required',
+            'category_id'   => 'required',
+            'subcategory_id'=> 'required'
+        ], [
+            'category_id.required' => 'Category Feild is empty !'
+        ]);
+
+        // Data store
+        SubSubCategory::create([
+            'category_id'               => $request -> category_id,
+            'subcategory_id'            => $request -> subcategory_id,
+            'subsubcategory_name_eng'   => $request -> eng_name,
+            'subsubcategory_name_hin'   => $request -> hin_name,
+            'subsubcategory_slug_eng'   => strtolower(str_replace(' ', '-', $request -> eng_name)),
+            'subsubcategory_slug_hin'   => str_replace(' ', '-', $request -> hin_name)
+        ]);
+
+
+         // alert msg
+         $notify = [
+            'message'       => 'Sub - SubCategory Added Successfully',
+            'alert-type'    => 'success'
+        ];
+
+        return redirect() -> back() -> with($notify);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
      *  Sub -> Subcategory view
      */
     public function SubCategoryFind($id){

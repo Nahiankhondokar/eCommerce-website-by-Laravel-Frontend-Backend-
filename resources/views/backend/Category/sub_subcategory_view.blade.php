@@ -62,7 +62,7 @@
                    <div class="box-body">
                        <div class="table-responsive">
                         
-                        <form action="{{ route('subcategory.store') }}"  method="POST">
+                        <form action="{{ route('subsubcategory.store') }}"  method="POST">
                             @csrf		
 
                             <div class="form-group">
@@ -90,7 +90,7 @@
                                         <option selected disabled value="">Select SubCategory</option>
                                         
                                     </select>
-                                    @error('category')
+                                    @error('subcategory_id')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
