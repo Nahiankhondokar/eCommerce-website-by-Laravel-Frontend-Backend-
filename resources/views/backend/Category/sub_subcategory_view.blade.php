@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <h5>Category Select <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <select id="SubCategorySelect" name="category_id" class="form-control">
+                                    <select id="CategorySelect" name="category_id" class="form-control">
                                         <option selected disabled value="">Select Category</option>
 
                                         @foreach ($category as $item)
@@ -85,7 +85,7 @@
                             <div class="form-group">
                                 <h5>SubCategory Select <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <select id="subcategory" name="subcategory_id" class="form-control">
+                                    <select id="subcategoryShow" name="subcategory_id" class="form-control">
 
                                         <option selected disabled value="">Select SubCategory</option>
                                         

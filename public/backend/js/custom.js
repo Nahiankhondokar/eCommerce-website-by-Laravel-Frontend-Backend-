@@ -59,16 +59,19 @@ $(document).ready(function(){
 
 
 
-    // Sub Category Show
-    $(document).on('change', '#SubCategorySelect', function(){
+    /**
+     *  Sub Category Show.
+     *  Sub-subCategory insert form.
+     */
+    $(document).on('change', '#CategorySelect', function(){
 
       let cat_id = $(this).val();
-
+      // alert(cat_id);
       $.ajax({
         url : 'ajax/' + cat_id,
         success : function(data){
 
-          $('#subcategory').empty();
+          $('#subcategoryShow').empty();
 
             /**
              *  System 01 
@@ -76,7 +79,7 @@ $(document).ready(function(){
              *  Array Map
              */
           //  data.map( (val) => {
-          //   $('#subcategory')
+          //   $('#subcategoryShow')
           //   .append('<option value="'+ val.id +'">'+ val.subcategory_name_eng + '</option>');
           //  });
 
@@ -90,7 +93,7 @@ $(document).ready(function(){
              *  Array forof
              */
           for(val of data){
-            $('#subcategory')
+            $('#subcategoryShow')
             .append('<option value="'+ val.id +'">'+ val.subcategory_name_eng + '</option>');
           }
 
@@ -104,7 +107,7 @@ $(document).ready(function(){
            */
             
           // $.each(data, function(key, value){
-          //   $('#subcategory')
+          //   $('#subcategoryShow')
           //   .append('<option value="'+ value.id +'">'+ value.subcategory_name_eng + '</option>');
           // });
 
@@ -114,6 +117,43 @@ $(document).ready(function(){
       });
 
     });
+
+
+    /**
+     *  Sub Categroy Show in Sub-Subcategory Edit Page
+     *  Sub-SubCategory Update form
+     */
+    $(document).on('change', '#CategorySelectUpdate', function(){
+
+      let cat_id = $(this).val();
+      let subsubCatId = $('#subsubcat').attr('idId');
+
+
+      $.ajax({
+        url : '/category/sub/sub/edit/ajax-update/'+ subsubCatId +'/' + cat_id,
+        success : function(data){
+
+
+          $('#subcategoryShowUpdate').empty();
+
+            /**
+             *  System 01 
+             *  array data
+             *  Array for of
+             */
+          for(val of data){
+            $('#subcategoryShowUpdate')
+            .append('<option value="'+ val.id +'">'+ val.subcategory_name_eng + '</option>');
+          }
+
+        }
+      });
+
+    });
+
+
+
+
 
 
 

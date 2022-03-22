@@ -24,13 +24,16 @@
 
                             <div class="form-group">
                                 <h5>Category Select <span class="text-danger">*</span></h5>
+                                
+
                                 <div class="controls">
-                                    <select name="category_id" class="form-control">
+                                    <select id="CategorySelectUpdate" name="category_id" class="form-control">
 
                                         <option selected disabled value="">Select Category</option>
-
+                                     
+                                        
                                         @foreach ($category as $item)
-                                            <option value="{{ $item -> id }}" {{ ($item -> id == $subsubcat -> category_id) ? 'selected' : '' }}>{{ $item -> category_name_eng }}</option>
+                                            <option value="{{ $item -> id }}"  {{ ($item -> id == $subsubcat -> category_id) ? 'selected' : '' }} id="subsubcat" idId="{{ $subsubcat -> id }}">{{ $item -> category_name_eng }}</option>
                                         @endforeach
                                         
                                     </select>
@@ -43,7 +46,7 @@
                             <div class="form-group">
                                 <h5>SubCategory Select <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <select name="subcategory_id" class="form-control">
+                                    <select id="subcategoryShowUpdate" name="subcategory_id" class="form-control">
 
                                         <option selected disabled value="">Select SubCategory</option>
 

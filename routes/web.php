@@ -73,6 +73,9 @@ Route::prefix('brand') -> group(function(){
 }) ;
 
 
+
+
+
 // All Admin Category Routes
 Route::prefix('category') -> group(function(){
 
@@ -100,10 +103,18 @@ Route::prefix('category') -> group(function(){
 
 
 
+     
      Route::get('/sub/sub/ajax/{id}', [SubCategoryController::class, 'SubCategoryFind']);
+     
 
 }) ;
 
+
+ /**
+  *  Admin Sub-SubCategory Edit Route
+  *  Use Ajax for auto update subcategory.
+  */
+Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryController::class, 'SubCategoryFindUpdate']);
 
 
    

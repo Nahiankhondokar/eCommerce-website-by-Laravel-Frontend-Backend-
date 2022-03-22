@@ -198,7 +198,7 @@ class SubCategoryController extends Controller
         $update -> subsubcategory_name_hin = $request -> hin_name;
         $update -> subsubcategory_slug_eng = strtolower(str_replace(' ', '-', $request -> eng_name));
         $update -> subsubcategory_slug_hin = str_replace(' ', '-', $request -> hin_name);
-        $update -> category_id          = $request -> category_id;
+        $update -> category_id             = $request -> category_id;
         $update -> subcategory_id          = $request -> subcategory_id;
         $update -> update();
 
@@ -230,7 +230,22 @@ class SubCategoryController extends Controller
      */
     public function SubCategoryFind($id){
 
-        $subcat = SubCategory::where('category_id',$id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
+
+        $subcat = SubCategory::where('category_id', $id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
+
+        return $subcat;
+
+        // return json_encode($subcat);
+
+    }
+
+
+     /**
+     *  Sub -> Subcategory view
+     */
+    public function SubCategoryFindUpdate($subsubid, $cat_id){
+
+        $subcat = SubCategory::where('category_id', $cat_id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
 
         return $subcat;
 
