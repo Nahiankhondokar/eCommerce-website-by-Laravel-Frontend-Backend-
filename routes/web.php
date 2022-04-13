@@ -126,7 +126,7 @@ Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryCon
   */
   Route::prefix('/product') -> group(function(){
 
-    Route::get('/add', [ProductController::class, 'ProductView']) -> name('add.product');
+    Route::get('/add', [ProductController::class, 'AddProduct']) -> name('add.product');
 
 
   });
