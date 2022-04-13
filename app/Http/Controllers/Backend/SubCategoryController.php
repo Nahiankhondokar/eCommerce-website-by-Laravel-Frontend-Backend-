@@ -215,14 +215,33 @@ class SubCategoryController extends Controller
 
 
 
+    /**
+     *  Sub -> Subcategory Delete
+     */
+    // public function SubSubCategoryDelete($id){
+
+
+    //     $del_data = SubSubCategory::findOrFail($id);
+    //     $del_data -> delete();
+
+     
+    //     // alert msg
+    //     $notify = [
+    //         'message'       => 'Sub - SubCategory Deleted Successfully',
+    //         'alert-type'    => 'info'
+    //     ];
+
+    //     return redirect() -> route('all.subsubcategory') -> with($notify);
+
+
+    // }
 
 
 
 
 
 
-
-
+    
 
 
     /**

@@ -58,6 +58,20 @@
             <li class="{{ ($route == 'all.subsubcategory') ? 'active' : '' }}"><a href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>All Sub -> SubCategory</a></li>
           </ul>
         </li>
+
+        <li class="treeview {{ ($prefix == '/product') ? 'active' : '' }}">
+          <a href="#">
+            <i data-feather="mail"></i> <span>Products</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'add.product') ? 'active' : '' }}"><a href="{{ route('add.product') }}"><i class="ti-more"></i>All Product</a></li>
+
+            <li class=""><a href=""><i class="ti-more"></i>Manage Product</a></li>
+          </ul>
+        </li>
 		
         <li class="treeview">
           <a href="#">

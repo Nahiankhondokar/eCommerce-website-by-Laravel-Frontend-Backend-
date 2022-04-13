@@ -90,7 +90,7 @@ $(document).ready(function(){
             /**
              *  System 02 
              *  array data
-             *  Array forof
+             *  Array forOf
              */
           for(val of data){
             $('#subcategoryShow')
@@ -104,6 +104,7 @@ $(document).ready(function(){
            *  json data
            *  if you want to use this 03 system you have to add Type : "GET", or dataType : "json"
            *  This is foreach loop system in javaScript
+           *  Ariyan vai use this system
            */
             
           // $.each(data, function(key, value){

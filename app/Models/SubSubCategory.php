@@ -17,8 +17,8 @@ class SubSubCategory extends Model
     }
 
     // Relationship for getting data of SubCategroy
-    public function subCategory(){
-        return $this -> belongsTo(SubCategory::class, 'subcategory_id', 'id');
+    public function subcategory(){
+        return $this -> belongsTo(SubCategory::class);
     }
     
 }

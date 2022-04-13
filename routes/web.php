@@ -99,6 +99,7 @@ Route::prefix('category') -> group(function(){
      Route::get('/sub/sub/edit/{subsubcat_id}/{category_id}', [SubCategoryController::class, 'SubSubCategoryEdit']) -> name('subsubcategory.edit');
      Route::put('/sub/sub/update/{id}', [SubCategoryController::class, 'SubSubCategoryUpdate']) -> name('subsubcategory.update');
 
+    //  Route::get('/sub/sub/delete/{id}', [SubCategoryController::class, 'SubSubCategoryDelete']) -> name('subsubcategory.delete');
 
 
 
@@ -116,6 +117,18 @@ Route::prefix('category') -> group(function(){
   */
 Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryController::class, 'SubCategoryFindUpdate']);
 
+
+
+ /**
+  *  Admin Products Routes
+  * 
+  */
+  Route::prefix('/product') -> group(function(){
+
+    Route::get('/add', [ProductController::class, 'ProductView']) -> name('add.product');
+
+
+  });
 
    
 

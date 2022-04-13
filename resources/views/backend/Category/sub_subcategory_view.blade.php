@@ -26,16 +26,21 @@
                                </tr>
                            </thead>
                            <tbody>
+                            {{-- @php
+                                print_r($subsubcat -> subcategory -> subcategory_name_eng); 
+                            @endphp --}}
                                @foreach ($subsubcat as $data)
+                               
                                 <tr>
                                     <td>{{ $data -> category -> category_name_eng }}</td>
-                                    <td>{{ $data['subCategory']['subcategory_name_eng'] }}</td>
+                                   
+                                    <td>{{ $data -> subcategory -> subcategory_name_eng ?? 'None' }}</td>
                                     <td>{{ $data -> subsubcategory_name_eng }}</td>
                                    
                                     <td>
                                         <a href="{{ url('category/sub/sub/edit/'. $data -> id.'/'. $data -> category_id.'') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
 
-                                        <a id="delete" href="{{ url('category/sub/delete/' . $data -> id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a id="delete" href="{{ url('category/sub/sub/delete/' . $data -> id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                @endforeach
