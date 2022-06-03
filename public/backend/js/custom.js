@@ -155,9 +155,67 @@ $(document).ready(function(){
 
 
 
+    // ===================== Product Add Category Manage ==================
+
+    /**
+     *  Sub Category Show in Product Add Form.
+     *  Product insert form.
+     */
+     $(document).on('change', '#CategorySelectProduct', function(){
+
+      let cat_id = $(this).val();
+      // alert(cat_id);
+      $.ajax({
+        url : 'ajax/' + cat_id,
+        success : function(data){
+
+          $('#subcategoryShow').empty();
+
+            /**
+             *  System 01 
+             *  array data
+             *  Array Map
+             */
+          //  data.map( (val) => {
+          //   $('#subcategoryShow')
+          //   .append('<option value="'+ val.id +'">'+ val.subcategory_name_eng + '</option>');
+          //  });
 
 
 
+
+
+            /**
+             *  System 02 
+             *  array data
+             *  Array forOf
+             */
+          for(val of data){
+            $('#subcategoryShow')
+            .append('<option value="'+ val.id +'">'+ val.subcategory_name_eng + '</option>');
+          }
+
+
+
+          /**
+           *  System 03 
+           *  json data
+           *  if you want to use this 03 system you have to add Type : "GET", or dataType : "json"
+           *  This is foreach loop system in javaScript
+           *  Ariyan vai use this system
+           */
+            
+          // $.each(data, function(key, value){
+          //   $('#subcategoryShow')
+          //   .append('<option value="'+ value.id +'">'+ value.subcategory_name_eng + '</option>');
+          // });
+
+          
+
+        }
+      });
+
+    });
 
 
 

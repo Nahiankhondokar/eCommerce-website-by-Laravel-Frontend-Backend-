@@ -1,7 +1,6 @@
  @php
    $prefix = Request::route() -> getPrefix();
    $route = Route::current() -> getName();
-
  @endphp
  
  <!-- Left side column. contains the logo and sidebar -->
@@ -67,7 +66,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{ ($route == 'add.product') ? 'active' : '' }}"><a href="{{ route('add.product') }}"><i class="ti-more"></i>All Product</a></li>
+            <li class="{{ ($route == 'all.product') ? 'active' : '' }}"><a href="{{ route('all.product') }}"><i class="ti-more"></i>All Product</a></li>
 
             <li class=""><a href=""><i class="ti-more"></i>Manage Product</a></li>
           </ul>
