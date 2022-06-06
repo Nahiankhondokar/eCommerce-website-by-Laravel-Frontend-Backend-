@@ -141,7 +141,7 @@
 
 
     /**
-     *  Thambnail change system
+     *  Product Thambnail change system
      */
     $(document).on('click', '#productThumbClose', function(){
         $('#thambnail_selector').show();
@@ -150,6 +150,34 @@
     });
 
 
+
+    /**
+     *  Product GAllery img setUp
+     */ 
+    $(document).on('change', '#productGallery', function(e){
+
+      $('#gallery_selector').hide();
+      $('#productGalleryClose').show();
+      for( let i =0; i < e.target.files.length; i++){
+          let gal_url = URL.createObjectURL(e.target.files[i]);
+          $('#productGalleryShow').append(`<img style="width: 60px" src="${gal_url}" alt="">`);
+      }
+
+      $('#productGalleryShow').css('display', 'block');
+
+    });
+
+
+    /**
+     *  Product Thambnail change system
+     */
+    $(document).on('click', '#productGalleryClose', function(){
+        $('#gallery_selector').show();
+        $('#productGalleryShow').css('display', 'none');
+        $('#productGalleryClose').hide();
+        $('#productGalleryShow img').hide();
+    });
+  
 
 
     

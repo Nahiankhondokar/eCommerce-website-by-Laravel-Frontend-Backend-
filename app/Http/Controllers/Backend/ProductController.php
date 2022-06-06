@@ -51,4 +51,15 @@ class ProductController extends Controller
 
 
 
+    /**
+     *  Product sub-subcategory show
+     */
+    public function ProductAdd(Request $request){
+      
+        return 'done';
+
+    }
+
+
+
 }
