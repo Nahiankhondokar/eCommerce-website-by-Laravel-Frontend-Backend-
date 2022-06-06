@@ -34,7 +34,7 @@
                                     {{-- <td>
                                         <img style="width:60px; height: 60px;" src="{{ URL::to('') }}/media/Category/{{ $data -> category_icon }}" alt="">
                                     </td> --}}
-                                    <td>
+                                    <td class="subcatAction">
                                         <a href="{{ route('subcategory.edit', $data -> id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
 
                                         <a id="delete" href="{{ url('category/sub/delete/' . $data -> id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>

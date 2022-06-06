@@ -32,7 +32,7 @@
                                @foreach ($subsubcat as $data)
                                
                                 <tr>
-                                    <td>{{ $data -> category -> category_name_eng }}</td>
+                                    <td>{{ $data -> category -> category_name_eng ?? "None" }}</td>
                                    
                                     <td>{{ $data -> subcategory -> subcategory_name_eng ?? 'None' }}</td>
                                     <td>{{ $data -> subsubcategory_name_eng }}</td>

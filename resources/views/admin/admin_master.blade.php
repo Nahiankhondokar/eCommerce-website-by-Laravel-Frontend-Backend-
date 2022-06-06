@@ -18,6 +18,9 @@
 	  
   {{-- font awesome file --}}
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    {{-- Selec 2 --}}
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   
 	<!-- Style-->  
 	<link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
@@ -85,8 +88,20 @@
    {{-- Sweet alert --}}
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+   {{-- Input Tag --}}
+   <script src="{{ asset('../assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
+
+      {{-- CK Editor--}}
+   <script src="{{ asset('../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+   <script src="{{ asset('../assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
+   <script src="{{ asset('backend/js/pages/editor.js') }}"></script>
+
+  {{-- Selec 2 --}}
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
   {{-- custom js --}}
   <script src="{{ asset('backend/js/custom.js') }}"></script>
+  <script src="{{ asset('backend/js/product.js') }}"></script>
 
   <script>
     // Toster

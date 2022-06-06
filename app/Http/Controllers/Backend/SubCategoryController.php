@@ -241,8 +241,7 @@ class SubCategoryController extends Controller
      *  Sub -> Subcategory view
      */
     public function SubCategoryFind($id){
-
-
+        // return $id;
         $subcat = SubCategory::where('category_id', $id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
 
         return $subcat;

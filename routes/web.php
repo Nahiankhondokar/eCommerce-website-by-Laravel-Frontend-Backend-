@@ -105,7 +105,10 @@ Route::prefix('category') -> group(function(){
 
 
 
-     
+    /**
+     * sub-category find for ....
+     * sub-subCategory form or Product add form
+     */
      Route::get('/sub/sub/ajax/{id}', [SubCategoryController::class, 'SubCategoryFind']);
      
 
@@ -127,7 +130,8 @@ Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryCon
   Route::prefix('/product') -> group(function(){
 
     Route::get('/all', [ProductController::class, 'ProductView']) -> name('all.product');
-
+    Route::get('/porduct/subcat/ajax/{id}', [ProductController::class, 'ProductSubCatFind']);
+    Route::get('/porduct/subsubcat/ajax/{id}', [ProductController::class, 'ProductSubSubCatFind']);
 
   });
 
