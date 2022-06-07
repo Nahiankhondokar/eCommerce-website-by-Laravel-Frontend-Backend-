@@ -125,7 +125,7 @@ class ProductController extends Controller
             'alert-type'    => 'success'
         ];
 
-        return redirect() -> back() -> with($notify);
+        return redirect() -> route('manage.product') -> with($notify);
 
     }
 
@@ -135,7 +135,8 @@ class ProductController extends Controller
      */
     public function ProductManage(){
         
-        return view('backend.product.product_view');
+        $products = Product::latest() -> get();
+        return view('backend.product.product_view', compact('products'));
 
     }
 
