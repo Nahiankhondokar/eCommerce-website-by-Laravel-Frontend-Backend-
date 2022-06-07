@@ -103,7 +103,7 @@
                                 <div class="form-group">
                                     <h5>Product Name En<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="product_name_eng" class="form-control" required data-validation-required-message="This field is required" />
+                                        <input type="text" name="product_name_eng" class="form-control"  />
 
                                         @error('product_name_eng')
                                         <span class="text-danger">{{ $message }}</span>
@@ -117,7 +117,7 @@
                                 <div class="form-group">
                                     <h5>Product Name Hin <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="product_name_hin" class="form-control" required data-validation-required-message="This field is required" />
+                                        <input type="text" name="product_name_hin" class="form-control"  />
 
                                         @error('product_name_hin')
                                         <span class="text-danger">{{ $message }}</span>
@@ -135,8 +135,10 @@
                                 <div class="form-group">
                                     <h5>Product Code<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="produt_code" class="form-control" required data-validation-required-message="This field is required"/>
-                                        @error('produt_code')
+
+                                        <input type="text" name="product_code" class="form-control"/>
+
+                                        @error('product_code')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <a href=""></a>
@@ -148,9 +150,9 @@
                                 <div class="form-group">
                                     <h5>Product Quantity<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="produt_qty" class="form-control" required data-validation-required-message="This field is required"/>
+                                        <input type="text" name="product_qty" class="form-control" />
 
-                                        @error('produt_qty')
+                                        @error('product_qty')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <a href=""></a>
@@ -162,9 +164,9 @@
                                 <div class="form-group">
                                     <h5>Tag Name Eng <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="produt_tag_eng" class="form-control" data-role="tagsinput" required data-validation-required-message="This field is required">
+                                        <input type="text" name="product_tag_eng" class="form-control" data-role="tagsinput" >
                                         
-                                        @error('produt_tag_eng')
+                                        @error('product_tag_eng')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <a href=""></a>
@@ -179,8 +181,8 @@
                                 <div class="form-group">
                                     <h5>Product Tag Hin<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="produt_tag_hin" class="form-control" data-role="tagsinput" required data-validation-required-message="This field is required"/>
-                                        @error('produt_tag_hin')
+                                        <input type="text" name="product_tag_hin" class="form-control" data-role="tagsinput" />
+                                        @error('product_tag_hin')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <a href=""></a>
@@ -192,9 +194,9 @@
                                 <div class="form-group">
                                     <h5>Product Size Eng<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="produt_size_eng " class="form-control" data-role="tagsinput" required data-validation-required-message="This field is required">
+                                        <input type="text" name="product_size_eng" class="form-control" data-role="tagsinput" >
 
-                                        @error('produt_size_eng ')
+                                        @error('product_size_eng')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <a href=""></a>
@@ -206,9 +208,9 @@
                                 <div class="form-group">
                                     <h5>Product Size Hin <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" class="form-control" name="produt_size_hin" data-role="tagsinput" required data-validation-required-message="This field is required">
+                                        <input type="text" class="form-control" name="product_size_hin" data-role="tagsinput" >
                                         
-                                        @error('produt_size_hin')
+                                        @error('product_size_hin')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <a href=""></a>
@@ -223,8 +225,8 @@
                                 <div class="form-group">
                                     <h5>Product Color Hin<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="produt_color_hin" class="form-control" data-role="tagsinput" required data-validation-required-message="This field is required"/>
-                                        @error('produt_color_hin')
+                                        <input type="text" name="product_color_hin" class="form-control" data-role="tagsinput" />
+                                        @error('product_color_hin')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <a href=""></a>
@@ -236,9 +238,9 @@
                                 <div class="form-group">
                                     <h5>Product Color Eng<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="produt_color_eng " class="form-control" data-role="tagsinput" required data-validation-required-message="This field is required">
+                                        <input type="text" name="product_color_eng" class="form-control" data-role="tagsinput" >
 
-                                        @error('produt_color_eng ')
+                                        @error('product_color_eng')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <a href=""></a>
@@ -250,9 +252,9 @@
                                 <div class="form-group">
                                     <h5>Product Selling Price <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" class="form-control" name="selling_price" required data-validation-required-message="This field is required">
+                                        <input type="text" class="form-control" name="selling_price" >
                                         
-                                        @error('selling_price ')
+                                        @error('selling_price')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <a href=""></a>
@@ -283,7 +285,7 @@
                                      
                                         <label for="productThambnail"><img id="thambnail_selector" src="{{ URL::to('') }}/media/admin/porductThambnail/thambnail.png" alt="" style="width: 50px; cursor : pointer;"></label>
 
-                                        <input id="productThambnail" type="file" style="display: none;" name="product_thamnail" class="form-control" required data-validation-required-message="This field is required">
+                                        <input id="productThambnail" type="file" style="display: none;" name="product_thamnail" class="form-control" >
 
                                         <h5 id="productThumbClose" style="display: none; cursor : pointer;">X</h5>
                                         <img id="productThambShow" src="" alt="" style="max-width: 80px;"> 
@@ -303,7 +305,7 @@
 
                                         <label for="productGallery"><img id="gallery_selector" src="{{ URL::to('') }}/media/admin/porductThambnail/gallery.png" alt="" style="width: 50px; cursor : pointer;"></label>
 
-                                        <input id="productGallery" multiple type="file" class="form-control" style="display: none;" name="productgallery[]" required data-validation-required-message="This field is required">
+                                        <input id="productGallery" multiple type="file" class="form-control" style="display: none;" name="product_gallery[]" >
 
                                         <h5 id="productGalleryClose" style="display: none; cursor : pointer;">X</h5>
                                         <div id="productGalleryShow">
@@ -325,7 +327,7 @@
                                 <div class="form-group">
                                     <h5>Short Description English<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <textarea name="short_desc_eng" id="textarea" class="form-control" required placeholder="Textarea text" required data-validation-required-message="This field is required"></textarea>
+                                        <textarea name="short_desc_eng" id="textarea" class="form-control"  placeholder="Textarea text" ></textarea>
                                         @error('short_desc_eng')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -338,7 +340,7 @@
                                 <div class="form-group">
                                     <h5>Short Description Hinde<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <textarea name="short_desc_hin" id="textarea" class="form-control" required placeholder="Textarea text" required data-validation-required-message="This field is required"></textarea>
+                                        <textarea name="short_desc_hin" id="textarea" class="form-control"  placeholder="Textarea text" ></textarea>
                                         @error('short_desc_hin ')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -354,7 +356,7 @@
                                 <div class="form-group">
                                     <h5>Long Description English<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <textarea id="editor1" name="long_desc_eng" rows="10" cols="80" required data-validation-required-message="This field is required">
+                                        <textarea id="editor1" name="long_desc_eng" rows="10" cols="80" >
                                             This is my textarea to be replaced with CKEditor.
                                         </textarea>
                                         @error('long_desc_eng')
@@ -369,7 +371,7 @@
                                 <div class="form-group">
                                     <h5>Long Description Hinde<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <textarea id="editor2" name="long_desc_hin" rows="10" cols="80" required data-validation-required-message="This field is required">
+                                        <textarea id="editor2" name="long_desc_hin" rows="10" cols="80" >
                                             This is my textarea to be replaced with CKEditor.
                                         </textarea>
                                         @error('long_desc_hin ')

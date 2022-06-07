@@ -133,6 +133,7 @@ Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryCon
     Route::get('/porduct/subcat/ajax/{id}', [ProductController::class, 'ProductSubCatFind']);
     Route::get('/porduct/subsubcat/ajax/{id}', [ProductController::class, 'ProductSubSubCatFind']);
     Route::post('/add', [ProductController::class, 'ProductAdd']) -> name('add.product');
+    Route::get('/manage', [ProductController::class, 'ProductManage']) -> name('manage.product');
 
   });
 

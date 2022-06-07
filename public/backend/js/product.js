@@ -132,10 +132,22 @@
      *  Product Form
      */
     $('#productThambnail').change(function(e){
+
+      // img type 
+      let img_type = e.target.files[0].type;
+      // img validaiton
+      if(img_type == 'image/png' || img_type == 'image/jpeg' || img_type == 'image/jpg'){
+
         $('#thambnail_selector').hide();
         $('#productThumbClose').css('display', 'block');
         let img_url = URL.createObjectURL(e.target.files[0]);
         $('#productThambShow').attr('src', img_url);
+
+      }else{
+        swal('Only png/ jpeg/ jpg files are allow');
+      }
+
+
 
     });
 
@@ -156,11 +168,26 @@
      */ 
     $(document).on('change', '#productGallery', function(e){
 
-      $('#gallery_selector').hide();
-      $('#productGalleryClose').show();
+
       for( let i =0; i < e.target.files.length; i++){
+        // img type 
+        let img_type = e.target.files[i].type;
+
+        // img validation
+        if(img_type == 'image/png' || img_type == 'image/jpeg' || img_type == 'image/jpg'){
+
+          $('#gallery_selector').hide();
+          $('#productGalleryClose').show();
           let gal_url = URL.createObjectURL(e.target.files[i]);
           $('#productGalleryShow').append(`<img style="width: 60px" src="${gal_url}" alt="">`);
+            
+        }else{
+          swal('Only png/ jpeg/ jpg files are allow');
+        }
+
+
+        // console.log(img_type);
+
       }
 
       $('#productGalleryShow').css('display', 'block');
