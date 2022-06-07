@@ -117,7 +117,7 @@ Route::prefix('category') -> group(function(){
 
  /**
   *  Admin Sub-SubCategory Edit Route
-  *  Use Ajax for auto update subcategory.
+  *  Use Ajax for auto Select subcategory.
   */
 Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryController::class, 'SubCategoryFindUpdate']);
 
@@ -129,15 +129,26 @@ Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryCon
   */
   Route::prefix('/product') -> group(function(){
 
-    Route::get('/all', [ProductController::class, 'ProductView']) -> name('all.product');
-    Route::get('/porduct/subcat/ajax/{id}', [ProductController::class, 'ProductSubCatFind']);
-    Route::get('/porduct/subsubcat/ajax/{id}', [ProductController::class, 'ProductSubSubCatFind']);
+    Route::get('/', [ProductController::class, 'ProductView']) -> name('all.product');
+    Route::get('/subcat/ajax/{id}', [ProductController::class, 'ProductSubCatFind']);
+    Route::get('/subsubcat/ajax/{id}', [ProductController::class, 'ProductSubSubCatFind']);
+
     Route::post('/add', [ProductController::class, 'ProductAdd']) -> name('add.product');
-    Route::get('/manage', [ProductController::class, 'ProductManage']) -> name('manage.product');
+    Route::get('/all', [ProductController::class, 'ProductManage']) -> name('manage.product');
+    Route::get('/edit', [ProductController::class, 'ProductEdit']) -> name('edit.product');
+
+    Route::get('/view/{id}', [ProductController::class, 'SingleProductView']) -> name('single.product');
+    Route::get('/edit/{id}', [ProductController::class, 'ProductEdit']) -> name('edit.product');
 
   });
 
-   
+
+  /**
+   *  Product Edit viwe page.
+   *  Sub-category or sub-sub-category manage route
+   */
+  Route::get('product/edit/subcat/ajax/{id}', [ProductController::class, 'EditProductSubCatFind']);
+  Route::get('product/edit/subsubcat/ajax/{id}', [ProductController::class, 'EditProductSubsubCatFind']);
 
  
 

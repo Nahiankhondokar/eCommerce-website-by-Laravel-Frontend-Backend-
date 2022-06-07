@@ -102,6 +102,10 @@ body.layout-boxed {
     height: 100%;
 }
 
+tr, td{
+    text-align: center;
+}
+
 .wrapper {
     height: 100%;
     overflow-x: hidden;

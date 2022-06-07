@@ -32,6 +32,8 @@ class ProductController extends Controller
      */
     public function ProductSubCatFind($id){
 
+        // return $id;
+
         $subcat = SubCategory::where('category_id', $id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
 
         return $subcat;
@@ -132,13 +134,82 @@ class ProductController extends Controller
 
     /**
      *  Product Manage
+     *  All product Show
      */
     public function ProductManage(){
         
         $products = Product::latest() -> get();
-        return view('backend.product.product_view', compact('products'));
+        return view('backend.product.all_product', compact('products'));
 
     }
+
+
+    /**
+     *  Product Manage
+     *  product View
+     */
+    public function SingleProductView($id){
+
+        $single_data = Product::find($id);
+
+        // $data = $single_data -> category() -> attach($single_data -> categroy_id);
+
+        return $single_data;
+
+    }
+
+
+
+    /**
+     *  Product Manage
+     *  product Edit
+     */
+    public function ProductEdit($id){
+        // return $id;
+        $category       = Category::latest() -> get();
+        $subcategory    = SubCategory::latest() -> get();
+        $subsubcategory = SubSubCategory::latest() -> get();
+        $brand          = Brand::latest() -> get();
+        $product        = Product::find($id);
+        return view('backend.product.product_edit', [
+            'category'              => $category,
+            'subcategory'           => $subcategory,
+            'subsubcategory'        => $subsubcategory,
+            'brand'                 => $brand,
+            'product'               => $product
+
+        ]);
+
+    }
+
+
+
+    /**
+     *  Edit Product subcategory show
+     */
+    public function EditProductSubCatFind($id){
+
+        // return $id;
+
+        $subcat = SubCategory::where('category_id', $id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
+
+        return $subcat;
+
+    }
+
+
+    /**
+     *  Edit Product sub-subcategory show
+     */
+    public function EditProductSubSubCatFind($id){
+        // return $id;
+
+        $subsubcat = SubSubCategory::where('subcategory_id', $id) -> orderBy('subsubcategory_name_eng', 'DESC') -> get();
+
+        return $subsubcat;
+
+    }
+
 
 
 

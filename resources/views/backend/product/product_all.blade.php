@@ -20,7 +20,8 @@
                            <thead>
                                <tr>
                                    <th>Thambnail</th>
-                                   <th>Product Name</th>
+                                   <th>Product English</th>
+                                   <th>Product Hinde</th>
                                    <th>Product Size</th>
                                    <th>Quentity</th>
                                    <th>Action</th>
@@ -31,15 +32,22 @@
                                 <tr>
                                     <td><img src="{{ URL::to('') }}/media/admin/products/thambnail/{{ $data -> product_thamnail }}" alt="" style="width: 40px"></i></td>
                                     <td>{{ $data -> product_name_eng }}</td>
+                                    <td>{{ $data -> product_name_hin }}</td>
                                     <td>{{ $data -> product_size_eng }}</td>
                                     <td>{{ $data -> product_qty }}</td>
                                     {{-- <td>
                                         <img style="width:60px; height: 60px;" src="{{ URL::to('') }}/media/Category/{{ $data -> category_icon }}" alt="">
                                     </td> --}}
                                     <td>
-                                        <a href="{{ route('category.edit', $data -> id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                        <a href="#" id="product_view" view_id='{{ $data -> id }}' data-toggle="modal" class="btn btn-sm btn-info">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
 
-                                        <a id="delete" href="{{ url('category/delete/' . $data -> id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="" class="btn btn-sm btn-warning">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        <a id="delete" href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                @endforeach
@@ -53,6 +61,20 @@
             
             </div>
 
+        </div>
+    </div>
+</div>
+
+
+
+{{-- Single Product View Modal --}}
+<div id="single_product" class="modal fade">
+    <div class="modal modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2>Details of Item</h2>
+                
+            </div>
         </div>
     </div>
 </div>

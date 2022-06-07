@@ -10,7 +10,7 @@
      <!-- Basic Forms -->
       <div class="box">
         <div class="box-header with-border">
-          <h2 class="box-title">Add New Product</h2>
+          <h2 class="box-title">Edit Product</h2>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -32,7 +32,7 @@
                                             <option selected disabled value="">Select Brand</option>
     
                                             @foreach ($brand as $item)
-                                                <option value="{{ $item -> id }}">{{ $item -> brand_name_eng }}</option>
+                                                <option value="{{ $item -> id }}" {{ ($product -> brand_id == $item -> id) ? 'selected' : '' }} >{{ $item -> brand_name_eng }}</option>
                                             @endforeach
                                             
                                         </select>
@@ -47,12 +47,12 @@
                                 <div class="form-group">
                                     <h5>Category Select <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select id="" name="category_id" class="form-control productcat">
+                                        <select id=""  name="category_id" class="form-control productcatEdit">
     
                                             <option selected disabled value="">Select Category</option>
     
                                             @foreach ($category as $item)
-                                                <option value="{{ $item -> id }}">{{ $item -> category_name_eng }}</option>
+                                                <option value="{{ $item -> id }}" {{ ($product -> category_id == $item -> id) ? 'selected' : '' }}>{{ $item -> category_name_eng }}</option>
                                             @endforeach
                                             
                                         </select>
@@ -66,10 +66,15 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <h5>SubCategory Select <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <select id="" name="subcategory_id" class="form-control productsubcat">
+                                    <div class="controls" id="productsubcategoryItem">
+                                        <select id="" disabled name="subcategory_id" class="form-control productsubcatEdit">
     
                                             <option selected disabled value="">Select SubCategory</option>
+
+                                            @foreach ($subcategory as $item)
+                                                <option value="{{ $item -> id }}" {{ ($product -> subcategory_id == $item -> id) ? 'selected' : '' }}>{{ $item -> subcategory_name_eng }}</option>
+                                            @endforeach
+                                            
     
                                         </select>
                                         @error('subcategory_id')
@@ -85,10 +90,15 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <h5>SubsubCategroy Select <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <select id="" name="subsubcategory_id" class="form-control productsubsubcat">
+                                    <div class="controls" id="productsubsubcategoryItem">
+                                        <select disabled name="subsubcategory_id" class="form-control productsubsubcatEdit">
     
                                             <option selected disabled value="">SubsubCategroy Select</option>
+
+                                            @foreach ($subsubcategory as $item)
+                                                <option value="{{ $item -> id }}" {{ ($product -> subsubcategory_id == $item -> id) ? 'selected' : '' }}>{{ $item -> subsubcategory_name_eng }}</option>
+                                            @endforeach
+                                            
 
                                         </select>
                                         @error('subsubcategory_id')
@@ -437,6 +447,5 @@
     </section>
     <!-- /.content -->
   </div>
-
 
 @endsection
