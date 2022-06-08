@@ -139,6 +139,7 @@ Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryCon
 
     Route::get('/view/{id}', [ProductController::class, 'SingleProductView']) -> name('single.product');
     Route::get('/edit/{id}', [ProductController::class, 'ProductEdit']) -> name('edit.product');
+    Route::post('/update/{id}', [ProductController::class, 'ProductUpdate']) -> name('update.product');
 
   });
 

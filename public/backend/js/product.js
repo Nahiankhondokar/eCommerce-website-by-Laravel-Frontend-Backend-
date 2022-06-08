@@ -284,7 +284,7 @@
      */
      $(document).on('change', '.productcatEdit', function(){
 
-      $('#productsubcategoryItem select').removeAttr("disabled");
+      $('#productsubcategoryItem select').removeAttr("style");
       let cat_id = $(this).val();
       // alert(cat_id);
       $.ajax({
@@ -311,34 +311,34 @@
 
 
 
-         /**
+      /**
      *  Sub-subCategory Show in product add form.
      *  product insert form.
      */
-          $(document).on('change', '.productsubcatEdit', function(){
+      $(document).on('change', '.productsubcatEdit', function(){
 
-            $('#productsubsubcategoryItem select').removeAttr("disabled");
-            let cat_id = $(this).val();
-            // alert(cat_id);
-            $.ajax({
-              url : 'subsubcat/ajax/' + cat_id,
-              success : function(data){
-                $('.productsubsubcatEdit').empty();
-      
-                  /**
-                   *  System 02 
-                   *  array data
-                   *  Array forOf
-                   */
-                for(val of data){
-                  $('.productsubsubcatEdit')
-                  .append('<option value="'+ val.id +'">'+ val.subsubcategory_name_eng + '</option>');
-                }
-      
-              }
-            });
-      
-          });
+        $('#productsubsubcategoryItem select').removeAttr("style");
+        let cat_id = $(this).val();
+        // alert(cat_id);
+        $.ajax({
+          url : 'subsubcat/ajax/' + cat_id,
+          success : function(data){
+            $('.productsubsubcatEdit').empty();
+  
+              /**
+               *  System 02 
+               *  array data
+               *  Array forOf
+               */
+            for(val of data){
+              $('.productsubsubcatEdit')
+              .append('<option value="'+ val.id +'">'+ val.subsubcategory_name_eng + '</option>');
+            }
+  
+          }
+        });
+  
+      });
               
 
     
