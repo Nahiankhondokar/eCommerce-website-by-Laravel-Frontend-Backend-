@@ -17,6 +17,8 @@
                    <!-- /.box-header -->
                    <div class="box-body">
                        <div class="table-responsive">
+
+                        {{ $brand }}
                         
                         <form action="{{ url('brand/update/' . $brand -> id) }}"  method="POST" enctype="multipart/form-data">
                             @csrf	

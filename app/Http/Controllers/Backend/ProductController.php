@@ -64,6 +64,7 @@ class ProductController extends Controller
 
         // image upload
         if($request -> hasFile('product_thamnail')){
+            
             $img = $request -> file('product_thamnail');
             $unique = md5(time() . rand()) . '.' . $img -> getClientOriginalExtension();
             $img -> move(public_path('media/admin/products/thambnail'), $unique);
@@ -109,17 +110,26 @@ class ProductController extends Controller
 
 
         // product gallery 
+        $galleryArr = [];
         $gallery = $request -> file('product_gallery');
         foreach ($gallery as $gal) {
             $unique = md5(time() . rand()) . '.' . $gal -> getClientOriginalExtension();
             $gal -> move(public_path('media/admin/products/gallery'), $unique);
-
-            MultiImg::create([
-                'product_id'        => $product_id,
-                'photo_name'        => $unique
-            ]);
-
+            array_push($galleryArr, $unique);
         }
+
+        // gallery final array
+        $finalGallery = [
+            'gallery'       => $galleryArr
+        ];
+        
+
+        MultiImg::create([
+            'product_id'        => $product_id,
+            'photo_name'        => json_encode($finalGallery)
+        ]);
+
+
 
         // alert msg
         $notify = [
@@ -166,6 +176,9 @@ class ProductController extends Controller
      */
     public function ProductEdit($id){
         // return $id;
+
+        $multiple_img = MultiImg::where('product_id', $id) -> get();
+
         $category       = Category::latest() -> get();
         $subcategory    = SubCategory::latest() -> get();
         $subsubcategory = SubSubCategory::latest() -> get();
@@ -176,8 +189,8 @@ class ProductController extends Controller
             'subcategory'           => $subcategory,
             'subsubcategory'        => $subsubcategory,
             'brand'                 => $brand,
-            'product'               => $product
-
+            'product'               => $product,
+            'multiple_img'          => $multiple_img
         ]);
 
     }
@@ -266,6 +279,95 @@ class ProductController extends Controller
 
     }
 
+
+
+    /**
+     *  product gallery update
+     */
+    public function ProductGalleryUpdate(Request $request){
+
+        // product id
+        $product_id = $request -> product_id;
+
+        $arrGall = [];
+        $imgs = $request -> file('product_gallery');
+        foreach( $imgs as $img){
+
+            // data get & img deleteing system
+            $del_img = MultiImg::where('product_id', $product_id) -> get();
+            foreach($del_img as $del){
+            $data = json_decode($del -> photo_name);
+    
+                foreach($data -> gallery as $s_gallery){
+                    // echo $s_gallery;
+                    if(file_exists('media/admin/products/gallery/'. $s_gallery)){
+                        unlink('media/admin/products/gallery/'. $s_gallery);
+                    }
+
+                }
+    
+            }
+            
+            $unique =   (time() . rand()) . '.' . $img -> getClientOriginalExtension();
+            $img -> move(public_path('media/admin/products/gallery'), $unique);
+            array_push($arrGall, $unique);
+
+        }
+
+        // gallery array
+        $galleryUpdateArr = [
+            'gallery'       => $arrGall
+        ];
+
+  
+        // gallery images updated 
+        MultiImg::where('product_id', $product_id) -> update([
+            'photo_name'        => json_encode($galleryUpdateArr)
+        ]);
+
+
+        // alert msg
+        $notify = [
+            'message'       => 'Product Gallery Successfully',
+            'alert-type'    => 'info'
+        ];
+
+        return redirect() -> route('manage.product') -> with($notify);
+
+
+    }
+
+
+
+    
+    /**
+     *  product thambnail update
+     */
+    public function ProductThambnailUpdate(Request $request){
+
+        // // image Update
+        // if($request -> hasFile('product_thamnail')){
+            
+        //     $img = $request -> file('product_thamnail');
+        //     $img_unique = md5(time() . rand()) . '.' . $img -> getClientOriginalExtension();
+
+        //     return $img_unique;
+
+        //     // $img -> move(public_path('media/admin/products/thambnail'), $unique);
+            
+        // }
+
+
+        // // alert msg
+        // $notify = [
+        //     'message'       => 'Product Gallery Successfully',
+        //     'alert-type'    => 'info'
+        // ];
+
+        // return redirect() -> route('manage.product') -> with($notify);
+
+
+    }
 
 
 

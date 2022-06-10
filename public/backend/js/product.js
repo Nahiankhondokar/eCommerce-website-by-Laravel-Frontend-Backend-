@@ -339,9 +339,98 @@
         });
   
       });
+
+
+
+    // =============== Product Edit view images manage ===================
+
+      
+    /**
+     *  Product Thambnai show beside the input tag
+     *  Product Edit Form
+     */
+    $('.product_thambnail').change(function(e){
+
+      // img type 
+      let img_type = e.target.files[0].type;
+      // img validaiton
+      if(img_type == 'image/png' || img_type == 'image/jpeg' || img_type == 'image/jpg'){
+
+        $('.thambnail_selector').hide();
+        $('.productThumbClose').css('display', 'block');
+        let img_url = URL.createObjectURL(e.target.files[0]);
+        $('.productThambShow').attr('src', img_url);
+
+      }else{
+        swal('Only png/ jpeg/ jpg files are allow');
+      }
+
+
+
+    });
+
+
+    /**
+     *  Product Thambnail change system
+     *  product Edit form
+     */
+    $(document).on('click', '.productThumbClose', function(){
+        // $('.thambnail_selector').show();
+        $('.productThambShow').attr('src', '');
+        $('.thambnail_selector').css('display', 'block');
+    });
+
+
+
+    /**
+     *  Product GAllery img setUp
+     *  product edit form
+     */ 
+    $(document).on('change', '.productGalleryEdit', function(e){
+
+      // gallery selector 
+      $('.gallery_selectorEdit').css('display', 'none');
+      $('.productGalleryCloseEdit').show();
+
+      // for loop for getting single gallery image
+      for(let i = 0; i < e.target.files.length; i++){
+
+        // img type 
+        let img_type = e.target.files[i].type;
+
+        // img validation
+        if(img_type == 'image/png' || img_type == 'image/jpeg' || img_type == 'image/jpg'){
+
+          let gal_url = URL.createObjectURL(e.target.files[i]);
+          $('.productGalleryShowEdit').append(`<img style="width: 60px" src="${gal_url}" alt="">`);
+            
+        }else{
+          swal('Only png/ jpeg/ jpg files are allow');
+        }
+
+      }
+
+      $('.productGalleryShowEdit').css('display', 'block');
+
+    });
+
+
+    /**
+     *  Product Gallery change system
+     */
+    $(document).on('click', '.productGalleryCloseEdit', function(){
+        $('.gallery_selectorEdit').css('display', 'block');
+        $('.productGalleryShowEdit img').css('display', 'none');
+        $('.productGalleryCloseEdit').hide();
+        $('#product_previous_gallery').css('display', 'none');
+
+    });
+  
               
 
     
 
 });
 })(jQuery)
+
+

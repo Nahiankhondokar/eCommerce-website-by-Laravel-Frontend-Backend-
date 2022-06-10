@@ -421,4 +421,118 @@
     <!-- /.content -->
   </div>
 
+
+  {{-- Multiplae image & Thambnail image change --}}
+  <div class="content">
+      <section>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box bt-3 border-warning">
+                  <div class="box-header">
+                    <h4 class="box-title">Multiple Images <strong>Update</strong></h4>
+                  </div>
+    
+                    {{-- Multiplae image change --}}
+                  <form action="{{ route('gallery.product') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <h5>Product Multiple Photos<span class="text-danger">*</span></h5>
+                                <div class="controls">
+                        
+                                    <label for="product_gallery"><img class="gallery_selectorEdit" src="{{ URL::to('') }}/media/admin/porductThambnail/gallery.png" alt="" style="width: 50px; cursor : pointer; display: none;"></label>
+                        
+                                    <input id="product_gallery" multiple type="file" class="form-control productGalleryEdit" style="display: none;" name="product_gallery[]" >
+                                    <input type="hidden" name="product_id" value="{{ $product -> id }}">
+                        
+                                    <h5 class="productGalleryCloseEdit" style="cursor : pointer;">X</h5>
+
+                                    <div id="product_previous_gallery">
+
+                                        @php
+                                        foreach ($multiple_img as $value) {
+
+                                            $gall_arr = json_decode($value -> photo_name);
+
+                                        }
+                                        @endphp
+
+                                        @foreach($gall_arr -> gallery as $img)
+                                        
+                                        <img src="{{ asset('media/admin/products/gallery/' . $img) }}" alt="" style="width: 50px">
+
+                                        @endforeach
+                                    </div>
+
+                                    <div class="productGalleryShowEdit">
+                                        
+                                    </div>
+                                    
+                                    @error('feature_products')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <a href=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="text-xs-right">
+                        <input type="submit" class="btn btn-info rounded mb-5" value="Update Phtots">
+                    </div>
+      
+                  </form>
+    
+                </div>
+            </div>
+    {{-- ------------------------------------------------------------------------ --}}
+            <div class="col-md-6">
+                <div class="box bt-3 border-warning">
+                  <div class="box-header">
+                    <h4 class="box-title">Product Thambnail <strong>Update</strong></h4>
+                  </div>
+    
+                    {{-- Thambnail image change --}}
+                  <form action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group p-3">
+                              <h5>Main Thambnail<span class="text-danger">*</span></h5>
+                              <div class="controls">
+                               
+                                  <label for="productThambnail" style="cursor : pointer;">
+                                    <img class="thambnail_selector" src="{{ URL::to('') }}/media/admin/porductThambnail/thambnail.png" alt="" style="width: 50px; cursor : pointer; display: none;">
+                                </label>
+                      
+                                  <input id="productThambnail" type="file" style="display: none;" name="product_thamnail" class="form-control product_thambnail">
+    
+                                    
+                      
+                                  <h5 class="productThumbClose" style="cursor : pointer;">X</h5>
+                                    
+                                  <img class="productThambShow" src="{{ asset('media/admin/products/thambnail/' . $product -> product_thamnail) }}" alt="" style="max-width: 80px;"> 
+                                  
+                                  @error('product_thamnail')
+                                  <span class="text-danger">{{ $message }}</span>
+                                  @enderror
+                                  <a href=""></a>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+    
+                    <div class="text-xs-right">
+                        <input type="submit" class="btn btn-info rounded mb-5" value="Update Phtots">
+                    </div>
+      
+                  </form>
+    
+                </div>
+            </div>
+        </div>
+      </section>
+  </div>
+
 @endsection
