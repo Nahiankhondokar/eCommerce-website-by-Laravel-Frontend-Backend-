@@ -50,7 +50,7 @@
                                 <div class="form-group">
                                     <h5>Category Select <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="category_id" class="form-control productcatEdit">
+                                        <select name="category_id" class="form-control productcatEdit" required>
     
                                             <option selected disabled value="">Select Category</option>
     
@@ -70,7 +70,7 @@
                                 <div class="form-group">
                                     <h5>SubCategory Select <span class="text-danger">*</span></h5>
                                     <div class="controls" id="productsubcategoryItem">
-                                        <select style="pointer-events : none;"  name="subcategory_id" class="form-control productsubcatEdit">
+                                        <select style="pointer-events : none;"  name="subcategory_id" class="form-control productsubcatEdit" required>
     
                                             <option selected disabled value="">Select SubCategory</option>
 
@@ -94,7 +94,7 @@
                                 <div class="form-group">
                                     <h5>SubsubCategroy Select <span class="text-danger">*</span></h5>
                                     <div class="controls" id="productsubsubcategoryItem">
-                                        <select style="pointer-events : none;" name="subsubcategory_id" class="form-control productsubsubcatEdit">
+                                        <select style="pointer-events : none;" name="subsubcategory_id" class="form-control productsubsubcatEdit" required>
     
                                             <option selected disabled value="">SubsubCategroy Select</option>
 

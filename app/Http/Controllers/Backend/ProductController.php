@@ -376,18 +376,34 @@ class ProductController extends Controller
     */
     public function ProductDelete($id){
 
+        // product delete
         $del_data = Product::find($id);
+        if(file_exists('media/admin/products/thambnail/' . $del_data -> product_thamnail)){
+            unlink('media/admin/products/thambnail/' . $del_data -> product_thamnail);
+        }
         $del_data -> delete();
 
-        $del_gallery = MultiImg::where('product_id', $id) -> get();
-        if($del_gallery){
+        // product gallery delete
+        $del_gallery_data = MultiImg::where('product_id', $id) -> get();
+        foreach($del_gallery_data as $gall_info){
+
+            $del_gallery = MultiImg::find($gall_info -> id);
+            foreach(json_decode($gall_info -> photo_name) as $img){
+                foreach($img as $photo){
+                    if(file_exists('media/admin/products/gallery/' . $photo)){
+                        unlink('media/admin/products/gallery/' . $photo);
+                    }
+            
+                }
+            }
             $del_gallery -> delete();
+
         }
 
-        // alert msg
+          // alert msg
         $notify = [
             'message'       => 'Product Deleted Successfully',
-            'alert-type'    => 'danger'
+            'alert-type'    => 'info'
         ];
 
         return redirect() -> route('manage.product') -> with($notify);

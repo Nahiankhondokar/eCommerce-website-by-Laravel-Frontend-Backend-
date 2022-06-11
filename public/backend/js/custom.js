@@ -16,7 +16,7 @@ $(document).ready(function(){
         })
         .then((willDelete) => {
           if (willDelete) {
-            
+            // alert(window.location.href);
               window.location.href = link;
               swla(
                 'Delete !',

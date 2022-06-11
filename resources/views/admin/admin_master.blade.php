@@ -104,6 +104,7 @@
   {{-- custom js --}}
   <script src="{{ asset('backend/js/custom.js') }}"></script>
   <script src="{{ asset('backend/js/product.js') }}"></script>
+  <script src="{{ asset('backend/js/functions.js') }}"></script>
 
   <script>
     // Toster
