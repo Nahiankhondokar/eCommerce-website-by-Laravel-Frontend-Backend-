@@ -425,6 +425,51 @@
         $('#product_previous_gallery').css('display', 'none');
 
     });
+
+
+
+
+
+    // =============== Product Delete ===================
+
+    /**
+     *  Product delete
+     */
+    $(document).on('click', '#product_delete', function(){
+
+      let id = $(this).attr('delId');
+
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          
+            $.ajax({
+              url : 'delete/' + id, 
+              success : function(data){
+// alert(data);
+                swla(
+                  'Delete !',
+                  'Your file has been Deleted',
+                  'success'
+                );
+    
+
+              }
+            });
+
+        } else {
+          swal("Your file is safe!");
+        }
+      });
+
+    });
+
   
               
 

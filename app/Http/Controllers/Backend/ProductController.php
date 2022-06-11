@@ -371,5 +371,31 @@ class ProductController extends Controller
 
 
 
+    /**
+    *  product Delete
+    */
+    public function ProductDelete($id){
+
+        $del_data = Product::find($id);
+        $del_data -> delete();
+
+        $del_gallery = MultiImg::where('product_id', $id) -> get();
+        if($del_gallery){
+            $del_gallery -> delete();
+        }
+
+        // alert msg
+        $notify = [
+            'message'       => 'Product Deleted Successfully',
+            'alert-type'    => 'danger'
+        ];
+
+        return redirect() -> route('manage.product') -> with($notify);
+
+
+    }
+
+
+
 
 }

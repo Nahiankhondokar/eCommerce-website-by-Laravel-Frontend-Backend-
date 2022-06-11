@@ -144,6 +144,8 @@ Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryCon
     Route::post('/thambnail/update/', [ProductController::class, 'ProductThambnailUpdate']) -> name('thambnail.product');
     Route::post('/gallery/update/', [ProductController::class, 'ProductGalleryUpdate']) -> name('gallery.product');
 
+    Route::get('/delete/{id}', [ProductController::class, 'ProductDelete']) -> name('delete.product');
+
 
 
   });

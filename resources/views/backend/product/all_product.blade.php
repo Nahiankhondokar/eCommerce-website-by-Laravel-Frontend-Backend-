@@ -47,7 +47,7 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
 
-                                        <a id="delete" href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a id="product_delete" delId='{{ $data -> id }}' class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                @endforeach
