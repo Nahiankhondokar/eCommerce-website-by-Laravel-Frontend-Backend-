@@ -67,7 +67,7 @@ class ProductController extends Controller
             
             $img = $request -> file('product_thamnail');
             $unique = md5(time() . rand()) . '.' . $img -> getClientOriginalExtension();
-            $img -> move(public_path('media/admin/products/thambnail'), $unique);
+            $img -> move(public_path('media/admin/products/tham-nail'), $unique);
             
         }
       
@@ -345,26 +345,38 @@ class ProductController extends Controller
      */
     public function ProductThambnailUpdate(Request $request){
 
-        // // image Update
-        // if($request -> hasFile('product_thamnail')){
+        // product id 
+         $id = $request -> product_id;
+
+        // image Update
+        if($request -> hasFile('product_thamnail')){
             
-        //     $img = $request -> file('product_thamnail');
-        //     $img_unique = md5(time() . rand()) . '.' . $img -> getClientOriginalExtension();
-
-        //     return $img_unique;
-
-        //     // $img -> move(public_path('media/admin/products/thambnail'), $unique);
-            
-        // }
+            $img_thamnail = $request -> file('product_thamnail');
+            $unique_name = md5(time() . rand()) . '.' . $img_thamnail -> getClientOriginalExtension();
+            $img_thamnail -> move(public_path('media/admin/products/tham-nail'), $unique_name);
+        }
 
 
-        // // alert msg
-        // $notify = [
-        //     'message'       => 'Product Gallery Successfully',
-        //     'alert-type'    => 'info'
-        // ];
 
-        // return redirect() -> route('manage.product') -> with($notify);
+        // thambnail image update
+        $product_data = Product::findOrFail($id);
+        $product_data  -> product_thamnail = $unique_name;
+        $product_data  -> update();
+
+        // unlink old thambnail imgae
+        if(file_exists('media/admin/products/tham-nail/'. $product_data -> product_thamnail)){
+            unlink('media/admin/products/tham-nail/'. $product_data -> product_thamnail);
+        }
+
+
+
+        // alert msg
+        $notify = [
+            'message'       => 'Product Thamnail updated Successfully',
+            'alert-type'    => 'info'
+        ];
+
+        return redirect() -> route('manage.product') -> with($notify);
 
 
     }
@@ -378,8 +390,8 @@ class ProductController extends Controller
 
         // product delete
         $del_data = Product::find($id);
-        if(file_exists('media/admin/products/thambnail/' . $del_data -> product_thamnail)){
-            unlink('media/admin/products/thambnail/' . $del_data -> product_thamnail);
+        if(file_exists('media/admin/products/tham-nail/' . $del_data -> product_thamnail)){
+            unlink('media/admin/products/tham-nail/' . $del_data -> product_thamnail);
         }
         $del_data -> delete();
 

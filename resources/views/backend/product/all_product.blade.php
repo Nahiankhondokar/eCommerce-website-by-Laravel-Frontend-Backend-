@@ -30,7 +30,7 @@
                            <tbody>
                                @foreach ($products as $data)
                                 <tr>
-                                    <td><img src="{{ URL::to('') }}/media/admin/products/thambnail/{{ $data -> product_thamnail }}" alt="" style="width: 40px"></i></td>
+                                    <td><img src="{{ URL::to('') }}/media/admin/products/tham-nail/{{ $data -> product_thamnail }}" alt="" style="width: 40px"></i></td>
                                     <td>{{ $data -> product_name_eng }}</td>
                                     <td>{{ $data -> product_name_hin }}</td>
                                     <td>{{ $data -> product_size_eng }}</td>

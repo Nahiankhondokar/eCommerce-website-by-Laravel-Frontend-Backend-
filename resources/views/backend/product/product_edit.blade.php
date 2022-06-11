@@ -494,7 +494,7 @@
                   </div>
     
                     {{-- Thambnail image change --}}
-                  <form action="" method="POST" enctype="multipart/form-data">
+                  <form action="{{ route('thambnail.product') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
@@ -507,12 +507,11 @@
                                 </label>
                       
                                   <input id="productThambnail" type="file" style="display: none;" name="product_thamnail" class="form-control product_thambnail">
-    
-                                    
+                                  <input type="hidden" name="product_id" value="{{ $product -> id }}">
                       
                                   <h5 class="productThumbClose" style="cursor : pointer;">X</h5>
                                     
-                                  <img class="productThambShow" src="{{ asset('media/admin/products/thambnail/' . $product -> product_thamnail) }}" alt="" style="max-width: 80px;"> 
+                                  <img class="productThambShow" src="{{ asset('media/admin/products/tham-nail/' . ($product -> product_thamnail == '') ? 'media/admin/products/avatar/no-img.jpg' : $product -> product_thamnail ) }}" alt="" style="max-width: 80px;"> 
                                   
                                   @error('product_thamnail')
                                   <span class="text-danger">{{ $message }}</span>
@@ -524,7 +523,7 @@
                     </div>
     
                     <div class="text-xs-right">
-                        <input type="submit" class="btn btn-info rounded mb-5" value="Update Phtots">
+                        <input type="submit" class="btn btn-info rounded mb-5" value="Thambnail Photo Update">
                     </div>
       
                   </form>

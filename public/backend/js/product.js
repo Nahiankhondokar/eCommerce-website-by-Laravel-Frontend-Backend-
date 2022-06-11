@@ -259,7 +259,7 @@
           $('#single_product_modal #Color').text(data.product_color_eng);
           $('#single_product_modal #Selling').text(data.selling_price);
           $('#single_product_modal #Discount').text(data.discount_price);
-          $('#single_product_modal img#Thambnail').attr('src', '/media/admin/products/thambnail/'+data.product_thamnail);
+          $('#single_product_modal img#Thambnail').attr('src', '/media/admin/products/tham-nail/'+data.product_thamnail);
 
           $('#single_product_modal').modal('show');
         }
