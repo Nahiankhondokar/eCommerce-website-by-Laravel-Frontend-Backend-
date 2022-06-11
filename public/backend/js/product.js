@@ -243,6 +243,8 @@
     $(document).on('click', '#product_view', function(e){
       e.preventDefault();
 
+      $('#single_product_modal').modal('show');
+
       // product id 
       let product_id = $(this).attr('view_id');
 
@@ -261,7 +263,7 @@
           $('#single_product_modal #Discount').text(data.discount_price);
           $('#single_product_modal img#Thambnail').attr('src', '/media/admin/products/tham-nail/'+data.product_thamnail);
 
-          $('#single_product_modal').modal('show');
+          
         }
       });
 

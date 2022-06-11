@@ -31,9 +31,6 @@ class ProductController extends Controller
      *  Product subcategory show
      */
     public function ProductSubCatFind($id){
-
-        // return $id;
-
         $subcat = SubCategory::where('category_id', $id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
 
         return $subcat;
@@ -423,6 +420,32 @@ class ProductController extends Controller
 
     }
 
+
+
+    /**
+     *  Product Active Inactive
+     */
+    public function ProductActiveInactive($id){
+
+        $product_data = Product::find($id);
+        if($product_data -> status == true){
+            $product_data -> status = false;
+            $product_data -> update();
+        }else{
+            $product_data -> status = true;
+            $product_data -> update();
+        }
+
+
+        // alert msg
+        $notify = [
+            'message'       => 'Product Status updated Successfully',
+            'alert-type'    => 'success'
+        ];
+
+        return redirect() -> route('manage.product') -> with($notify);
+
+    }
 
 
 

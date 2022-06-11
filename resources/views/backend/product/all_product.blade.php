@@ -21,9 +21,11 @@
                                <tr>
                                    <th>Thambnail</th>
                                    <th>Product English</th>
-                                   <th>Product Hinde</th>
                                    <th>Product Size</th>
+                                   <th>Product Price</th>
                                    <th>Quentity</th>
+                                   <th>Discount</th>
+                                   <th>Status</th>
                                    <th>Action</th>
                                </tr>
                            </thead>
@@ -32,22 +34,47 @@
                                 <tr>
                                     <td><img src="{{ URL::to('') }}/media/admin/products/tham-nail/{{ $data -> product_thamnail }}" alt="" style="width: 40px"></i></td>
                                     <td>{{ $data -> product_name_eng }}</td>
-                                    <td>{{ $data -> product_name_hin }}</td>
                                     <td>{{ $data -> product_size_eng }}</td>
+                                    <td>{{ $data -> selling_price }}</td>
                                     <td>{{ $data -> product_qty }}</td>
+                                    <td>
+                                        @if($data -> discount_price == NULL)
+                                            <span class="badge badge-danger">No Discount</span>
+                                        @else
+
+                                        @php
+                                            $amount = $data -> selling_price - $data -> discount_price;
+                                            $discount = ($amount/$data -> selling_price) * 100;
+                                        @endphp
+                                            <span class="badge badge-success">{{ round($discount) }} %</span>
+                                        @endif
+                                    </td>
+                                    <td>
+
+                                        @if($data -> status == true)
+                                            <a href="{{ route('active.inactive.product', $data -> id) }}" class="badge badge-danger" title="Make it InActive">InActive </a>
+                                            <i class="fa fa-thumbs-up badge badge-success" aria-hidden="true" title="Active"></i>
+                                        @else 
+                                            <a href="{{ route('active.inactive.product', $data -> id) }}" class="badge badge-success" title="Make it Active"> Active </a>
+                                            <i class="fa fa-thumbs-down badge badge-danger" aria-hidden="true" title="InActive"></i>
+                                        @endif
+
+                                    </td>
                                     {{-- <td>
                                         <img style="width:60px; height: 60px;" src="{{ URL::to('') }}/media/Category/{{ $data -> category_icon }}" alt="">
                                     </td> --}}
                                     <td>
-                                        <a href="#" id="product_view" view_id='{{ $data -> id }}' data-toggle="modal" class="btn btn-sm btn-info">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </a>
-
-                                        <a href="{{ route('edit.product', $data -> id) }}" class="btn btn-sm btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-
-                                        <a id="delete" href="{{ route('delete.product', $data -> id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <div class="action-manage">
+                                            <a href="#" id="product_view" view_id='{{ $data -> id }}' data-toggle="modal" class="btn btn-sm btn-info">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </a>
+    
+                                            <a href="{{ route('edit.product', $data -> id) }}" class="btn btn-sm btn-warning">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+    
+                                            <a id="delete" href="{{ route('delete.product', $data -> id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        </div>
                                     </td>
                                 </tr>
                                @endforeach

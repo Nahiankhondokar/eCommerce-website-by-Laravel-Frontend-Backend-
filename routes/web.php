@@ -146,6 +146,8 @@ Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryCon
 
     Route::get('/delete/{id}', [ProductController::class, 'ProductDelete']) -> name('delete.product');
 
+    Route::get('/active-inactive/{id}', [ProductController::class, 'ProductActiveInactive']) -> name('active.inactive.product');
+
 
 
   });
