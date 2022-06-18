@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 
 use App\Http\Controllers\Frontend\IndexController;
 
@@ -34,7 +35,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function(){
 
 
 
-// All Admin Routes 
+/**
+ *  All Admin routes
+ */
 Route::middleware(['auth:sanctum,admin', 'verified']) -> get('/admin/dashboard', function () {
     return view('admin.index');
 })->name('dashboard');
@@ -47,8 +50,9 @@ Route::get('admin/changePassword', [AdminProfileController::class, 'adminChangeP
 Route::post('admin/password/update', [AdminProfileController::class, 'adminPasswordUpdate']) -> name('admin.password.update');
 
 
-
-// All User Routes 
+/**
+ *  All User routes
+ */
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -62,7 +66,9 @@ Route::post('/user/password/update', [IndexController::class, 'userPasswordUpdat
 
 
 
-// All Admin Brand Routes
+/**
+ *   All Brands Routes
+ */
 Route::prefix('brand') -> group(function(){
 
     Route::get('/view', [BrandController::class, 'brand_view']) -> name('all.brand');
@@ -161,5 +167,17 @@ Route::get('category/sub/sub/edit/ajax-update/{subsub}/{catid}', [SubCategoryCon
   Route::get('product/edit/subsubcat/ajax/{id}', [ProductController::class, 'EditProductSubsubCatFind']);
 
  
+/**
+ *  Slider manage Routes
+ */
+Route::prefix('slider') -> group(function(){
+
+    Route::get('/view', [SliderController::class, 'sliderView']) -> name('slider.view');
+    Route::post('/store', [SliderController::class, 'SliderStore']) -> name('slider.store');
+    Route::get('/edit/{id}', [BrandController::class, 'BrandEdit']) -> name('brand.edit');
+    Route::get('/delete/{id}', [BrandController::class, 'BrandDelete']) -> name('brand.delete');
+    Route::put('/update/{id}', [BrandController::class, 'BrandUpdate']) -> name('brand.update');
+
+}) ;
 
 
