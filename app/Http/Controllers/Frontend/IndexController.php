@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +18,11 @@ class IndexController extends Controller
      *  Create front page 
      */
     public function index(){
-        return view('frontend.index');
+
+        $products = Product::where('status', 1) ->orderBy('id', 'DESC') -> get();
+        $slider = Slider::where('status', 1) ->orderBy('id', 'DESC') -> limit(3) -> get();
+        $categories = Category::orderBy('category_name_eng', 'ASC') -> get();
+        return view('frontend.index', compact('categories', 'slider', 'products'));
     }
 
 

@@ -50,7 +50,7 @@ class CategoryController extends Controller
             'alert-type'    => 'info'
         ];
 
-        return redirect() -> back() -> with($notify);
+        return redirect() -> route('all.category') -> with($notify);
        
     }
 

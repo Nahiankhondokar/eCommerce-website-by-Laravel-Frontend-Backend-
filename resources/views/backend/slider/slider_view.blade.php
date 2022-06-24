@@ -30,26 +30,32 @@
                                @foreach ($slider as $data)
                                 <tr>
                                     <td>
-                                        <img style="width:60px; height: 60px;" src="{{ URL::to('') }}/media/brand/{{ $data -> slider_image }}" alt="">
+                                        <img style="width:60px; height: 60px;" src="{{ URL::to('') }}/{{ $data -> slider_img }}" alt="">
                                     </td>
-                                    <td>{{ $data -> title }}</td>
+                                    <td>
+                                        @if($data -> title == NULL)
+                                            <span class="badge badge-danger">No Title</span>
+                                        @else 
+                                        {{ $data -> title }}
+                                        @endif
+                                    </td>
                                     <td>{{ $data -> desc }}</td>
                                     <td>
 
                                         @if($data -> status == true)
-                                            <a href="{{ route('active.inactive.product', $data -> id) }}" class="badge badge-danger" title="Make it InActive">InActive </a>
+                                            <a href="{{ route('active.inactive.slider', $data -> id) }}" class="badge badge-danger" title="Make it InActive">InActive </a>
                                             <i class="fa fa-thumbs-up badge badge-success" aria-hidden="true" title="Active"></i>
                                         @else 
-                                            <a href="{{ route('active.inactive.product', $data -> id) }}" class="badge badge-success" title="Make it Active"> Active </a>
+                                            <a href="{{ route('active.inactive.slider', $data -> id) }}" class="badge badge-success" title="Make it Active"> Active </a>
                                             <i class="fa fa-thumbs-down badge badge-danger" aria-hidden="true" title="InActive"></i>
                                         @endif
 
                                     </td>
                                     
-                                    <td>
-                                        <a href="{{ url('brand/edit/' . $data -> id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <td width='25%'> 
+                                        <a href="{{ route('slider.edit', $data -> id) }}" class="btn btn-sm btn-warning">Edit</a>
 
-                                        <a href="{{ url('brand/delete/' . $data -> id) }}" class="btn btn-sm btn-danger">Delete</a>
+                                        <a id="delete" href="{{ route('slider.delete', $data -> id) }}" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>
                                @endforeach
@@ -96,9 +102,9 @@
                                 <div class="form-group">
                                     <h5>Slider Image <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="file" name="slider_image" class="form-control">
+                                        <input type="file" name="slider_img" class="form-control">
                                     </div>
-                                    @error('slider_image')
+                                    @error('slider_img')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,21 +39,27 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function(){
 /**
  *  All Admin routes
  */
-Route::middleware(['auth:sanctum,admin', 'verified']) -> get('/admin/dashboard', function () {
-    return view('admin.index');
-})->name('dashboard');
+Route::middleware(['auth:admin']) -> group(function(){
 
-Route::get('admin/logout', [AdminController::class, 'destroy']) -> name('admin.logout');
-Route::get('admin/profile', [AdminProfileController::class, 'adminProfile']) -> name('admin.profile');
-Route::get('admin/profile/edit', [AdminProfileController::class, 'adminProfileEdit']) -> name('admin.profile.edit');
-Route::post('admin/profile/update', [AdminProfileController::class, 'adminProfileUpdate']) -> name('admin.profile.update');
-Route::get('admin/changePassword', [AdminProfileController::class, 'adminChangePassword']) -> name('admin.change.password');
-Route::post('admin/password/update', [AdminProfileController::class, 'adminPasswordUpdate']) -> name('admin.password.update');
+    Route::middleware(['auth:sanctum,admin', 'verified']) -> get('/admin/dashboard', function () {
+        return view('admin.index');
+    })->name('dashboard');
+    
+    Route::get('admin/logout', [AdminController::class, 'destroy']) -> name('admin.logout');
+    Route::get('admin/profile', [AdminProfileController::class, 'adminProfile']) -> name('admin.profile');
+    Route::get('admin/profile/edit', [AdminProfileController::class, 'adminProfileEdit']) -> name('admin.profile.edit');
+    Route::post('admin/profile/update', [AdminProfileController::class, 'adminProfileUpdate']) -> name('admin.profile.update');
+    Route::get('admin/changePassword', [AdminProfileController::class, 'adminChangePassword']) -> name('admin.change.password');
+    Route::post('admin/password/update', [AdminProfileController::class, 'adminPasswordUpdate']) -> name('admin.password.update');
+    
+});
+
 
 
 /**
- *  All User routes
+ *  All User routes 
  */
+
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -174,10 +181,18 @@ Route::prefix('slider') -> group(function(){
 
     Route::get('/view', [SliderController::class, 'sliderView']) -> name('slider.view');
     Route::post('/store', [SliderController::class, 'SliderStore']) -> name('slider.store');
-    Route::get('/edit/{id}', [BrandController::class, 'BrandEdit']) -> name('brand.edit');
-    Route::get('/delete/{id}', [BrandController::class, 'BrandDelete']) -> name('brand.delete');
-    Route::put('/update/{id}', [BrandController::class, 'BrandUpdate']) -> name('brand.update');
+    Route::get('/edit/{id}', [SliderController::class, 'SliderEdit']) -> name('slider.edit');
+    Route::get('/delete/{id}', [SliderController::class, 'SliderDelete']) -> name('slider.delete');
+    Route::put('/update/{id}', [SliderController::class, 'SliderUpdate']) -> name('slider.update');
+
+    Route::get('/active-inactive/{id}', [SliderController::class, 'sliderActiveInactive']) -> name('active.inactive.slider');
 
 }) ;
 
 
+
+/**
+ *  Multiple Language Routes
+ */
+Route::get('language/english', [LanguageController::class, 'English']) -> name('language.english');
+Route::get('language/hindi', [LanguageController::class, 'Hindi']) -> name('language.hindi');

@@ -31,7 +31,7 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
   {{-- Toster css file --}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 	  
   
 </head>
@@ -58,6 +58,7 @@
 
 
 
+
 <!-- JavaScripts placed at the end of the document so the pages load faster --> 
 <script src="{{ asset('frontend/assets/js/jquery-1.11.1.min.js') }}"></script> 
 <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script> 
@@ -72,8 +73,6 @@
 <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script> 
 <script src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
 
-{{-- jQuer file --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     {{-- Custom js file --}}
 <script src="{{ asset('frontend/assets/js/custom.js') }}"></script>
