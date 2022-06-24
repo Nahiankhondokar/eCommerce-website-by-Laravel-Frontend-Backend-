@@ -2,6 +2,10 @@
 
 @section('content')
 
+@section('title')
+Home Online Shop
+@endsection
+
 
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
   <div class="container">
@@ -1373,7 +1377,7 @@
 
                         <div class="product-info text-left">
                           <h3 class="name">
-                            <a href="detail.html">
+                            <a href="{{ url('single/product/'.$item -> id.'/'.$item-> product_slug_eng) }}">
                               @if(Session() -> get('language') == 'hindi') {{ $item -> product_name_hin }}  @else {{ $item -> product_name_eng }} @endif
                             </a>
                           </h3>
@@ -1456,7 +1460,7 @@
             <!-- /.tab-pane -->
 
 
-            {{-- Searching Product tap panel --}}
+            {{-- Searching Product by category --}}
             @foreach($categories as $item)
             <div class="tab-pane" id="category{{ $item -> id }}">
               <div class="product-slider">
@@ -1497,7 +1501,7 @@
 
                         <div class="product-info text-left">
                           <h3 class="name">
-                            <a href="detail.html">
+                            <a href="{{ url('single/product/'.$item -> id.'/'.$item-> product_slug_eng) }}">
                               @if(Session() -> get('language') == 'hindi') {{ $item -> product_name_hin }}  @else {{ $item -> product_name_eng }} @endif
                             </a>
                           </h3>

@@ -196,3 +196,14 @@ Route::prefix('slider') -> group(function(){
  */
 Route::get('language/english', [LanguageController::class, 'English']) -> name('language.english');
 Route::get('language/hindi', [LanguageController::class, 'Hindi']) -> name('language.hindi');
+
+
+
+/**
+ *  Single product Details
+ */
+Route::get('single/product/{id}/{slug}', [IndexController::class, 'SingleProduct']);
+
+
+
+

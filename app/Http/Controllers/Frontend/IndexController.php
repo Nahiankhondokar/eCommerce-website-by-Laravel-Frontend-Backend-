@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\MultiImg;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Auth;
@@ -93,7 +94,7 @@ class IndexController extends Controller
         $user_pass = User::find($id);
         return view('frontend.user_change_password', compact('user_pass'));
     }
-
+    
 
     /**
      *  user password Update
@@ -144,6 +145,26 @@ class IndexController extends Controller
         
     }
 
+
+    /**
+     *  Single Product Details
+     */
+    public function SingleProduct($id,$slug){
+        $single_product = Product::find($id);
+        $multiple_img = MultiImg::where('product_id', $id) -> get();
+
+        // multiple images manage
+        foreach ($multiple_img as $item) {
+            $imgs = json_decode($item -> photo_name);
+            foreach ($imgs as $img) {
+
+            }
+        }
+
+        return view('frontend.single_product.single_product', compact('single_product', 'img'));
+
+
+    }
 
 
 
