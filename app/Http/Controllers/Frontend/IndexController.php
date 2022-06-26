@@ -23,7 +23,10 @@ class IndexController extends Controller
         $products = Product::where('status', 1) ->orderBy('id', 'DESC') -> get();
         $slider = Slider::where('status', 1) ->orderBy('id', 'DESC') -> limit(3) -> get();
         $categories = Category::orderBy('category_name_eng', 'ASC') -> get();
-        return view('frontend.index', compact('categories', 'slider', 'products'));
+
+        $feature = Product::where('feature_product', 1) ->orderBy('id', 'DESC') -> get();
+        $hotdeal = Product::where('hot_deal_product', 1) ->orderBy('id', 'DESC') -> get();
+        return view('frontend.index', compact('categories', 'slider', 'products', 'feature', 'hotdeal'));
     }
 
 
