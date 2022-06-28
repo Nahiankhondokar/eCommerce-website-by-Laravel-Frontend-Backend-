@@ -243,8 +243,11 @@ Home Online Shop
             <div
               class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs"
             >
+
+            
               <div class="item">
                 <div class="products special-product">
+                  @foreach($specialoffer as $item)
                   <div class="product">
                     <div class="product-micro">
                       <div class="row product-micro-row">
@@ -253,7 +256,7 @@ Home Online Shop
                             <div class="image">
                               <a href="#">
                                 <img
-                                  src="assets/images/products/p30.jpg"
+                                  src="{{ URL::to('') }}/media/admin/products/tham-nail/{{ $item -> product_thamnail }}"
                                   alt=""
                                 />
                               </a>
@@ -266,47 +269,19 @@ Home Online Shop
                         <div class="col col-xs-7">
                           <div class="product-info">
                             <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p29.jpg"
-                                  alt=""
-                                />
+                              <a href="{{ url('single/product/'.$item -> id.'/'.$item-> product_slug_eng) }}">
+                                @if(Session() -> get('language') == 'hindi') {{ $item -> product_name_hin }}  @else {{ $item -> product_name_eng }} @endif
                               </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
                             </h3>
                             <div class="rating rateit-small"></div>
                             <div class="product-price">
-                              <span class="price"> $450.99 </span>
+                              @if($item -> discount_price == NULL)
+                                <span class="price"> ${{ $item -> selling_price }} </span>
+                              @else
+                              <span class="price"> ${{ $item -> selling_price }} </span>
+                              <span class="price-before-discount">${{ $item -> discount_price }}</span>
+                              @endif
+                              {{-- <span class="price"> $450.99 </span> --}}
                             </div>
                             <!-- /.product-price -->
                           </div>
@@ -317,307 +292,25 @@ Home Online Shop
                     </div>
                     <!-- /.product-micro -->
                   </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p28.jpg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
+                  @endforeach
                 </div>
               </div>
-              <div class="item">
-                <div class="products special-product">
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p27.jpg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p26.jpg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p25.jpg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="products special-product">
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p24.jpg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p23.jpg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p22.jpg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                </div>
-              </div>
+            
+
             </div>
           </div>
           <!-- /.sidebar-widget-body -->
         </div>
         <!-- /.sidebar-widget -->
         <!-- ============================================== SPECIAL OFFER : END ============================================== -->
+
+
         <!-- ============================================== PRODUCT TAGS ============================================== -->
-        <div class="sidebar-widget product-tag wow fadeInUp">
-          <h3 class="section-title">Product tags</h3>
-          <div class="sidebar-widget-body outer-top-xs">
-            <div class="tag-list">
-              <a class="item" title="Phone" href="category.html">Phone</a>
-              <a class="item active" title="Vest" href="category.html"
-                >Vest</a
-              >
-              <a class="item" title="Smartphone" href="category.html"
-                >Smartphone</a
-              >
-              <a class="item" title="Furniture" href="category.html"
-                >Furniture</a
-              >
-              <a class="item" title="T-shirt" href="category.html"
-                >T-shirt</a
-              >
-              <a class="item" title="Sweatpants" href="category.html"
-                >Sweatpants</a
-              >
-              <a class="item" title="Sneaker" href="category.html"
-                >Sneaker</a
-              >
-              <a class="item" title="Toys" href="category.html">Toys</a>
-              <a class="item" title="Rose" href="category.html">Rose</a>
-            </div>
-            <!-- /.tag-list -->
-          </div>
-          <!-- /.sidebar-widget-body -->
-        </div>
+        @include('frontend.common.product_tags')
         <!-- /.sidebar-widget -->
         <!-- ============================================== PRODUCT TAGS : END ============================================== -->
+
+
         <!-- ============================================== SPECIAL DEALS ============================================== -->
 
         <div class="sidebar-widget outer-bottom-small wow fadeInUp">
@@ -628,6 +321,7 @@ Home Online Shop
             >
               <div class="item">
                 <div class="products special-product">
+                  @foreach($specialdeal as $item)
                   <div class="product">
                     <div class="product-micro">
                       <div class="row product-micro-row">
@@ -636,7 +330,7 @@ Home Online Shop
                             <div class="image">
                               <a href="#">
                                 <img
-                                  src="assets/images/products/p28.jpg"
+                                  src="{{ URL::to('') }}/media/admin/products/tham-nail/{{ $item -> product_thamnail }}"
                                   alt=""
                                 />
                               </a>
@@ -649,47 +343,18 @@ Home Online Shop
                         <div class="col col-xs-7">
                           <div class="product-info">
                             <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p15.jpg"
-                                  alt=""
-                                />
+                              <a href="{{ url('single/product/'.$item -> id.'/'.$item-> product_slug_eng) }}">
+                                @if(Session() -> get('language') == 'hindi') {{ $item -> product_name_hin }}  @else {{ $item -> product_name_eng }} @endif
                               </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
                             </h3>
                             <div class="rating rateit-small"></div>
                             <div class="product-price">
-                              <span class="price"> $450.99 </span>
+                              @if($item -> discount_price == NULL)
+                                <span class="price"> ${{ $item -> selling_price }} </span>
+                              @else
+                              <span class="price"> ${{ $item -> selling_price }} </span>
+                              <span class="price-before-discount">${{ $item -> discount_price }}</span>
+                              @endif
                             </div>
                             <!-- /.product-price -->
                           </div>
@@ -700,268 +365,7 @@ Home Online Shop
                     </div>
                     <!-- /.product-micro -->
                   </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p26.jpg"
-                                  alt="image"
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="products special-product">
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p18.jpg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p17.jpg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p16.jpg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="products special-product">
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p15.jpg"
-                                  alt="images"
-                                />
-                                <div class="zoom-overlay"></div>
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p14.jpg"
-                                  alt=""
-                                />
-                                <div class="zoom-overlay"></div>
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
-                  <div class="product">
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image">
-                              <a href="#">
-                                <img
-                                  src="assets/images/products/p13.jpg"
-                                  alt="image"
-                                />
-                              </a>
-                            </div>
-                            <!-- /.image -->
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name">
-                              <a href="#">Floral Print Shirt</a>
-                            </h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price">
-                              <span class="price"> $450.99 </span>
-                            </div>
-                            <!-- /.product-price -->
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-                  </div>
+                  @endforeach
                 </div>
               </div>
             </div>
@@ -1493,13 +897,17 @@ Home Online Shop
 
         <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
         <!-- ============================================== FEATURED PRODUCTS ============================================== -->
+
+
         <section class="section featured-product wow fadeInUp">
-          <h3 class="section-title">Featured products</h3>
+          <h3 class="section-title">
+            @if(Session() -> get('language') == 'hindi') {{ $skip_category_0 -> category_name_hin }}  @else {{ $skip_category_0 -> category_name_eng }} @endif
+          </h3>
           <div
             class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs"
           >
 
-          @foreach($feature as $item)
+          @foreach($skip_product_0 as $item)
           <div class="item item-carousel">
             <div class="products">
               <div class="product">
@@ -1606,7 +1014,130 @@ Home Online Shop
           <!-- /.home-owl-carousel -->
         </section>
         <!-- /.section -->
-        <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
+
+
+
+        <section class="section featured-product wow fadeInUp">
+          <h3 class="section-title">
+            @if(Session() -> get('language') == 'hindi') {{ $skip_category_1 -> category_name_hin }}  @else {{ $skip_category_1 -> category_name_eng }} @endif
+          </h3>
+          <div
+            class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs"
+          >
+
+          @foreach($skip_product_1 as $item)
+          <div class="item item-carousel">
+            <div class="products">
+              <div class="product">
+                <div class="product-image">
+                  <div class="image">
+                    <a href="detail.html"
+                      ><img
+                        src="{{ URL::to('') }}/media/admin/products/tham-nail/{{ $item -> product_thamnail }}"
+                        alt=""
+                    /></a>
+                  </div>
+                  <!-- /.image -->
+
+                  @php
+                      $amount = $item -> selling_price - $item -> discount_price;
+                      $discount = ($amount/$item -> selling_price) * 100;
+                  @endphp
+
+                  @if($item -> discount_price == NULL)
+                  <div class="tag new"><span>new</span></div>
+                  @else
+                  <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                  @endif
+                </div>
+                <!-- /.product-image -->
+
+                <div class="product-info text-left">
+                  <h3 class="name">
+                    <a href="{{ url('single/product/'.$item -> id.'/'.$item-> product_slug_eng) }}">
+                      @if(Session() -> get('language') == 'hindi') {{ $item -> product_name_hin }}  @else {{ $item -> product_name_eng }} @endif
+                    </a>
+                  </h3>
+                  <div class="rating rateit-small"></div>
+                  <div class="description"></div>
+                  <div class="product-price">
+
+                  @if($item -> discount_price == NULL)
+                  <span class="price"> ${{ $item -> selling_price }} </span>
+                  @else
+                  <span class="price"> ${{ $item -> discount_price }} </span>
+                    <span class="price-before-discount">$ {{ $item -> selling_price }}</span>
+                  @endif
+
+                  </div>
+                  <!-- /.product-price -->
+                </div>
+                <!-- /.product-info -->
+                <div class="cart clearfix animate-effect">
+                  <div class="action">
+                    <ul class="list-unstyled">
+                      <li class="add-cart-button btn-group">
+                        <button
+                          data-toggle="tooltip"
+                          class="btn btn-primary icon"
+                          type="button"
+                          title="Add Cart"
+                        >
+                          <i class="fa fa-shopping-cart"></i>
+                        </button>
+                        <button
+                          class="btn btn-primary cart-btn"
+                          type="button"
+                        >
+                          Add to cart
+                        </button>
+                      </li>
+                      <li class="lnk wishlist">
+                        <a
+                          data-toggle="tooltip"
+                          class="add-to-cart"
+                          href="detail.html"
+                          title="Wishlist"
+                        >
+                          <i class="icon fa fa-heart"></i>
+                        </a>
+                      </li>
+                      <li class="lnk">
+                        <a
+                          data-toggle="tooltip"
+                          class="add-to-cart"
+                          href="detail.html"
+                          title="Compare"
+                        >
+                          <i
+                            class="fa fa-signal"
+                            aria-hidden="true"
+                          ></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- /.action -->
+                </div>
+                <!-- /.cart -->
+              </div>
+              <!-- /.product -->
+            </div>
+            <!-- /.products -->
+          </div>
+          <!-- /.item -->
+          @endforeach
+
+          </div>
+          <!-- /.home-owl-carousel -->
+        </section>
+
+
+
+        <!-- ============================================== FEATURED PRODUCTS : END 
+          ============================================== -->
+
+
         <!-- ============================================== WIDE PRODUCTS ============================================== -->
         <div class="wide-banners wow fadeInUp outer-bottom-xs">
           <div class="row">
@@ -1615,7 +1146,7 @@ Home Online Shop
                 <div class="image">
                   <img
                     class="img-responsive"
-                    src="assets/images/banners/home-banner.jpg"
+                    src="{{ asset('frontend/assets/images/banners/home-banner.jpg') }}"
                     alt=""
                   />
                 </div>
@@ -1640,6 +1171,126 @@ Home Online Shop
         </div>
         <!-- /.wide-banners -->
         <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
+
+
+        {{-- ================ Brands Product ================= --}}
+        <section class="section featured-product wow fadeInUp">
+          <h3 class="section-title">
+            @if(Session() -> get('language') == 'hindi') {{ $skip_brand_1 -> brand_name_hin }}  @else {{ $skip_brand_1 -> brand_name_eng }} @endif
+          </h3>
+          <div
+            class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs"
+          >
+
+          @foreach($skip_brand_product_1 as $item)
+          <div class="item item-carousel">
+            <div class="products">
+              <div class="product">
+                <div class="product-image">
+                  <div class="image">
+                    <a href="detail.html"
+                      ><img
+                        src="{{ URL::to('') }}/media/admin/products/tham-nail/{{ $item -> product_thamnail }}"
+                        alt=""
+                    /></a>
+                  </div>
+                  <!-- /.image -->
+
+                  @php
+                      $amount = $item -> selling_price - $item -> discount_price;
+                      $discount = ($amount/$item -> selling_price) * 100;
+                  @endphp
+
+                  @if($item -> discount_price == NULL)
+                  <div class="tag new"><span>new</span></div>
+                  @else
+                  <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                  @endif
+                </div>
+                <!-- /.product-image -->
+
+                <div class="product-info text-left">
+                  <h3 class="name">
+                    <a href="{{ url('single/product/'.$item -> id.'/'.$item-> product_slug_eng) }}">
+                      @if(Session() -> get('language') == 'hindi') {{ $item -> product_name_hin }}  @else {{ $item -> product_name_eng }} @endif
+                    </a>
+                  </h3>
+                  <div class="rating rateit-small"></div>
+                  <div class="description"></div>
+                  <div class="product-price">
+
+                  @if($item -> discount_price == NULL)
+                  <span class="price"> ${{ $item -> selling_price }} </span>
+                  @else
+                  <span class="price"> ${{ $item -> discount_price }} </span>
+                    <span class="price-before-discount">$ {{ $item -> selling_price }}</span>
+                  @endif
+
+                  </div>
+                  <!-- /.product-price -->
+                </div>
+                <!-- /.product-info -->
+                <div class="cart clearfix animate-effect">
+                  <div class="action">
+                    <ul class="list-unstyled">
+                      <li class="add-cart-button btn-group">
+                        <button
+                          data-toggle="tooltip"
+                          class="btn btn-primary icon"
+                          type="button"
+                          title="Add Cart"
+                        >
+                          <i class="fa fa-shopping-cart"></i>
+                        </button>
+                        <button
+                          class="btn btn-primary cart-btn"
+                          type="button"
+                        >
+                          Add to cart
+                        </button>
+                      </li>
+                      <li class="lnk wishlist">
+                        <a
+                          data-toggle="tooltip"
+                          class="add-to-cart"
+                          href="detail.html"
+                          title="Wishlist"
+                        >
+                          <i class="icon fa fa-heart"></i>
+                        </a>
+                      </li>
+                      <li class="lnk">
+                        <a
+                          data-toggle="tooltip"
+                          class="add-to-cart"
+                          href="detail.html"
+                          title="Compare"
+                        >
+                          <i
+                            class="fa fa-signal"
+                            aria-hidden="true"
+                          ></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- /.action -->
+                </div>
+                <!-- /.cart -->
+              </div>
+              <!-- /.product -->
+            </div>
+            <!-- /.products -->
+          </div>
+          <!-- /.item -->
+          @endforeach
+
+          </div>
+          <!-- /.home-owl-carousel -->
+        </section>
+
+
+
         <!-- ============================================== BEST SELLER ============================================== -->
 
         <div class="best-deal wow fadeInUp outer-bottom-xs">
