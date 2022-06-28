@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\Product;
 use App\Models\Slider;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -177,7 +178,29 @@ class IndexController extends Controller
         }
 
         return view('frontend.single_product.single_product', compact('single_product', 'img'));
+    }
 
+
+
+    /**
+     *  Tag wise produc show
+     */
+    public function tagWiseProduct($tag){
+        
+        if(Session() -> get('language') == 'hindi'){
+            $product_hin = Product::where('status', 1) -> where('product_tag_hin', $tag) -> orderBy('id', 'DESC') -> paginate(1);
+
+            $categories = Category::orderBy('category_name_hin', 'ASC') -> get();
+            return view('frontend.tag.tag_view', [
+                'product'           => $product_hin,
+                'categories'        => $categories
+            ]);
+        }else{
+            $product = Product::where('status', 1) -> where('product_tag_eng', $tag) -> orderBy('id', 'DESC') -> paginate(1);
+
+            $categories = Category::orderBy('category_name_eng', 'ASC') -> get();
+            return view('frontend.tag.tag_view', compact('product', 'categories'));
+        }
 
     }
 
