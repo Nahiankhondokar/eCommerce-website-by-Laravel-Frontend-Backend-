@@ -3,7 +3,7 @@
 @section('content')
 
 @section('title')
-Tag wise Product
+Sub-subcategory wise Product
 @endsection
 
 
@@ -49,9 +49,9 @@ Tag wise Product
                         <div class="accordion-inner">
                           <ul>
                             @php
-                                $subcategory = App\Models\SubCategory::where('category_id', $item -> id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
+                                $subsubcategory = App\Models\SubCategory::where('category_id', $item -> id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
                             @endphp
-                            @foreach($subcategory as $item)
+                            @foreach($subsubcategory as $item)
                             <li><a href="{{ url('subcategory/product/'.$item -> id.'/'.$item -> subcategory_slug_eng) }}">{{ $item -> subcategory_name_eng }}</a></li>
                             @endforeach
                           </ul>
@@ -249,7 +249,7 @@ Tag wise Product
                 <div class="category-product">
                   <div class="row">
 
-                    @foreach($product as $item)
+                    @foreach($subsubcat_product as $item)
 
                     <div class="col-sm-6 col-md-4 wow fadeInUp">
                       <div class="products">
@@ -330,7 +330,7 @@ Tag wise Product
               <div class="tab-pane "  id="list-container">
                 <div class="category-product">
 
-                @foreach($product as $item)
+                @foreach($subsubcat_product as $item)
 
                   <div class="category-product-inner wow fadeInUp">
                     <div class="products">
@@ -414,7 +414,12 @@ Tag wise Product
             <div class="clearfix filters-container">
               <div class="text-right">
                 <div class="pagination-container">
-                  {{ $product -> links(); }}
+
+
+                  {{-- {{ $subcat_product -> links(); }} --}}
+
+
+
                   <!-- /.list-inline --> 
                 </div>
                 <!-- /.pagination-container --> </div>

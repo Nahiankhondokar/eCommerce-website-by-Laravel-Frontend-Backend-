@@ -211,6 +211,23 @@ Route::get('single/product/{id}/{slug}', [IndexController::class, 'SingleProduct
 Route::get('product/tag/{tag}', [IndexController::class, 'tagWiseProduct']);
 
 
+/**
+ *  sub-> Categoery wise product search
+ * sub-> SubCategoery wise product search
+ */
+Route::get('subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
+Route::get('subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProduct']);
+
+
+
+/**
+ *   product view modal
+ */
+Route::get('product/view/modal/{id}', [IndexController::class, 'ProductViewModal']);
+
+
+
+
 
 
 

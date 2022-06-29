@@ -19,7 +19,7 @@ class Product extends Model
 
     // Relationship for getting parent category name
     public function brand(){
-        return $this -> belongsTo(Category::class, 'brand_id', 'id');
+        return $this -> belongsTo(Brand::class, 'brand_id', 'id');
     }
     
 }

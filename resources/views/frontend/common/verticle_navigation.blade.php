@@ -5,8 +5,10 @@
 
 
         @foreach($categories as $item)
-        <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon {{ $item -> category_icon }}" aria-hidden="true"></i>
-          @if(Session() -> get('language') == 'hindi') {{ $item -> category_name_hin }} @else {{ $item -> category_name_eng }} @endif  
+        <li class="dropdown menu-item"> 
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon {{ $item -> category_icon }}" aria-hidden="true"></i>
+            @if(Session() -> get('language') == 'hindi') {{ $item -> category_name_hin }} @else {{ $item -> category_name_eng }} @endif  
         </a>
           <ul class="dropdown-menu mega-menu">
             <li class="yamm-content">
@@ -20,9 +22,11 @@
               @foreach($subcategories as $item)
                 <div class="col-sm-12 col-md-3">
                   
-                  <h2 class="title">
-                    @if(Session() -> get('language') == 'hindi') {{ $item -> subcategory_name_hin }} @else {{ $item -> subcategory_name_eng }}@endif
+                  <a href="{{ url('subcategory/product/'.$item -> id.'/'.$item -> subcategory_slug_eng) }}">
+                    <h2 class="title">
+                      @if(Session() -> get('language') == 'hindi') {{ $item -> subcategory_name_hin }} @else {{ $item -> subcategory_name_eng }}@endif
                     </h2>
+                  </a>
 
                      {{-- Sub-SubCategory show --}}
                     @php
@@ -31,8 +35,9 @@
                   
                   @foreach ($subsubcategories as $item)
                   <ul class="links list-unstyled">
-                    <li><a href="#"></a>
+                    <li><a href="{{ url('subsubcategory/product/'.$item -> id.'/'.$item -> subsubcategory_slug_eng) }}">
                       @if(Session() -> get('language') == 'hindi') {{ $item -> subsubcategory_name_hin }} @else {{ $item -> subsubcategory_name_eng }}@endif
+                    </a>
                     </li>
                   
                   </ul>

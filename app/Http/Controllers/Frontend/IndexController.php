@@ -36,7 +36,7 @@ class IndexController extends Controller
         $skip_brand_product_1 = Product::where('status', 1) -> where('brand_id', $skip_brand_1 -> id) ->orderBy('id', 'DESC') -> limit(6) -> get();
 
 
-        $hotdeal = Product::where('hot_deal_product', 1) -> where('discount_price', '!==', Null) -> orderBy('id', 'DESC') -> limit(3)-> get();
+        $hotdeal = Product::where('hot_deal_product', 1) -> where('discount_price', '!=', Null) -> orderBy('id', 'DESC') -> limit(3)-> get();
         $specialoffer = Product::where('special_offer', 1) ->orderBy('id', 'DESC') -> limit(3) -> get();
         $specialdeal = Product::where('special_deal', 1) ->orderBy('id', 'DESC') -> limit(3) -> get();
         return view('frontend.index', compact('categories', 'slider', 'products', 'skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_brand_1', 'skip_brand_product_1', 'hotdeal', 'specialdeal', 'specialoffer'));
@@ -169,6 +169,26 @@ class IndexController extends Controller
         $single_product = Product::find($id);
         $multiple_img = MultiImg::where('product_id', $id) -> get();
 
+        // product Size
+        $size_eng = $single_product -> product_size_eng;
+        $product_size_eng = explode(',', $size_eng);
+
+        $size_hin = $single_product -> product_size_hin;
+        $product_size_hin = explode(',', $size_hin);
+
+
+        // product color
+        $color_eng = $single_product -> product_color_eng;
+        $product_color_eng = explode(',', $color_eng);
+
+        $color_hin = $single_product -> product_color_hin;
+        $product_color_hin = explode(',', $color_hin);
+
+        $cat_id = $single_product -> category_id;
+        $related_product = Product::where('category_id', $cat_id) -> where('id', '!=', $id) -> orderBy('id', 'DESC') -> get();
+
+        $hotdeal = Product::where('hot_deal_product', 1) -> where('discount_price', '!=', Null) -> orderBy('id', 'DESC') -> limit(3)-> get();
+
         // multiple images manage
         foreach ($multiple_img as $item) {
             $imgs = json_decode($item -> photo_name);
@@ -177,7 +197,7 @@ class IndexController extends Controller
             }
         }
 
-        return view('frontend.single_product.single_product', compact('single_product', 'img'));
+        return view('frontend.single_product.single_product', compact('single_product', 'img', 'product_size_eng', 'product_size_hin', 'product_color_eng', 'product_color_hin', 'related_product', 'hotdeal'));
     }
 
 
@@ -203,6 +223,58 @@ class IndexController extends Controller
         }
 
     }
+
+
+
+    /**
+     *   Sub -> category wise product search
+     */
+    public function SubCategoryWiseProduct($subcat_id,$slug){
+
+        $subcat_product = Product::where('status', 1) -> where('subcategory_id',  $subcat_id) -> orderBy('product_name_eng', 'DESC') -> get();
+        $categories = Category::orderBy('category_name_eng', 'ASC') -> get();
+
+        return view('frontend.product.subcat_product', compact('subcat_product', 'categories'));
+    }
+
+
+    /**
+     *   Sub -> category wise product search
+     */
+    public function SubSubCategoryWiseProduct($subsubcat_id,$slug){
+
+        $subsubcat_product = Product::where('status', 1) -> where('subsubcategory_id',  $subsubcat_id) -> orderBy('product_name_eng', 'DESC') -> get();
+        $categories = Category::orderBy('category_name_eng', 'ASC') -> get();
+
+        return view('frontend.product.subsubcat_product', compact('subsubcat_product', 'categories'));
+    }
+
+
+
+    
+    /**
+     *   Product view modal
+     */
+    public function ProductViewModal($id){
+
+        $product = Product::with('category', 'brand') -> find($id);
+
+        // product Size
+        $size = $product -> product_size_eng;
+        $produdct_size = explode(',', $size);
+
+        $color = $product -> product_color_eng;
+        $product_color = explode(',', $color);
+
+        // return $produdct_size;
+        return [
+            "product"        => $product,
+            "sizes"          => $produdct_size,
+            "colors"         => $product_color
+        ];
+
+    }
+
 
 
 

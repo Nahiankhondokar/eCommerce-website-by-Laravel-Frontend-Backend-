@@ -3,7 +3,7 @@
 @section('content')
 
 @section('title')
-Tag wise Product
+Subcategory wise Product
 @endsection
 
 
@@ -249,7 +249,7 @@ Tag wise Product
                 <div class="category-product">
                   <div class="row">
 
-                    @foreach($product as $item)
+                    @foreach($subcat_product as $item)
 
                     <div class="col-sm-6 col-md-4 wow fadeInUp">
                       <div class="products">
@@ -330,7 +330,7 @@ Tag wise Product
               <div class="tab-pane "  id="list-container">
                 <div class="category-product">
 
-                @foreach($product as $item)
+                @foreach($subcat_product as $item)
 
                   <div class="category-product-inner wow fadeInUp">
                     <div class="products">
@@ -414,7 +414,7 @@ Tag wise Product
             <div class="clearfix filters-container">
               <div class="text-right">
                 <div class="pagination-container">
-                  {{ $product -> links(); }}
+                  {{-- {{ $subcat_product -> links(); }} --}}
                   <!-- /.list-inline --> 
                 </div>
                 <!-- /.pagination-container --> </div>

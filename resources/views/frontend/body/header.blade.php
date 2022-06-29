@@ -212,9 +212,13 @@
 
                             @foreach($subcategories as $item)
                             <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                              <h2 class="title">
-                                @if(Session() -> get('language') == 'hindi') {{ $item -> subcategory_name_hin }} @else {{ $item -> subcategory_name_eng }}@endif
+
+                              <a href="{{ url('subcategory/product/'.$item -> id.'/'.$item -> subcategory_slug_eng) }}">
+                                <h2 class="title">
+                                  @if(Session() -> get('language') == 'hindi') {{ $item -> subcategory_name_hin }} @else {{ $item -> subcategory_name_eng }}@endif
                                 </h2>
+                              </a>
+                             
 
                                 {{-- Sub-SubCategory show --}}
                               @php
@@ -223,7 +227,7 @@
 
                               @foreach ($subsubcategories as $item)
                               <ul class="links">
-                                <li><a href="#">
+                                <li><a href="{{ url('subsubcategory/product/'.$item -> id.'/'.$item -> subsubcategory_slug_eng) }}">
                                   @if(Session() -> get('language') == 'hindi') {{ $item -> subsubcategory_name_hin }} @else {{ $item -> subsubcategory_name_eng }}@endif
                                   </a></li>
                               </ul>
