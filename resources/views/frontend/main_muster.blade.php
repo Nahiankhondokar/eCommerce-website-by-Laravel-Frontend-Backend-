@@ -76,6 +76,10 @@
 <script src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
 
 
+{{-- Sweet alert --}}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     {{-- Custom js file --}}
 <script src="{{ asset('frontend/assets/js/custom.js') }}"></script>
 
@@ -119,7 +123,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><strong id="pname"></strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -145,25 +149,25 @@
           <div class="col-md-4">
             <div class="form-group" id="colorAreaHide">
               <label class="info-title control-label">Product Color <span>*</span></label>
-              <select class="form-control" name="color">
+              <select class="form-control" name="color" id="color">
                 <option selected disabled>--Select Color--</option>
               </select>
             </div>
 
             <div class="form-group" id="sizeAreaHide">
               <label class="info-title control-label">Product Size <span>*</span></label>
-              <select class="form-control" name="size">
+              <select class="form-control" name="size" id="size">
                 <option selected disabled>--Select Size--</option>
               </select>
             </div>
 
             <div class="form-group">
               <label for="exampleInputEmail1">Quantity</label>
-              <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" min="1" value="1">
+              <input type="number" class="form-control" id="qty" aria-describedby="emailHelp" min="1" value="1">
             </div>
 
-
-            <button type="submit" class="btn btn-info">Add to Cart</button>
+            <input type="hidden" id="update_id">
+            <button type="submit" class="btn btn-info" id="cart_btn">Add to Cart</button>
 
           </div>
         </div>
@@ -195,6 +199,7 @@
         $('#pcode').text(data.product.product_code);
         $('#pcategory').text(data.product.category.category_name_eng);
         $('#pbrand').text(data.product.brand.brand_name_eng);
+        $('#update_id').val(id);
         $('#pimage').attr('src', '/media/admin/products/tham-nail/'+data.product.product_thamnail);
 
         // product price show

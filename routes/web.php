@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SliderController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -224,6 +225,12 @@ Route::get('subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::cla
  *   product view modal
  */
 Route::get('product/view/modal/{id}', [IndexController::class, 'ProductViewModal']);
+
+
+/**
+ *   Add to Cart routes
+ */
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
 
 
