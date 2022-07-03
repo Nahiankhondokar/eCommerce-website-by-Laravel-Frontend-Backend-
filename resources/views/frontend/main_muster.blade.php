@@ -162,12 +162,12 @@
             </div>
 
             <div class="form-group">
-              <label for="exampleInputEmail1">Quantity</label>
+              <label>Quantity</label>
               <input type="number" class="form-control" id="qty" aria-describedby="emailHelp" min="1" value="1">
             </div>
 
-            <input type="hidden" id="update_id">
-            <button type="submit" class="btn btn-info" id="cart_btn">Add to Cart</button>
+            <input type="hidden" id="product_id">
+            <button type="submit" class="btn btn-info" onclick="AddToCart()">Add to Cart</button>
 
           </div>
         </div>
@@ -199,7 +199,7 @@
         $('#pcode').text(data.product.product_code);
         $('#pcategory').text(data.product.category.category_name_eng);
         $('#pbrand').text(data.product.brand.brand_name_eng);
-        $('#update_id').val(id);
+        $('#product_id').val(id);
         $('#pimage').attr('src', '/media/admin/products/tham-nail/'+data.product.product_thamnail);
 
         // product price show
@@ -243,6 +243,132 @@
       } 
     });
   }
+  
+
+  // Add to cart modal manage
+  function AddToCart(){
+
+      let id      = $('#product_id').val();
+      let name    = $('#pname').text();
+      let color   = $('#color option:selected').text();
+      let size    = $('#size option:selected').text();
+      let qty     = $('#qty').val();
+
+      $.ajax({
+          url: '/cart/data/store/' + id,
+          type : 'POST',
+          dataType : 'json',
+          data : {
+              name : name , color : color, size : size, qty : qty
+          },
+          success : function(data){
+
+            MiniCart();
+              $('#closeModal').click();
+
+              // Add to cart message 
+              const Toster = Swal.mixin({
+                  toster : true,
+                  position: 'top-end',
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 3000
+                })
+
+              if($.isEmptyObject(data.error)){
+                  Toster.fire({
+                      type : 'success',
+                      title : data.success
+                  });
+              }else{
+                  Toster.fire({
+                      type : 'error',
+                      title : data.error
+                  });
+              }
+
+          }
+      });
+  }
+
+</script>
+
+
+<script>
+
+  // mini cart
+function MiniCart(){
+  $.ajax({
+    url : '/product/mini/cart/',
+    type : 'GET', 
+    dataType : 'json', 
+    success : function(data){
+      
+      $('span[id="cartQty"]').text(data.cart_qty);
+      $('span[id="cartSubTotal"]').text(data.cart_total);
+
+      let miniCart = '';
+      $.each(data.carts, function(index, value){
+        miniCart += `
+                  <div class="cart-item product-summary">
+                    <div class="row">
+                      <div class="col-xs-4">
+                        <div class="image"> <a href="detail.html"><img src="/media/admin/products/tham-nail/${value.options.image}" alt=""></a> </div>
+                      </div>
+                      <div class="col-xs-7">
+                        <h3 class="name"><a href="#">${value.name}</a></h3>
+                        <div class="price">$ ${value.price} * ${value.qty}</div>
+                      </div>
+                      <div class="col-xs-1 action"> 
+                        <button type="submit" onclick="miniCartRemove(this.id)" id="${value.rowId}"><i class="fa fa-trash"></i></button> 
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.cart-item -->
+                  <div class="clearfix"></div>
+                  <hr>`;
+      });
+
+
+      $('#miniCart').html(miniCart);
+
+    }
+  });
+}
+MiniCart();
+
+
+// Remove product from minicart
+function miniCartRemove(rowId){
+  $.ajax({
+    url : '/minicart/product-remove/' + rowId,
+    type : 'GET', 
+    success : function (data){
+      MiniCart();
+
+      const Toster = Swal.mixin({
+        toster : true,
+        position: 'top-end',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000
+      });
+
+      if($.isEmptyObject(data.error)){
+        Toster.fire({
+          type : 'success',
+          title : data.success
+        });
+      }else{
+        Toster.fire({
+          type : 'error',
+          title : data.error
+        });
+      }
+
+    }
+  });
+}
 
 </script>
 

@@ -130,7 +130,7 @@
 				</div><!-- /.gallery-holder -->        			
 					<div class='col-sm-6 col-md-7 product-info-block'>
 						<div class="product-info">
-							<h1 class="name">
+							<h1 class="name" id="pname">
                                 @if(Session() -> get('language') == 'hindi') {{ $single_product -> product_name_hin }}  @else {{ $single_product -> product_name_eng }} @endif  
                             </h1>
 							
@@ -203,10 +203,15 @@
 							{{-- =========== Product color & Size =========== --}}
 							<div class="product-size-color">
 								<div class="row">
+
+									{{-- when no sizes available --}}
+									@if($single_product -> product_size_eng == null)
+									
+									@else
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="info-title control-label">Product Size <span>*</span></label>
-											<select class="form-control unicase-form-control selectpicker" style="display: none;">
+											<select class="form-control unicase-form-control selectpicker" style="display: none;" id="size">
 												<option selected disabled>--Select Size--</option>
 												@foreach($product_size_eng as $item)
 												<option value="{{ $item }}">{{ ucwords($item) }}</option>
@@ -214,11 +219,17 @@
 											</select>
 										</div>
 									</div>
+									@endif
 
+
+									{{-- when no color available --}}
+									@if($single_product -> product_color_eng == null)
+
+									@else
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="info-title control-label">Product Color <span>*</span></label>
-											<select class="form-control unicase-form-control selectpicker">
+											<select class="form-control unicase-form-control selectpicker" id="color">
 												<option selected disabled>--Select Color--</option>
 												@foreach($product_color_eng as $item)
 												<option value="{{ $item }}">{{ ucwords($item) }}</option>
@@ -226,6 +237,7 @@
 											</select>
 										</div>
 									</div>
+									@endif
 								</div>
 							</div>
 							<hr>
@@ -243,13 +255,15 @@
 								                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
 								                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
 								                </div>
-								                <input type="text" value="1">
+								                <input type="text" id="qty" value="1" min="1">
 							              </div>
 							            </div>
 									</div>
 
+									<input type="hidden" id="product_id" value="{{ $single_product -> id }}"> 
+
 									<div class="col-sm-7">
-										<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+										<button type="submit" class="btn btn-primary" onclick="AddToCart()"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
 									</div>
 
 									

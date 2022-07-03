@@ -233,6 +233,19 @@ Route::get('product/view/modal/{id}', [IndexController::class, 'ProductViewModal
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
 
+/**
+ *   Add to Mini cart routes
+ */
+Route::get('/product/mini/cart/', [CartController::class, 'MiniCart']);
+
+
+/**
+ *   Remove product from Mini cart routes
+ */
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveProductMiniCart']);
+
+
+
 
 
 
