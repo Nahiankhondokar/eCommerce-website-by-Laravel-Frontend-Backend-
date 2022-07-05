@@ -394,6 +394,7 @@ Home Online Shop
                         <div class="cart clearfix animate-effect">
                           <div class="action">
                             <ul class="list-unstyled">
+
                               <li class="add-cart-button btn-group">
                                 <button
                                   class="btn btn-primary icon"
@@ -412,16 +413,19 @@ Home Online Shop
                                   Add to cart
                                 </button>
                               </li>
-                              <li class="lnk wishlist">
-                                <a
-                                  data-toggle="tooltip"
-                                  class="add-to-cart"
-                                  href="detail.html"
+
+                              
+                                <button 
+                                  type="button"
+                                  class="btn btn-primary"
                                   title="Wishlist"
+                                  id="{{ $item -> id }}"
+                                  onclick="AddToWishlist(this.id)"
                                 >
-                                  <i class="icon fa fa-heart"></i>
-                                </a>
-                              </li>
+                                  <i class="fa fa-heart"></i>
+                                </button>
+                            
+
                               <li class="lnk">
                                 <a
                                   data-toggle="tooltip"
@@ -435,6 +439,7 @@ Home Online Shop
                                   ></i>
                                 </a>
                               </li>
+
                             </ul>
                           </div>
                           <!-- /.action -->
@@ -624,7 +629,7 @@ Home Online Shop
         <!-- /.wide-banners -->
 
         <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
-        <!-- ============================================== FEATURED PRODUCTS ============================================== -->
+        <!-- ============= FEATURED PRODUCTS ============== -->
 
 
         <section class="section featured-product wow fadeInUp">

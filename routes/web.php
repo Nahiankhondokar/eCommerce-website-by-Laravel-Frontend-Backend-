@@ -12,6 +12,8 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CartPageController;
+use App\Http\Controllers\User\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -233,6 +235,7 @@ Route::get('product/view/modal/{id}', [IndexController::class, 'ProductViewModal
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
 
+
 /**
  *   Add to Mini cart routes
  */
@@ -243,6 +246,33 @@ Route::get('/product/mini/cart/', [CartController::class, 'MiniCart']);
  *   Remove product from Mini cart routes
  */
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveProductMiniCart']);
+
+
+/**
+ *   Manage wishlist & mycart products
+ */
+Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishlist']);
+
+Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function(){
+    // wishlist routes
+    Route::get('/wishlist-product', [WishlistController::class, 'ViweWishlistProduct']) -> name('wishlist-product');
+    Route::get('/wishlist-product-show', [WishlistController::class, 'GetWishlistProduct']);
+    Route::get('/wishlist/product-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
+
+});
+
+
+    // my Cart routes
+    Route::get('/cart-product', [CartPageController::class, 'ViweCartProduct']) -> name('cart-product');
+    Route::get('/user/cart-product-show', [CartPageController::class, 'GetCartProduct']);
+    Route::get('/user/cart/product-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
+
+    Route::post('/cart-product-increment/{rowId}', [CartPageController::class, 'cartProductIncrement']);
+    Route::post('/cart-product-decrement/{rowId}', [CartPageController::class, 'cartProductDecrement']);
+
+
+
+
 
 
 

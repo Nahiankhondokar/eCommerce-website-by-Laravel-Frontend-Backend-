@@ -14,14 +14,14 @@
                 My Account
               @endif  
             </a></li>
-              <li><a href="#"><i class="icon fa fa-heart"></i>
+              <li><a href="{{ route('wishlist-product') }}"><i class="icon fa fa-heart"></i>
               @if(Session() -> get('language') == 'hindi')
               इच्छा-सूची
               @else
               Wishlist
               @endif 
                 </a></li>
-              <li><a href="#"><i class="icon fa fa-shopping-cart"></i>
+              <li><a href="{{ route('cart-product') }}"><i class="icon fa fa-shopping-cart"></i>
               @if(Session() -> get('language') == 'hindi')
               मेरी गाड़ी
               @else
