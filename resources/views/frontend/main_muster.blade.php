@@ -167,7 +167,7 @@
             </div>
 
             <input type="hidden" id="product_id">
-            <button type="submit" class="btn btn-info" onclick="AddToCart()">Add to Cart</button>
+            <button type="submit" id="modalbtn" class="btn btn-info" onclick="AddToCart()">Add to Cart</button>
 
           </div>
         </div>
@@ -238,6 +238,14 @@
         }else{
           $('.product_stock').text('Out Stock');
           $('.product_stock').css('color', 'red');
+        }
+
+
+        // submit button disabled
+        if(data.product.product_qty == 0){
+          $('button#modalbtn').css('pointer-events', 'none');
+        }else{
+          $('button#modalbtn').css('pointer-events', '')
         }
 
       } 

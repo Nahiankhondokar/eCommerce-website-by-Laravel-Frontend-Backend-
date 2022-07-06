@@ -1,35 +1,35 @@
 $(document).ready(function(){
 
 
-      // Sweet alert for delete button
-      $(document).on('click', '#delete', function(e){
-        e.preventDefault();
-  
-        let link = $(this).attr('href');
-  
-        swal({
-          title: "Are you sure?",
-          text: "Once deleted, you will not be able to recover this imaginary file!",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            // alert(window.location.href);
-              window.location.href = link;
-              swla(
-                'Delete !',
-                'Your file has been Deleted',
-                'success'
-              );
-  
-          } else {
-            swal("Your imaginary file is safe!");
-          }
-        });
-  
-      });
+  // Sweet alert for delete button
+  $(document).on('click', '#delete', function(e){
+    e.preventDefault();
+
+    let link = $(this).attr('href');
+
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        // alert(window.location.href);
+          window.location.href = link;
+          swla(
+            'Delete !',
+            'Your file has been Deleted',
+            'success'
+          );
+
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+
+  });
   
   
   
@@ -153,6 +153,28 @@ $(document).ready(function(){
 
         }
       });
+
+    });
+
+
+
+    // ===================== Shipping Division, District, State Manage ==================
+
+    $(document).on('change', '#DivisionSelect', function(){
+
+      let division_id = $(this).val();
+      $.ajax({
+        url : '/shipping/division/ajax/' + division_id,
+        success : function(data){
+          
+          $('select#LoadDistrick').empty();
+          for (item of data) {
+            $('select#LoadDistrick').append(`<option value="${ item.id }">${ item.district_name }</option>`);
+          }
+
+        }
+      });
+
 
     });
 

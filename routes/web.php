@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponeController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SliderController;
 
 use App\Http\Controllers\Frontend\IndexController;
@@ -285,8 +286,41 @@ Route::prefix('coupone') -> group(function(){
     Route::post('/store', [CouponeController::class, 'CouponetStore']) -> name('coupone.store');
     Route::patch('/update/{id}', [CouponeController::class, 'CouponeUpdate']) -> name('coupone.update');
 
+}) ;
 
-    // Route::get('/active-inactive/{id}', [CouponeController::class, 'CouponeActiveInactive']) -> name('active.inactive.coupone');
+
+
+/**
+ *  Coupone manage Routes
+ */
+Route::prefix('shipping') -> group(function(){
+
+
+    // Divivsion manage
+    Route::get('/division/view', [ShippingAreaController::class, 'DivisionView']) -> name('manage-division');
+    Route::post('/division/store', [ShippingAreaController::class, 'DivisionStore']) -> name('division.store');
+    Route::get('/division/edit/{id}', [ShippingAreaController::class, 'DivisionEdit']) -> name('division.edit');
+    Route::post('/division/update/{id}', [ShippingAreaController::class, 'DivisionUpdate']) -> name('division.update');
+    Route::get('/division/delete/{id}', [ShippingAreaController::class, 'DivisionDelete']) -> name('division.delete');
+
+    // District manage
+    Route::get('/district/view', [ShippingAreaController::class, 'DistrictView']) -> name('manage-district');
+    Route::post('/district/store', [ShippingAreaController::class, 'DistrictStore']) -> name('district.store');
+    Route::get('/district/edit/{id}', [ShippingAreaController::class, 'DistrictEdit']) -> name('district.edit');
+    Route::post('/district/update/{id}', [ShippingAreaController::class, 'DistrictUpdate']) -> name('district.update');
+    Route::get('/district/delete/{id}', [ShippingAreaController::class, 'DistrictDelete']) -> name('district.delete');
+
+
+    // State manage
+    Route::get('/state/view', [ShippingAreaController::class, 'StateView']) -> name('manage-state');
+    Route::post('/state/store', [ShippingAreaController::class, 'StateStore']) -> name('state.store');
+    Route::get('/state/edit/{id}', [ShippingAreaController::class, 'StateEdit']) -> name('state.edit');
+    Route::post('/state/update/{id}', [ShippingAreaController::class, 'StateUpdate']) -> name('state.update');
+    Route::get('/state/delete/{id}', [ShippingAreaController::class, 'StateDelete']) -> name('state.delete');
+
+    // district select baseed on division selected
+    Route::get('/division/ajax/{id}', [ShippingAreaController::class, 'GetDistrictByDivision']);
+
 
 }) ;
 
