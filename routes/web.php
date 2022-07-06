@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CouponeController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
@@ -216,7 +217,7 @@ Route::get('product/tag/{tag}', [IndexController::class, 'tagWiseProduct']);
 
 /**
  *  sub-> Categoery wise product search
- * sub-> SubCategoery wise product search
+ *  sub-> SubCategoery wise product search
  */
 Route::get('subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
 Route::get('subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProduct']);
@@ -270,6 +271,24 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::post('/cart-product-increment/{rowId}', [CartPageController::class, 'cartProductIncrement']);
     Route::post('/cart-product-decrement/{rowId}', [CartPageController::class, 'cartProductDecrement']);
 
+
+
+
+/**
+ *  Coupone manage Routes
+ */
+Route::prefix('coupone') -> group(function(){
+
+    Route::get('/view', [CouponeController::class, 'CouponeView']) -> name('manage-coupone');
+    Route::get('/delete/{id}', [CouponeController::class, 'CouponeDelete']) -> name('coupone.delete');
+    Route::get('/edit/{id}', [CouponeController::class, 'CouponeEdit']) -> name('coupone.edit');
+    Route::post('/store', [CouponeController::class, 'CouponetStore']) -> name('coupone.store');
+    Route::patch('/update/{id}', [CouponeController::class, 'CouponeUpdate']) -> name('coupone.update');
+
+
+    // Route::get('/active-inactive/{id}', [CouponeController::class, 'CouponeActiveInactive']) -> name('active.inactive.coupone');
+
+}) ;
 
 
 
