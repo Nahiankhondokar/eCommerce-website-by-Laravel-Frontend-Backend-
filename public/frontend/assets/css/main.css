@@ -991,6 +991,10 @@ a {
 .blog-page .blog-review .review-action a:focus {
   color: #12cca7;
 }
+
+.shopping-cart{
+  box-shadow: none !important;
+}
 .blog-page .blog-post-author-details .author-social-network .dropdown-menu > li > a:hover,
 .blog-page .blog-post-author-details .author-social-network .dropdown-menu > li > a:focus {
   color: #12cca7;

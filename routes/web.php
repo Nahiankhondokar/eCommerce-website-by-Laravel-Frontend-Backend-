@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CartPageController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\WishlistController;
 
 /*
@@ -320,11 +321,26 @@ Route::prefix('shipping') -> group(function(){
 
     // district select baseed on division selected
     Route::get('/division/ajax/{id}', [ShippingAreaController::class, 'GetDistrictByDivision']);
+    Route::get('/district/ajax/{id}', [ShippingAreaController::class, 'GetStateByDistrict']);
 
 
 }) ;
 
 
+
+/**
+ *  Coupon Apply
+ */
+Route::post('/coupon-apply', [CartController::class, 'CouponeApply']);
+Route::get('/coupon-calculation', [CartController::class, 'CouponeCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'CouponeRemove']);
+
+
+/**
+ *  Checkout routes
+ */
+Route::get('/checkout', [CheckoutController::class, 'ViewCheckout']) -> name('view.checkout');
+Route::post('/checkout-store', [CheckoutController::class, 'CheckoutStore']) -> name('store.checkout');
 
 
 

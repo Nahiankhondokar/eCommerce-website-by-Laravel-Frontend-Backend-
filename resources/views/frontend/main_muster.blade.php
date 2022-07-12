@@ -420,97 +420,97 @@ function miniCartRemove(rowId){
 
 <script>
   // show wishlist product
-function Wishlist(){
-  $.ajax({
-    url : '/user/wishlist-product-show',
-    type : 'GET', 
-    dataType : 'json', 
-    success : function(data){
+  function Wishlist(){
+    $.ajax({
+      url : '/user/wishlist-product-show',
+      type : 'GET', 
+      dataType : 'json', 
+      success : function(data){
 
-      let body = '';
-      $.each(data, function(index, value){
-        body += `
-        <tr>
-          <td class="col-md-2"><img src="/media/admin/products/tham-nail/${value.product.product_thamnail}" alt="imga"></td>
-          <td class="col-md-7">
-              <div class="product-name"><a href="#">${value.product.product_name_eng}</a></div>
-              <div class="rating">
-                  <i class="fa fa-star rate"></i>
-                  <i class="fa fa-star rate"></i>
-                  <i class="fa fa-star rate"></i>
-                  <i class="fa fa-star rate"></i>
-                  <i class="fa fa-star non-rate"></i>
-                  <span class="review">( 06 Reviews )</span>
-              </div>
-              <div class="price">
-                  ${value.product.discount_price == null 
-                  ? `<span>$ ${value.product.selling_price}</span>`
-                  : `$ ${value.product.discount_price}
-                  <span>$ ${value.product.selling_price}</span>`
-                  }
-                  
-              </div>
-          </td>
-          <td class="col-md-2">
-            <button
-              class="btn btn-primary icon"
-              type="button"
-              title="Add Cart"
-              data-toggle="modal" 
-              data-target="#exampleModal"
-              id="${value.product_id}"
-              onclick="productView(this.id)"
-            ><i class="fa fa-shopping-cart"></i> Add To Cart
+        let body = '';
+        $.each(data, function(index, value){
+          body += `
+          <tr>
+            <td class="col-md-2"><img src="/media/admin/products/tham-nail/${value.product.product_thamnail}" alt="imga"></td>
+            <td class="col-md-7">
+                <div class="product-name"><a href="#">${value.product.product_name_eng}</a></div>
+                <div class="rating">
+                    <i class="fa fa-star rate"></i>
+                    <i class="fa fa-star rate"></i>
+                    <i class="fa fa-star rate"></i>
+                    <i class="fa fa-star rate"></i>
+                    <i class="fa fa-star non-rate"></i>
+                    <span class="review">( 06 Reviews )</span>
+                </div>
+                <div class="price">
+                    ${value.product.discount_price == null 
+                    ? `<span>$ ${value.product.selling_price}</span>`
+                    : `$ ${value.product.discount_price}
+                    <span>$ ${value.product.selling_price}</span>`
+                    }
+                    
+                </div>
+            </td>
+            <td class="col-md-2">
+              <button
+                class="btn btn-primary icon"
+                type="button"
+                title="Add Cart"
+                data-toggle="modal" 
+                data-target="#exampleModal"
+                id="${value.product_id}"
+                onclick="productView(this.id)"
+              ><i class="fa fa-shopping-cart"></i> Add To Cart
 
-            </button>
-          </td>
-          <td class="col-md-1 close-btn">
-              <button type="submit" id="${value.id}" onclick="RemoveWishlist(this.id)" class=""><i class="fa fa-times"></i></button>
-          </td>
-        </tr>`;
-      });
-
-
-      $('#wishlist').html(body);
-
-    }
-  });
-}
-Wishlist();
-
-
-
-// Remove product from Wishlist
-function RemoveWishlist(id){
-  $.ajax({
-    url : '/user/wishlist/product-remove/' + id,
-    type : 'GET', 
-    success : function (data){
-      Wishlist();
-
-      const Toster = Swal.mixin({
-        toster : true,
-        position: 'top-end',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 3000
-      });
-
-      if($.isEmptyObject(data.error)){
-        Toster.fire({
-          type : 'success',
-          title : data.success
+              </button>
+            </td>
+            <td class="col-md-1 close-btn">
+                <button type="submit" id="${value.id}" onclick="RemoveWishlist(this.id)" class=""><i class="fa fa-times"></i></button>
+            </td>
+          </tr>`;
         });
-      }else{
-        Toster.fire({
-          type : 'error',
-          title : data.error
-        });
+
+
+        $('#wishlist').html(body);
+
       }
+    });
+  }
+  Wishlist();
 
-    }
-  });
-}
+
+
+  // Remove product from Wishlist
+  function RemoveWishlist(id){
+    $.ajax({
+      url : '/user/wishlist/product-remove/' + id,
+      type : 'GET', 
+      success : function (data){
+        Wishlist();
+
+        const Toster = Swal.mixin({
+          toster : true,
+          position: 'top-end',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        if($.isEmptyObject(data.error)){
+          Toster.fire({
+            type : 'success',
+            title : data.success
+          });
+        }else{
+          Toster.fire({
+            type : 'error',
+            title : data.error
+          });
+        }
+
+      }
+    });
+  }
 </script>
 
 
@@ -518,143 +518,282 @@ function RemoveWishlist(id){
 <script>
 
   // show MyCart product
-function MyCart(){
-  $.ajax({
-    url : '/user/cart-product-show',
-    type : 'GET', 
-    dataType : 'json', 
-    success : function(data){
+  function MyCart(){
+    $.ajax({
+      url : '/user/cart-product-show',
+      type : 'GET', 
+      dataType : 'json', 
+      success : function(data){
 
-      let body = '';
-      $.each(data.carts, function(index, value){
-        body += `
-        <tr>
-          <td class="col-md-2"><img src="/media/admin/products/tham-nail/${value.options.image}" alt="imga"></td>
-          <td class="col-md-2">
-              <div class="product-name"><a href="#">${value.name}</a></div>
-              <div class="rating">
-                  <i class="fa fa-star rate"></i>
-                  <i class="fa fa-star rate"></i>
-                  <i class="fa fa-star rate"></i>
-                  <i class="fa fa-star rate"></i>
-                  <i class="fa fa-star non-rate"></i>
-                  <span class="review">( 06 Reviews )</span>
-              </div>
-              <div class="price">
-                $ ${value.price}
-              </div>
-          </td>
-          <td class="col-md-2">
-            ${value.options.color == null 
-            ? `<span class="badge badge-danger ">No Color</span>`
-            : `<strong>${value.options.color}</strong>`
-            }
-          </td>
-          <td class="col-md-2">
-            ${value.options.size == null 
-            ? `<span class="badge badge-danger">No Size</span>`
-            : `<strong>${value.options.size}</strong>`
-            }
-          </td>
-          <td class="col-md-2">
-            ${value.qty > 1
-              ? 
-              `<button class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartProductDecrement(this.id)">-</button>`
-              :
-              `<button class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartProductDecrement(this.id)" disabled>-</button>`
-            }
-            <input type="text" min="1" max="100" style="width : 25px;" value="${value.qty}">
-            <button class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartProductIncrement(this.id)">+</button>
-          </td>
-          <td class="col-md-2">
-            <strong>$ ${value.subtotal}</stro>
-          </td>
-          <td class="col-md-1 close-btn">
-              <button type="submit" id="${value.rowId}" onclick="RemoveMyCart(this.id)" class=""><i class="fa fa-times"></i></button>
-          </td>
-        </tr>`;
-      });
-
-
-      $('#cartPage').html(body);
-
-    }
-  });
-}
-MyCart();
-
-
-
-// Remove product from My Cart
-function RemoveMyCart(rowId){
-  $.ajax({
-    url : '/user/cart/product-remove/' + rowId,
-    type : 'GET', 
-    success : function (data){
-      MyCart();
-      MiniCart();
-
-      const Toster = Swal.mixin({
-        toster : true,
-        position: 'top-end',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 3000
-      });
-
-      if($.isEmptyObject(data.error)){
-        Toster.fire({
-          type : 'success',
-          title : data.success
+        let body = '';
+        $.each(data.carts, function(index, value){
+          body += `
+          <tr>
+            <td class="col-md-2"><img src="/media/admin/products/tham-nail/${value.options.image}" alt="imga"></td>
+            <td class="col-md-2">
+                <div class="product-name"><a href="#">${value.name}</a></div>
+                <div class="rating">
+                    <i class="fa fa-star rate"></i>
+                    <i class="fa fa-star rate"></i>
+                    <i class="fa fa-star rate"></i>
+                    <i class="fa fa-star rate"></i>
+                    <i class="fa fa-star non-rate"></i>
+                    <span class="review">( 06 Reviews )</span>
+                </div>
+                <div class="price">
+                  $ ${value.price}
+                </div>
+            </td>
+            <td class="col-md-2">
+              ${value.options.color == null 
+              ? `<span class="badge badge-danger ">No Color</span>`
+              : `<strong>${value.options.color}</strong>`
+              }
+            </td>
+            <td class="col-md-2">
+              ${value.options.size == null 
+              ? `<span class="badge badge-danger">No Size</span>`
+              : `<strong>${value.options.size}</strong>`
+              }
+            </td>
+            <td class="col-md-2">
+              ${value.qty > 1
+                ? 
+                `<button class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartProductDecrement(this.id)">-</button>`
+                :
+                `<button class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartProductDecrement(this.id)" disabled>-</button>`
+              }
+              <input type="text" min="1" max="100" style="width : 25px;" value="${value.qty}">
+              <button class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartProductIncrement(this.id)">+</button>
+            </td>
+            <td class="col-md-2">
+              <strong>$ ${value.subtotal}</stro>
+            </td>
+            <td class="col-md-1 close-btn">
+                <button type="submit" id="${value.rowId}" onclick="RemoveMyCart(this.id)" class=""><i class="fa fa-times"></i></button>
+            </td>
+          </tr>`;
         });
-      }else{
-        Toster.fire({
-          type : 'error',
-          title : data.error
-        });
+
+
+        $('#cartPage').html(body);
+
       }
+    });
+  }
+  MyCart();
 
-    }
-  });
-}
+
+
+  // Remove product from My Cart
+  function RemoveMyCart(rowId){
+    $.ajax({
+      url : '/user/cart/product-remove/' + rowId,
+      type : 'GET', 
+      success : function (data){
+        MyCart();
+        MiniCart();
+        CouponCalculation();
+        
+        // couple feild show validaiton
+        if(data.emptyCart == 'done'){
+          $('#couponFeild').show();
+          $('#coupon_name').val('');
+        }
+
+        // toster show
+        const Toster = Swal.mixin({
+          toster : true,
+          position: 'top-end',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        if($.isEmptyObject(data.error)){
+          Toster.fire({
+            type : 'success',
+            title : data.success
+          });
+        }else{
+          Toster.fire({
+            type : 'error',
+            title : data.error
+          });
+        }
+
+      }
+    });
+  }
 </script>
 
 
 <script>
 
-// Cart product Increment
-  function cartProductIncrement(rowId){
-    $.ajax({
-      url : '/cart-product-increment/' + rowId, 
-      type : 'POST',
-      data : 'json', 
-      success : function(data){
-        MyCart();
-        MiniCart();
-        
+    // Cart product Increment
+    function cartProductIncrement(rowId){
+      $.ajax({
+        url : '/cart-product-increment/' + rowId, 
+        type : 'POST',
+        data : 'json', 
+        success : function(data){
+          CouponCalculation();
+          MyCart();
+          MiniCart();
+          
 
-      }
+        }
 
-    });
-  }
+      });
+    }
 
-// Cart product decrement
-  function cartProductDecrement(rowId){
-    $.ajax({
-      url : '/cart-product-decrement/' + rowId, 
-      type : 'POST',
-      data : 'json', 
-      success : function(data){
-        MyCart();
-        MiniCart();
-        
+    // Cart product decrement
+    function cartProductDecrement(rowId){
+      $.ajax({
+        url : '/cart-product-decrement/' + rowId, 
+        type : 'POST',
+        data : 'json', 
+        success : function(data){
+          CouponCalculation();
+          MyCart();
+          MiniCart();
+          
 
-      }
+        }
 
-    });
-  }
+      });
+    }
 </script>
 
+
+
+<script>
+
+  // Coupone Apply
+  function CouponApply(){
+
+    // coupone name
+    let coupon_name = $('#coupon_name').val();
+
+    $.ajax({
+      url : '/coupon-apply',
+      type : 'POST',
+      dataType : 'json', 
+      data : { coupon_name },
+      success : function(data){
+        CouponCalculation();
+        $('#couponFeild').hide();
+        
+        const Toster = Swal.mixin({
+          toster : true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        if($.isEmptyObject(data.error)){
+          Toster.fire({
+            type : 'success', 
+            icon: 'success',
+            title : data.success
+          });
+        }else{
+          Toster.fire({
+            type : 'error', 
+            icon: 'error',
+            title : data.error
+          });
+        }
+
+      }
+
+    });
+  }
+
+  // Coupon Calculation
+  function CouponCalculation(){
+    $.ajax({
+      url : '/coupon-calculation',
+      success : function(data){
+        if(data.total){
+          $('#couponAmount').html(`
+                  <tr>
+                      <th>
+                          <div class="cart-sub-total" style="display: flex; justify-content: space-between;">
+                              Subtotal<span class="inner-left-md">$ ${ data.total }</span>
+                          </div>
+                          <div class="cart-grand-total" style="display: flex; justify-content: space-between;">
+                              Grand Total<span class="inner-left-md">$ ${ data.total }</span>
+                          </div>
+                      </th>
+                  </tr>`)
+        }else{
+          $('#couponAmount').html(`
+                <tr>
+                    <th>
+                      <button type="submit" title="coupon delete" onclick="CouponRemove()">&times;</button>
+                      <div class="cart-sub-total" style="display: flex; justify-content: space-between;">
+                            Coupon<span class="inner-left-md">$ ${ data.coupon_name }</span>
+                            
+                        </div>
+                        <div class="cart-sub-total" style="display: flex; justify-content: space-between;">
+                            Discount<span class="inner-left-md">${ data.coupon_discount } %</span>
+                        </div>
+                        <div class="cart-sub-total" style="display: flex; justify-content: space-between;">
+                            Subtotal<span class="inner-left-md">$ ${ data.subtotal }</span>
+                        </div>
+                        <div class="cart-grand-total" style="display: flex; justify-content: space-between;">
+                          Discount Amount<span class="inner-left-md">$ ${ data.discount_amount }</span>
+                        </div>
+                        <div class="cart-grand-total" style="display: flex; justify-content: space-between;">
+                            Grand Total<span class="inner-left-md text-success">$ ${ data.total_amount }</span>
+                        </div>
+                    </th>
+                </tr>`)
+        }
+      }
+    });
+  }
+  CouponCalculation();
+
+
+  // Coupon Remove
+  function CouponRemove(){
+    $.ajax({
+      url : '/coupon-remove', 
+      success : function(data){
+        CouponCalculation();
+        $('#couponFeild').show();
+        $('#coupon_name').val('');
+
+        // Sweet alert
+        const Toster = Swal.mixin({
+          toster : true,
+          position : 'top-end',
+          showConfirmButton : false,
+          timer : 3000
+        });
+
+        if($.isEmptyObject(data.error)){
+          Toster.fire({
+            type : 'success', 
+            icon : 'success',
+            title : data.success
+          });
+          
+        }else{
+          Toster.fire({
+            type : 'error', 
+            icon : 'error',
+            title : data.error
+          });
+        }
+
+      }
+    });
+  }
+
+</script>
 
 </body>
 </html>
