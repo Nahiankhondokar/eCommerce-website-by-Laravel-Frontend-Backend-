@@ -22,6 +22,7 @@
             
             $('select#LoadDistrick').empty();
             $('select#LoadState').empty();
+            // $('#division_id').val(division_id);
             for (item of data) {
               $('select#LoadDistrick').append(`<option value="${ item.id }">${ item.district_name }</option>`);
             }
@@ -35,6 +36,7 @@
       $(document).on('change', '#LoadDistrick', function(){
 
         let district_id = $(this).val();
+        
         $.ajax({
           url : '/shipping/district/ajax/' + district_id,
           success : function(data){

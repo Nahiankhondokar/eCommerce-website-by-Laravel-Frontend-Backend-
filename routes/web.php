@@ -15,8 +15,12 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CartPageController;
+use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,7 +71,9 @@ Route::middleware(['auth:admin']) -> group(function(){
  */
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $id = Auth::user() -> id;
+    $user = User::find($id);
+    return view('dashboard', compact('user'));
 })->name('dashboard');
 
 Route::get('/', [IndexController::class, 'index']);
@@ -262,6 +268,11 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/wishlist-product-show', [WishlistController::class, 'GetWishlistProduct']);
     Route::get('/wishlist/product-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
 
+    // my Order routes
+    Route::get('/my/orders', [AllUserController::class, 'MyOrders']) -> name('my.order');
+    Route::get('/order-details/{order_id}', [AllUserController::class, 'OrderDetails']);
+
+
 });
 
 
@@ -292,7 +303,7 @@ Route::prefix('coupone') -> group(function(){
 
 
 /**
- *  Coupone manage Routes
+ *  Shipping manage Routes
  */
 Route::prefix('shipping') -> group(function(){
 
@@ -321,7 +332,7 @@ Route::prefix('shipping') -> group(function(){
 
     // district select baseed on division selected
     Route::get('/division/ajax/{id}', [ShippingAreaController::class, 'GetDistrictByDivision']);
-    Route::get('/district/ajax/{id}', [ShippingAreaController::class, 'GetStateByDistrict']);
+    Route::get('/district/ajax/{district_id}', [ShippingAreaController::class, 'GetStateByDistrict']);
 
 
 }) ;
@@ -343,6 +354,10 @@ Route::get('/checkout', [CheckoutController::class, 'ViewCheckout']) -> name('vi
 Route::post('/checkout-store', [CheckoutController::class, 'CheckoutStore']) -> name('store.checkout');
 
 
+/**
+ *  Stripe routes
+ */
+Route::post('/stripe-order', [StripeController::class, 'StripeOrder']) -> name('stripe.order');
 
 
 

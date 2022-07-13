@@ -23,7 +23,7 @@ CheckOut Page
 		<div class="checkout-box ">
 			<div class="row">
 
-                <form class="register-form" action="{{ route('store.checkout') }}" method="POST" enctype="multipart/form-data">
+                <form class="register-form" action="{{ route('store.checkout') }}" method="POST">
                     @csrf
 
                     <div class="col-md-8">
@@ -82,7 +82,7 @@ CheckOut Page
                                                 <div class="form-group">
                                                     <h5><b>District Name <span class="text-danger">*</span></b> </h5>
                                                     <select name="district_id" id="LoadDistrick" class="form-control">
-                
+                                                        
                                                         
                                                         
                                                     </select>
@@ -106,7 +106,7 @@ CheckOut Page
                                                 <div class="form-group">
                                                     <h5><b>Notes <span class="text-danger">*</span></b> </h5>
                                                     <div class="controls">
-                                                        <textarea name="" id="" cols="30" rows="3" placeholder="Notes"></textarea>
+                                                        <textarea name="notes" id="" cols="30" rows="3" placeholder="Notes"></textarea>
                                                     </div>
                                                     @error('state_name')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -203,7 +203,7 @@ CheckOut Page
                                         </div>
                                     </div>
                                     <hr>
-                                    <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Payment Submit</button>
+                                    <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Go To Payment Step</button>
                                 </div>
                             </div>
                         </div> 

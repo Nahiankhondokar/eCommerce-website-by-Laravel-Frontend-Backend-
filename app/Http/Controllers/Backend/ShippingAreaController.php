@@ -313,9 +313,9 @@ class ShippingAreaController extends Controller
     /**
      *  Get District Based upon Division
      */
-    public function GetStateByDistrict($id){
+    public function GetStateByDistrict($district_id){
 
-        $get_state = ShipState::where('district_id', $id) -> get();
+        $get_state = ShipState::where('district_id', $district_id) -> get();
         return $get_state;
 
     }

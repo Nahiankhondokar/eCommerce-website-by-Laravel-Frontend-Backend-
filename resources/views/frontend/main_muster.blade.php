@@ -35,6 +35,8 @@
   {{-- Toster css file --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 	  
+  {{-- Stripe file --}}
+<script src="https://js.stripe.com/v3/"></script>
   
 </head>
 <body class="cnt-home">
@@ -514,10 +516,8 @@ function miniCartRemove(rowId){
 </script>
 
 
-
+{{-- show & Remove MyCart product --}}
 <script>
-
-  // show MyCart product
   function MyCart(){
     $.ajax({
       url : '/user/cart-product-show',
@@ -627,7 +627,7 @@ function miniCartRemove(rowId){
   }
 </script>
 
-
+{{-- // Cart product Increment or Decrement --}}
 <script>
 
     // Cart product Increment
@@ -666,7 +666,7 @@ function miniCartRemove(rowId){
 </script>
 
 
-
+{{-- // Coupone Apply, Calculation, Remove --}}
 <script>
 
   // Coupone Apply
@@ -681,9 +681,17 @@ function miniCartRemove(rowId){
       dataType : 'json', 
       data : { coupon_name },
       success : function(data){
-        CouponCalculation();
-        $('#couponFeild').hide();
         
+
+        if(data.success){
+          CouponCalculation();
+        $('#couponFeild').hide();
+        }else{
+          $('#coupon_name').val('');
+        }
+
+
+        // Toster message
         const Toster = Swal.mixin({
           toster : true,
           position: 'top-end',
