@@ -26,10 +26,10 @@ return new class extends Migration
             $table->text('notes');
             $table->string('payment_type');
             $table->string('payment_method');
-            $table->string('transaction_id');
+            $table->string('transaction_id') -> nullable();
             $table->string('currency');
             $table->float('amount', 8, 2);
-            $table->string('order_no');
+            $table->string('order_no') -> nullable();
             $table->string('invoice_no');
             $table->string('order_date');
             $table->string('order_month');

@@ -81,7 +81,7 @@
                             </tr>
                             <tr>
                                 <th>Tranx ID : </th>
-                                <th>{{ $order -> transaction_id  }}</th>
+                                <th>{{ $order -> transaction_id ??  'none'  }}</th>
                             </tr>
                             <tr>
                                 <th>Invoice : </th>

@@ -80,6 +80,10 @@ class CheckoutController extends Controller
             return view('frontend.payment.stripe', compact('carts', 'cart_qty', 'cart_amount','data'));
         }else{
 
+            $carts          = Cart::content();
+            $cart_qty       = Cart::count();
+            $cart_amount    = Cart::total();
+            return view('frontend.payment.cash', compact('carts', 'cart_qty', 'cart_amount','data'));
         }
 
 

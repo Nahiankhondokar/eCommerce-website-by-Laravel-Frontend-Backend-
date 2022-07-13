@@ -81,7 +81,7 @@ CheckOut Page
                 
                                                 <div class="form-group">
                                                     <h5><b>District Name <span class="text-danger">*</span></b> </h5>
-                                                    <select name="district_id" id="LoadDistrick" class="form-control">
+                                                    <select name="district_id" id="LoadDistrick" class="form-control" required>
                                                         
                                                         
                                                         
@@ -94,7 +94,7 @@ CheckOut Page
                                                 <div class="form-group">
                                                     <h5><b>State Name <span class="text-danger">*</span></b></h5>
                                                     <div class="controls">
-                                                        <select name="state_id" class="form-control" id="LoadState">
+                                                        <select name="state_id" class="form-control" id="LoadState" required>
                                                             
                                                         </select>
                                                     </div>
@@ -199,7 +199,7 @@ CheckOut Page
                                         <div class="col-md-4">
                                             <label for="">Cash</label>
                                             <input type="radio" name="payment_method" value="cash">
-                                            <img src="{{ asset('frontend/assets/images/payments/5.png') }}" alt="">
+                                            <img src="{{ asset('frontend/assets/images/payments/6.png') }}" alt="">
                                         </div>
                                     </div>
                                     <hr>
