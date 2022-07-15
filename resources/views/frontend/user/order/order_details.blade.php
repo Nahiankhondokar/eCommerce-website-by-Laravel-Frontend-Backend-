@@ -170,13 +170,30 @@
                 </div>
             </div>
 
-            @if($order !== 'Delivered')
+            @if($order -> status !== 'delivered')
 
             @else
-            <div class="form-group">
-                <label for="">Order Return Reason</label>
-                <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
-            </div>
+
+            @php
+                $order_data = App\Models\Order::where('id', $order -> id) -> where('return_reason', '=', NULL) -> first();
+            @endphp
+
+                @if( $order_data)
+                    <form action="{{ route('order.return', $order -> id ) }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="">Order Return Reason</label>
+                            <textarea id="" cols="30" rows="5" class="form-control" placeholder="Return Reason..." name="orderReturn"></textarea>
+                        </div>
+
+                        <button type="submit" class='btn btn-primary'>Submit</button>
+                    </form>
+                    <br>
+                @else
+                    <span class="badge badge-danger">You have sent your return request</span>
+                    <br>
+                @endif 
+
             @endif
 
 

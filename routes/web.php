@@ -284,6 +284,11 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::post('/cash-order', [CashController::class, 'CashOrder']) -> name('cash.order');
 
 
+    // order return or canceld
+    Route::post('/order/return/{order_id}', [AllUserController::class, 'UserOrderReturn']) -> name('order.return');
+    Route::get('/order/return-list', [AllUserController::class, 'UserOrderReturnList']) -> name('return.order.list');
+    Route::get('/order/cancel', [AllUserController::class, 'UserOrderCancel']) -> name('order.cancel');
+
 
     
 

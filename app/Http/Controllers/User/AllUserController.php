@@ -8,6 +8,8 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+
 // use PDF;
 
 class AllUserController extends Controller
@@ -51,6 +53,52 @@ class AllUserController extends Controller
         return $pdf->download('invoice.pdf');
 
     }
+
+
+    /**
+     *   User order return 
+     */
+    public function UserOrderReturn(Request $request, $order_id){
+
+
+        Order::findOrFail($order_id) -> update([
+            'return_reason'          => $request -> orderReturn,
+            'return_date'            => Carbon::now() -> format('d F Y')
+        ]);
+
+        // confirmation message
+        $notification = [
+            'message'       => 'Return Request Sent Successfully',
+            'alert-type'    => 'success'
+        ];
+
+        return redirect() -> route('my.order') -> with($notification);
+
+    }
+
+
+    
+    /**
+     *   User order return list 
+     */
+    public function UserOrderReturnList(){
+
+        $orders = Order::where('user_id', Auth::id()) -> where('return_reason', '!=', NULL) -> get();
+        return view('frontend.user.order.order_return_list', compact('orders'));
+
+    }
+
+
+    /**
+     *   User order return list 
+     */
+    public function UserOrderCancel(){
+
+        $orders = Order::where('user_id', Auth::id()) -> where('return_reason', 'canceled') -> get();
+        return view('frontend.user.order.order_cancel', compact('orders'));
+
+    }
+
 
 
 
