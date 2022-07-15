@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponeController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ShippingAreaController;
@@ -259,11 +260,14 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemovePr
 
 
 /**
- *   Manage wishlist & mycart products
+ *      Manage wishlist & mycart products
+ *      User middleware for Security
+ *      without login can not access these routes
  */
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishlist']);
 
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function(){
+    
     // wishlist routes
     Route::get('/wishlist-product', [WishlistController::class, 'ViweWishlistProduct']) -> name('wishlist-product');
     Route::get('/wishlist-product-show', [WishlistController::class, 'GetWishlistProduct']);
@@ -272,12 +276,21 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     // my Order routes
     Route::get('/my/orders', [AllUserController::class, 'MyOrders']) -> name('my.order');
     Route::get('/order-details/{order_id}', [AllUserController::class, 'OrderDetails']);
+    Route::get('/invoice-download/{order_id}', [AllUserController::class, 'InvoiceDownload']);
 
+
+    // Payment Routes 
+    Route::post('/stripe-order', [StripeController::class, 'StripeOrder']) -> name('stripe.order');
+    Route::post('/cash-order', [CashController::class, 'CashOrder']) -> name('cash.order');
+
+
+
+    
 
 });
 
 
-    // my Cart routes
+    // user my Cart routes
     Route::get('/cart-product', [CartPageController::class, 'ViweCartProduct']) -> name('cart-product');
     Route::get('/user/cart-product-show', [CartPageController::class, 'GetCartProduct']);
     Route::get('/user/cart/product-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
@@ -289,7 +302,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
 
 
 /**
- *  Coupone manage Routes
+ *  Admin Coupone manage Routes
  */
 Route::prefix('coupone') -> group(function(){
 
@@ -304,7 +317,7 @@ Route::prefix('coupone') -> group(function(){
 
 
 /**
- *  Shipping manage Routes
+ *  user Shipping manage Routes
  */
 Route::prefix('shipping') -> group(function(){
 
@@ -341,7 +354,7 @@ Route::prefix('shipping') -> group(function(){
 
 
 /**
- *  Coupon Apply
+ *  user Coupon Apply
  */
 Route::post('/coupon-apply', [CartController::class, 'CouponeApply']);
 Route::get('/coupon-calculation', [CartController::class, 'CouponeCalculation']);
@@ -349,19 +362,28 @@ Route::get('/coupon-remove', [CartController::class, 'CouponeRemove']);
 
 
 /**
- *  Checkout routes
+ *  user Checkout routes
  */
 Route::get('/checkout', [CheckoutController::class, 'ViewCheckout']) -> name('view.checkout');
 Route::post('/checkout-store', [CheckoutController::class, 'CheckoutStore']) -> name('store.checkout');
 
 
+
 /**
- *  payment routes
+ *  Admin Coupone manage Routes
  */
-Route::post('/stripe-order', [StripeController::class, 'StripeOrder']) -> name('stripe.order');
-Route::post('/cash-order', [CashController::class, 'CashOrder']) -> name('cash.order');
+Route::prefix('orders') -> group(function(){
 
+    Route::get('/pendding', [OrderController::class, 'PenddingOrder']) -> name('pendding-order');
+    Route::get('/pendding/details/{order_id}', [OrderController::class, 'PenddingOrderDetails']) -> name('pendding.order.details');
+    Route::get('/confirmed', [OrderController::class, 'ConfirmedOrder']) -> name('confirmed-order');
+    Route::get('/processing', [OrderController::class, 'ProcessingOrder']) -> name('processing-order');
+    Route::get('/picked', [OrderController::class, 'PickedOrder']) -> name('picked-order');
+    Route::get('/shipped', [OrderController::class, 'shippedOrder']) -> name('shipped-order');
+    Route::get('/delivered', [OrderController::class, 'DeliveredOrder']) -> name('delivered-order');
+    Route::get('/canceled', [OrderController::class, 'CanceledOrder']) -> name('canceled-order');
 
+});
 
 
 

@@ -60,8 +60,9 @@
                                     </td>
 
                                     <td class="col-md-3">
-                                        <a href="{{ url('user/order-details', $order -> id) }}" class="btn btn-sm btn-primary" style="padding: 3px 11px !important;"><i class="fa fa-eye"></i></a>
-                                        <a href="" class="btn btn-sm btn-info"><i class="fa fa-download"></i></a>
+                                        <a href="{{ url('user/order-details', $order -> id) }}" class="btn btn-sm btn-primary" style="padding: 3px 11px !important;" title="view"><i class="fa fa-eye"></i></a>
+                                        
+                                        <a target="_blank" href="{{ url('user/invoice-download', $order -> id) }}" class="btn btn-sm btn-info" title="Download PDF"><i class="fa fa-download"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

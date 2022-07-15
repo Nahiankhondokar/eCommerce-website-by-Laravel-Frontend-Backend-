@@ -89,7 +89,7 @@
                             </tr>
 
                             <tr>
-                                <th>order Total : </th>
+                                <th>Order Total : </th>
                                 <th>$ {{ $order -> amount }}</th>
                             </tr>
 
@@ -169,6 +169,16 @@
                     </table>
                 </div>
             </div>
+
+            @if($order !== 'Delivered')
+
+            @else
+            <div class="form-group">
+                <label for="">Order Return Reason</label>
+                <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+            </div>
+            @endif
+
 
 
         </div>

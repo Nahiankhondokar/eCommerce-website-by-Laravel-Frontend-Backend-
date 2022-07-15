@@ -118,6 +118,46 @@
           </ul>
         </li> 
 
+        <li class="treeview {{ ($prefix == '/orders') ? 'active' : '' }}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Orders</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'pendding-order') ? 'active' : '' }}">
+              <a href="{{ route('pendding-order') }}"><i class="ti-more"></i>Pendding Order</a>
+            </li>
+
+            <li class="{{ ($route == 'confirmed-order') ? 'active' : '' }}">
+              <a href="{{ route('confirmed-order') }}"><i class="ti-more"></i>Confirmed Order</a>
+            </li>
+
+            <li class="{{ ($route == 'processing-order') ? 'active' : '' }}">
+              <a href="{{ route('processing-order') }}"><i class="ti-more"></i>Processing Order</a>
+            </li>
+
+            <li class="{{ ($route == 'picked-order') ? 'active' : '' }}">
+              <a href="{{ route('picked-order') }}"><i class="ti-more"></i>Picked Order</a>
+            </li>
+
+            <li class="{{ ($route == 'shipped-order') ? 'active' : '' }}">
+              <a href="{{ route('shipped-order') }}"><i class="ti-more"></i>Shipped Order</a>
+            </li>
+            
+            <li class="{{ ($route == 'delivered-order') ? 'active' : '' }}">
+              <a href="{{ route('delivered-order') }}"><i class="ti-more"></i>Delivered Order</a>
+            </li>
+
+            <li class="{{ ($route == 'canceled-order') ? 'active' : '' }}">
+              <a href="{{ route('canceled-order') }}"><i class="ti-more"></i>Canceled Order</a>
+            </li>
+
+          </ul>
+        </li> 
+
         <li class="treeview">
           <a href="#">
             <i data-feather="file"></i>
