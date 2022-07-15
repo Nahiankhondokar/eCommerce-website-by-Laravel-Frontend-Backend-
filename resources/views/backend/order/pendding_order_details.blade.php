@@ -113,9 +113,36 @@
                     <tr class="text-left">
                         <th>Order : </th>
                         <th>
-                            <span class="badge badge-warning">{{ $order -> status }}</span>
+                            <span class="badge badge-warning text-dark"><b>{{ $order -> status }}</b></span>
                         </th>
                     </tr>
+
+                    @if($order -> status == 'Pendding')
+                    <tr>
+                        <a href="{{ route('order.confirmed', $order -> id) }}" class="btn btn-info" id="confirmed"> <b>Order Confirmed</b></a>
+                    </tr>
+                    @elseif($order -> status == 'confirmed')
+                    <tr>
+                        <a href="{{ route('order.processing', $order -> id) }}" class="btn btn-info" id="processing"> <b> Order Processing</b></a>
+                    </tr>
+                    @elseif($order -> status == 'processing')
+                    <tr>
+                        <a href="{{ route('order.picked', $order -> id) }}" class="btn btn-info" id="picked"> <b> Order Picked</b></a>
+                    </tr>
+                    @elseif($order -> status == 'picked')
+                    <tr>
+                        <a href="{{ route('order.shipped', $order -> id) }}" class="btn btn-info" id="shipped"> <b> Order Shipped </b></a>
+                    </tr>
+                    @elseif($order -> status == 'shipped')
+                    <tr>
+                        <a href="{{ route('order.delivered', $order -> id) }}" class="btn btn-info" id="delivered"> <b> Order Delivered</b></a>
+                    </tr>
+                    @elseif($order -> status == 'delivered')
+                    <tr>
+                        <a href="{{ route('order.canceled', $order -> id) }}" class="btn btn-info" id="canceled"> <b> Order Canceled</b></a>
+                    </tr>
+                    @endif
+                    
                 </table>
 
 

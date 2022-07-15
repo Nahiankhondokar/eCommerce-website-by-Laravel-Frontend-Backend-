@@ -180,4 +180,193 @@ $(document).ready(function(){
 
 
 
+    // ===================== Order Status Upadte Sweet Alerts ==================
+    $(document).on('click', '#confirmed', function(e){
+      e.preventDefault();
+  
+      let link = $(this).attr('href');
+  
+      swal({
+        title: "Are you sure to Confirme?",
+        text: "Once Confirme, you will not be able to Pendding this product again !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          // alert(window.location.href);
+            window.location.href = link;
+            swla(
+              'Confirme !',
+              'Your file has been Confirme',
+              'success'
+            );
+  
+        } else {
+          swal("Your Product is still pendding !");
+        }
+      });
+  
+    });
+
+    // ----------------------------------
+    
+    $(document).on('click', '#processing', function(e){
+      e.preventDefault();
+  
+      let link = $(this).attr('href');
+  
+      swal({
+        title: "Are you sure to porcessing?",
+        text: "Once porcessing, you will not be able to confirmed this product again !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          // alert(window.location.href);
+            window.location.href = link;
+            swla(
+              'porcessing !',
+              'Your file has been porcessing',
+              'success'
+            );
+  
+        } else {
+          swal("Your Product is still safe !");
+        }
+      });
+  
+    });
+    
+    // --------------------------
+
+    $(document).on('click', '#picked', function(e){
+      e.preventDefault();
+  
+      let link = $(this).attr('href');
+  
+      swal({
+        title: "Are you sure to picked?",
+        text: "Once picked, you will not be able to porcessing this product again !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          // alert(window.location.href);
+            window.location.href = link;
+            swla(
+              'picked !',
+              'Your file has been picked',
+              'success'
+            );
+  
+        } else {
+          swal("Your Product is still safe !");
+        }
+      });
+  
+    });
+
+     // -----------------------------------
+
+     $(document).on('click', '#shipped', function(e){
+      e.preventDefault();
+  
+      let link = $(this).attr('href');
+  
+      swal({
+        title: "Are you sure to shipped?",
+        text: "Once shipped, you will not be able to picked this product again !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          // alert(window.location.href);
+            window.location.href = link;
+            swla(
+              'shipped !',
+              'Your file has been shipped',
+              'success'
+            );
+  
+        } else {
+          swal("Your Product is still safe !");
+        }
+      });
+  
+    });
+
+    // -------------------------------
+
+    $(document).on('click', '#delivered', function(e){
+      e.preventDefault();
+  
+      let link = $(this).attr('href');
+  
+      swal({
+        title: "Are you sure to delivered?",
+        text: "Once delivered, you will not be able to shipped this product again !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          // alert(window.location.href);
+            window.location.href = link;
+            swla(
+              'delivered !',
+              'Your file has been delivered',
+              'success'
+            );
+  
+        } else {
+          swal("Your Product is still safe !");
+        }
+      });
+  
+    });
+    
+    // -----------------------------
+
+    $(document).on('click', '#canceled', function(e){
+      e.preventDefault();
+  
+      let link = $(this).attr('href');
+  
+      swal({
+        title: "Are you sure to canceled?",
+        text: "Once canceled, you will not be able to delivered this product again !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          // alert(window.location.href);
+            window.location.href = link;
+            swla(
+              'canceled !',
+              'Your file has been canceled',
+              'success'
+            );
+  
+        } else {
+          swal("Your Product is still safe !");
+        }
+      });
+  
+    });
+  
+    // ----------------------------------
+
+     
+
 });

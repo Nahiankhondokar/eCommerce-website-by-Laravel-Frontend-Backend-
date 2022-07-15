@@ -42,7 +42,7 @@
                                     <td>
                                         <a href="{{ route('pendding.order.details', $data -> id) }}" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
 
-                                        <a id="delete" href="{{ url('/coupone/delete/' . $data -> id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a target="_blank" href="{{ url('/orders/admin/invoice/' . $data -> id) }}" class="btn btn-sm btn-info" title="invoice download"><i class="fa fa-download"></i></a>
                                     </td>
                                 </tr>
                                @endforeach

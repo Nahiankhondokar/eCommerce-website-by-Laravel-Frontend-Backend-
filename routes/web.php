@@ -383,6 +383,16 @@ Route::prefix('orders') -> group(function(){
     Route::get('/delivered', [OrderController::class, 'DeliveredOrder']) -> name('delivered-order');
     Route::get('/canceled', [OrderController::class, 'CanceledOrder']) -> name('canceled-order');
 
+    // Update order status
+    Route::get('/confirmed/{order_id}', [OrderController::class, 'StatusConfirmed']) -> name('order.confirmed');
+    Route::get('/processing/{order_id}', [OrderController::class, 'StatusProcessing']) -> name('order.processing');
+    Route::get('/picked/{order_id}', [OrderController::class, 'StatusPicked']) -> name('order.picked');
+    Route::get('/shipped/{order_id}', [OrderController::class, 'StatusShipped']) -> name('order.shipped');
+    Route::get('/delivered/{order_id}', [OrderController::class, 'StatusDelivered']) -> name('order.delivered');
+    Route::get('/canceled/{order_id}', [OrderController::class, 'StatusCanceled']) -> name('order.canceled');
+
+    Route::get('/admin/invoice/{order_id}', [OrderController::class, 'AdminOrderInvoice']);
+
 });
 
 
