@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\blog\BlogPost;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\MultiImg;
@@ -22,10 +23,12 @@ class IndexController extends Controller
      */
     public function index(){
 
+        // Get data
         $products = Product::where('status', 1) ->orderBy('id', 'DESC') -> get();
         $slider = Slider::where('status', 1) ->orderBy('id', 'DESC') -> limit(3) -> get();
         $categories = Category::orderBy('category_name_eng', 'ASC') -> get();
 
+        // product add by categroy or brand wise.
         $skip_category_0 = Category::skip(0) -> first();
         $skip_product_0 = Product::where('status', 1) -> where('category_id', $skip_category_0 -> id) ->orderBy('id', 'DESC') -> limit(6) -> get();
 
@@ -35,11 +38,15 @@ class IndexController extends Controller
         $skip_brand_1 = Brand::skip(1) -> first();
         $skip_brand_product_1 = Product::where('status', 1) -> where('brand_id', $skip_brand_1 -> id) ->orderBy('id', 'DESC') -> limit(6) -> get();
 
-
+        // product offer
         $hotdeal = Product::where('hot_deal_product', 1) -> where('discount_price', '!=', Null) -> orderBy('id', 'DESC') -> limit(3)-> get();
         $specialoffer = Product::where('special_offer', 1) ->orderBy('id', 'DESC') -> limit(3) -> get();
         $specialdeal = Product::where('special_deal', 1) ->orderBy('id', 'DESC') -> limit(3) -> get();
-        return view('frontend.index', compact('categories', 'slider', 'products', 'skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_brand_1', 'skip_brand_product_1', 'hotdeal', 'specialdeal', 'specialoffer'));
+
+        // blog post
+        $blogPost = BlogPost::latest() -> get();
+
+        return view('frontend.index', compact('categories', 'slider', 'products', 'skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_brand_1', 'skip_brand_product_1', 'hotdeal', 'specialdeal', 'specialoffer', 'blogPost'));
     }
 
 

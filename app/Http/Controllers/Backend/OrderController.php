@@ -127,7 +127,7 @@ class OrderController extends Controller
     public function StatusProcessing($order_id){
 
         $confirm = Order::find($order_id) -> first();
-        $confirm -> status = 'porcessing';
+        $confirm -> status = 'processing';
         $confirm -> update();
 
         // confirmation message
@@ -202,7 +202,7 @@ class OrderController extends Controller
     public function StatusCanceled($order_id){
 
         $confirm = Order::find($order_id) -> first();
-        $confirm -> status = 'Pendding';
+        $confirm -> status = 'canceled';
         $confirm -> update();
 
         // confirmation message

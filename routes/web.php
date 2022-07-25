@@ -3,19 +3,24 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponeController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\OrderReturnController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\SliderController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CartPageController;
+use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\User\CheckoutController;
@@ -321,6 +326,7 @@ Route::prefix('coupone') -> group(function(){
 
 
 
+
 /**
  *  user Shipping manage Routes
  */
@@ -399,6 +405,86 @@ Route::prefix('orders') -> group(function(){
     Route::get('/admin/invoice/{order_id}', [OrderController::class, 'AdminOrderInvoice']);
 
 });
+
+
+
+/**
+ *  Admin Reports Routes
+ */
+
+Route::prefix('reports') -> group(function(){
+
+    Route::get('/view', [ReportController::class, 'ReportView']) -> name('all-reports');
+    Route::post('/show/date', [ReportController::class, 'ReportShowByDate']) -> name('report.show');
+    Route::post('/show/month/Year', [ReportController::class, 'ReportShowByMonthYear']) -> name('report.month.year');
+    Route::post('/show/Year', [ReportController::class, 'ReportShowByYear']) -> name('report.year');
+    
+});
+
+
+
+// all user show to admin panel
+Route::prefix('users') -> group(function(){
+
+    Route::get('/all', [AdminProfileController::class, 'AllUserShow']) -> name('all-user');
+
+});
+
+
+/**
+ *  Blog routes
+ */
+Route::prefix('blog') -> group(function(){
+
+    Route::get('/category/show', [BlogController::class, 'BlogCategroyShow']) -> name('blog.category.view');
+    Route::post('/category/store', [BlogController::class, 'BlogCategroyStore']) -> name('blog.category.store');
+    Route::get('/category/edit/{id}', [BlogController::class, 'BlogCategroyEdit']) -> name('blog.category.edit');
+    Route::post('/category/update/{id}', [BlogController::class, 'BlogCategroyUpdate']) -> name('blog.category.update');
+    Route::get('/category/delete/{id}', [BlogController::class, 'BlogCategroyDelete']) -> name('blog.category.delete');
+
+
+    // Admin Blog post
+    Route::get('/post/add', [BlogController::class, 'AddBlogPost']) -> name('post.add');
+    Route::get('/post/list', [BlogController::class, 'ListBlogPost']) -> name('post.list');
+    Route::post('/post/store', [BlogController::class, 'StoreBlogPost']) -> name('post.store');
+
+});
+
+
+// frontend blog rotues
+Route::get('home/blog', [HomeBlogController::class, 'BlogView']) -> name('home.blog');
+Route::get('home/blog/details/{id}', [HomeBlogController::class, 'BlogViewDetails']) -> name('post.details');
+Route::get('home/blog/category/post/{category_id}', [HomeBlogController::class, 'BlogPostCategory']);
+
+
+/**
+ *  Adming Site Setting routes
+ */
+Route::prefix('siteSetting') -> group(function(){
+    Route::get('/update', [SiteSettingController::class, 'SiteSettingUpdate']) -> name('site.setting');
+    Route::post('/update', [SiteSettingController::class, 'SiteSettingUpdateNow']) -> name('site.setting.update');
+
+    // seo routes
+    Route::get('/seo', [SiteSettingController::class, 'SeoSetting']) -> name('seo.setting');
+    Route::post('/update/seo', [SiteSettingController::class, 'SeoSettingUpdate']) -> name('seo.setting.update');
+
+
+});
+
+
+
+
+/**
+ *  Adming Return Order routes
+ */
+Route::prefix('return') -> group(function(){
+
+    Route::get('/admin/rquests', [OrderReturnController::class, 'OrderReturnRequest']) -> name('return.request');
+    Route::get('/admin/order/approve/{order_id}', [OrderReturnController::class, 'OrderReturnRequestApprove']) -> name('return.order.approve');
+    Route::get('/admin/all/order/approve', [OrderReturnController::class, 'AllApproveReturnOrder']) -> name('all.approve.request');
+
+});
+
 
 
 

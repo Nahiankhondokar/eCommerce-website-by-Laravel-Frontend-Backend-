@@ -186,14 +186,14 @@
                             <textarea id="" cols="30" rows="5" class="form-control" placeholder="Return Reason..." name="orderReturn"></textarea>
                         </div>
 
-                        <button type="submit" class='btn btn-primary'>Submit</button>
+                        <button type="submit" class='btn btn-primary'>Order Return</button>
                     </form>
                     <br>
                 @else
-                    <span class="badge badge-danger">You have sent your return request</span>
+                    <span class="badge badge-pill badge-danger" style="background: red">You have sent your return request</span>
                     <br>
                 @endif 
-
+                    <br>
             @endif
 
 

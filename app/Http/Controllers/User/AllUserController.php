@@ -63,7 +63,8 @@ class AllUserController extends Controller
 
         Order::findOrFail($order_id) -> update([
             'return_reason'          => $request -> orderReturn,
-            'return_date'            => Carbon::now() -> format('d F Y')
+            'return_date'            => Carbon::now() -> format('d F Y'),
+            'return_order'           => 1
         ]);
 
         // confirmation message
