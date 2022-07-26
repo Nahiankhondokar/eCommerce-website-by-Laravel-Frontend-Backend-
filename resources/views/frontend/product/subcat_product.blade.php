@@ -263,7 +263,7 @@ Subcategory wise Product
                             @php
                               $amount = $item -> selling_price - $item -> discount_price;
                               $discount = ($amount/$item -> selling_price) * 100;
-                          @endphp
+                            @endphp
 
                           @if($item -> discount_price == NULL)
                           <div class="tag new"><span>new</span></div>

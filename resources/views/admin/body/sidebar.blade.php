@@ -181,6 +181,24 @@
         </li> 
 
 
+        <li class="treeview {{ ($prefix == '/review') ? 'active' : '' }}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Review Manage</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'pendding.review') ? 'active' : '' }}">
+              <a href="{{ route('pendding.review') }}"><i class="ti-more"></i>Pendding Review</a>
+            </li>
+            <li class="{{ ($route == 'all.approve.review') ? 'active' : '' }}">
+              <a href="{{ route('all.approve.review') }}"><i class="ti-more"></i>All Approve Review</a>
+            </li>
+          </ul>
+        </li> 
+
 		 
         <li class="header nav-small-cap">User Interface</li>
 		  

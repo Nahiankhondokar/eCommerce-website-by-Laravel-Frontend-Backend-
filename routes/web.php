@@ -24,6 +24,7 @@ use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 use App\Models\User;
@@ -486,7 +487,27 @@ Route::prefix('return') -> group(function(){
 });
 
 
+/**
+ *  Product review routes
+ */
+Route::post('review/store', [ReviewController::class, 'ReviewStore']) -> name('review.store');
 
+
+
+/**
+ *  Adming approve customer review
+ */
+Route::prefix('review') -> group(function(){
+
+    Route::get('/admin/pendding', [ReviewController::class, 'PenddingReview']) -> name('pendding.review');
+
+    Route::get('/admin/approve_view/', [ReviewController::class, 'ApproveReviewView']) -> name('all.approve.review');
+
+    Route::get('/admin/approve/{review_id}', [ReviewController::class, 'ApproveReview']) -> name('review.approve');
+
+    Route::get('/admin/delete/{review_id}', [ReviewController::class, 'DeleteReview']) -> name('review.delete');
+
+});
 
 
 
