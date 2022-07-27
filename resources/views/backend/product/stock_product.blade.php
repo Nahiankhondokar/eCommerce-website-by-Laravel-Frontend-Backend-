@@ -11,7 +11,7 @@
     
                 <div class="box">
                    <div class="box-header with-border">
-                     <h3 class="box-title">New All Product <span class="badge badge-pill badge-success">{{ count($products)}}</span> </h3>
+                     <h3 class="box-title"> Product Stock List <span class="badge badge-pill badge-success">{{ count($products)}}</span> </h3>
                    </div>
                    <!-- /.box-header -->
                    <div class="box-body">
@@ -26,7 +26,6 @@
                                    <th>Quentity</th>
                                    <th>Discount</th>
                                    <th>Status</th>
-                                   <th>Action</th>
                                </tr>
                            </thead>
                            <tbody>
@@ -63,19 +62,6 @@
                                     {{-- <td>
                                         <img style="width:60px; height: 60px;" src="{{ URL::to('') }}/media/Category/{{ $data -> category_icon }}" alt="">
                                     </td> --}}
-                                    <td>
-                                        <div class="action-manage">
-                                            <a href="#" id="product_view" view_id='{{ $data -> id }}' data-toggle="modal" class="btn btn-sm btn-info">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                            </a>
-    
-                                            <a href="{{ route('edit.product', $data -> id) }}" class="btn btn-sm btn-warning">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-    
-                                            <a id="delete" href="{{ route('delete.product', $data -> id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
                                 </tr>
                                @endforeach
                            </tbody>

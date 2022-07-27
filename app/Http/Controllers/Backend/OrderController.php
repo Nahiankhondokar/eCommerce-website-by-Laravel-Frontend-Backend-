@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -182,6 +184,17 @@ class OrderController extends Controller
      */
     public function StatusDelivered($order_id){
 
+        // Quantity Subtraction.
+        $order = OrderItem::where('order_id', $order_id) -> get();
+        foreach($order as $data){
+
+            Product::where('id', $data -> product_id) -> update([
+                'product_qty'        =>  DB::raw('product_qty -'. $data -> qty)
+            ]);
+
+        }
+        
+        // data update
         $confirm = Order::find($order_id) -> first();
         $confirm -> status = 'delivered';
         $confirm -> update();

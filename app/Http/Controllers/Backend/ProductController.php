@@ -449,4 +449,16 @@ class ProductController extends Controller
 
 
 
+    /**
+     *  Product stock
+     */
+    public function StockProduct(){
+        
+        $products = Product::latest() -> get();
+        return view('backend.product.stock_product', compact('products'));
+
+    }
+
+
+
 }

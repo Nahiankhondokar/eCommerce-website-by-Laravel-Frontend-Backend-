@@ -382,7 +382,7 @@ Route::post('/checkout-store', [CheckoutController::class, 'CheckoutStore']) -> 
 
 
 /**
- *  Admin Coupone manage Routes
+ *  Admin order manage Routes
  */
 Route::prefix('orders') -> group(function(){
 
@@ -506,6 +506,19 @@ Route::prefix('review') -> group(function(){
     Route::get('/admin/approve/{review_id}', [ReviewController::class, 'ApproveReview']) -> name('review.approve');
 
     Route::get('/admin/delete/{review_id}', [ReviewController::class, 'DeleteReview']) -> name('review.delete');
+
+});
+
+
+
+
+/**
+ *  Adming product stock routes
+ */
+Route::prefix('stock') -> group(function(){
+
+    Route::get('/admin/pendding', [ProductController::class, 'StockProduct']) -> name('product.stock');
+
 
 });
 
