@@ -46,7 +46,7 @@
 
                                                 <input id="imgInput" type="file" name="new_file" class="form-control"> <br>
 
-                                                <img id="imgShow" src="{{ (!empty( $profile_edit -> profile_photo_path )) ? url('media/admin/' . $profile_edit -> profile_photo_path) : url('media/no_image.jpg') }}" alt="" style="max-width: 100%; height: 250px; object-fit: cover;">
+                                                <img id="imgShow" src="{{ (!empty( $profile_edit -> profile_photo_path )) ? url( $profile_edit -> profile_photo_path) : url('media/no_image.jpg') }}" alt="" style="max-width: 100%; height: 250px; object-fit: cover;">
 
                                                 <div class="help-block"></div>
                                             </div>

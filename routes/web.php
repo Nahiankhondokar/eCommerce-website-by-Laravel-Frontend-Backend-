@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -65,7 +66,7 @@ Route::middleware(['auth:admin']) -> group(function(){
     
     Route::get('admin/logout', [AdminController::class, 'destroy']) -> name('admin.logout');
     Route::get('admin/profile', [AdminProfileController::class, 'adminProfile']) -> name('admin.profile');
-    Route::get('admin/profile/edit', [AdminProfileController::class, 'adminProfileEdit']) -> name('admin.profile.edit');
+    Route::get('admin/profile/edit/{id}', [AdminProfileController::class, 'adminProfileEdit']) -> name('admin.profile.edit');
     Route::post('admin/profile/update', [AdminProfileController::class, 'adminProfileUpdate']) -> name('admin.profile.update');
     Route::get('admin/changePassword', [AdminProfileController::class, 'adminChangePassword']) -> name('admin.change.password');
     Route::post('admin/password/update', [AdminProfileController::class, 'adminPasswordUpdate']) -> name('admin.password.update');
@@ -518,6 +519,27 @@ Route::prefix('review') -> group(function(){
 Route::prefix('stock') -> group(function(){
 
     Route::get('/admin/pendding', [ProductController::class, 'StockProduct']) -> name('product.stock');
+
+
+});
+
+
+
+/**
+ *  Adming user role routes
+ */
+Route::prefix('adminuserrole') -> group(function(){
+
+    Route::get('/all', [AdminUserController::class, 'AllAdminRole']) -> name('all-admin-user');
+    Route::get('/create/view', [AdminUserController::class, 'CreateAdminView']) -> name('create.admin.view');
+
+    Route::post('/create', [AdminUserController::class, 'CreateAdmin']) -> name('admin.user.create');
+
+    Route::get('/delete/{user_id}', [AdminUserController::class, 'AdminUserDelete']) -> name('admin.user.delete');
+    Route::get('/edit/{user_id}', [AdminUserController::class, 'AdminUserEdit']) -> name('admin.user.edit');
+
+    Route::post('/update/{user_id}', [AdminUserController::class, 'AdminUserUpdate']) -> name('admin.user.update');
+
 
 
 });

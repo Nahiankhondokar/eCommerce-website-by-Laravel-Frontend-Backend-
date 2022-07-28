@@ -16,15 +16,17 @@ class AdminProfileController extends Controller
      *  create admin profile view
      */
     public function adminProfile(){
-        $profile_data = Admin::find(1);
+
+        $id = Auth::user() -> id;
+        $profile_data = Admin::find($id);
         return view('admin.admin_profile_view', compact('profile_data'));
     }
 
     /**
      *   admin profile edit
      */
-    public function adminProfileEdit(){
-        $profile_edit = Admin::find(1);
+    public function adminProfileEdit($id){
+        $profile_edit = Admin::find($id);
         return view('admin.admin_profile_edit', compact('profile_edit'));
     }
 
@@ -33,6 +35,9 @@ class AdminProfileController extends Controller
      */
     public function adminProfileUpdate(Request $request){
    
+        // get id
+        $id = Auth::user() -> id;
+
         // file update
         if($request -> hasFile('new_file')){
 
@@ -51,7 +56,7 @@ class AdminProfileController extends Controller
 
 
         // data store
-        $profile_update = Admin::find(1);
+        $profile_update = Admin::find($id);
         $profile_update -> email                = $request -> email;
         $profile_update -> name                 = $request -> name;
         $profile_update -> profile_photo_path   = $unique_name;
@@ -71,7 +76,11 @@ class AdminProfileController extends Controller
      *   admin change password
      */
     public function adminChangePassword(){
-        $pass_data = Admin::find(1);
+
+        // get id
+        $id = Auth::user() -> id;
+
+        $pass_data = Admin::find($id);
         return view('admin.admin_change_password', compact('pass_data'));
 
     }
@@ -82,6 +91,8 @@ class AdminProfileController extends Controller
      */
     public function adminPasswordUpdate(Request $request){
         
+        // get id
+        $id = Auth::user() -> id;
 
         $notification_one = [
             'message'       => 'password does not match',
@@ -100,12 +111,12 @@ class AdminProfileController extends Controller
         ]);
 
         // password update
-        $hash_pass = Admin::find(1) -> password;
+        $hash_pass = Admin::find($id) -> password;
         if(Hash::check($request -> current_pass, $hash_pass)){
 
             if($request -> new_pass == $request -> confirm_pass){
 
-                $admin = Admin::find(1);
+                $admin = Admin::find($id);
                 $admin -> password = Hash::make($request -> new_pass);
                 $admin -> update();
                 Auth::logout();

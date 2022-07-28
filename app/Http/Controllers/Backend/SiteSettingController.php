@@ -34,6 +34,7 @@ class SiteSettingController extends Controller
             $logo -> move(public_path('media/admin/sitesetting'), $unique);
             $save_url = 'media/admin/sitesetting/' . $unique;
             // Image::make($logo) -> resize(139, 36) -> save('media/admin/sitesetting/' . $unique);
+            
             // delete old file
             if(file_exists($request -> old_logo)){
                 unlink($request -> old_logo);

@@ -14,12 +14,12 @@
                 <h3 class="widget-user-username">{{ $profile_data -> name }}</h3>
                 <h6 class="widget-user-desc">{{ $profile_data -> email }}</h6>
 
-                <a href="{{ route('admin.profile.edit') }}"><button class="btn btn-warning mb-5 float-right">Edit Profile</button></a>
+                <a href="{{ route('admin.profile.edit', $profile_data -> id) }}" class="btn btn-warning" style="float: right">Edit Profile</a>
 
               </div>
               <div class="widget-user-image">
 
-                <img class="rounded-circle" src="{{ (!empty( $profile_data -> profile_photo_path )) ? url('media/admin/' . $profile_data -> profile_photo_path) : url('media/no_image.jpg') }}" alt="User Avatar">
+                <img class="rounded-circle" src="{{ (!empty( $profile_data -> profile_photo_path )) ? url($profile_data -> profile_photo_path) : url('media/no_image.jpg') }}" alt="User Avatar">
 
               </div>
               <div class="box-footer">
