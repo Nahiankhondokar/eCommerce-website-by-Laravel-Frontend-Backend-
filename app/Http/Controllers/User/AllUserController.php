@@ -102,5 +102,33 @@ class AllUserController extends Controller
 
 
 
+    /**
+     *  Order Tracking
+     */
+    public function OrderTracking(Request $request){
+
+        // get invoice no
+        $invoice = $request -> invoice;
+        
+        // order tracking
+        $trackOrder = Order::where('invoice_no', $invoice) -> first();
+
+        // invoice number chekcing
+        if(!$trackOrder){
+            // confirmation message
+            $notification = [
+                'message'       => 'Invalid Invoice Number',
+                'alert-type'    => 'error'
+            ];
+
+            return redirect() -> back() -> with($notification);
+        }
+
+        return view('frontend.orderTracking.order_tracking', compact('trackOrder'));
+
+    }
+
+
+
 
 }

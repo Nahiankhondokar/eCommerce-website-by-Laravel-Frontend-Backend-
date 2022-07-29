@@ -297,6 +297,9 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/order/cancel', [AllUserController::class, 'UserOrderCancel']) -> name('order.cancel');
 
 
+    // Order Tracking routes
+    Route::post('/order/tracking', [AllUserController::class, 'OrderTracking']) -> name('order.tracking');
+
     
 
 });

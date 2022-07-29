@@ -28,6 +28,14 @@
               My Cart
               @endif
               </a></li>
+              <li><a href="#orderTracking" data-toggle="modal"><i class="icon fa fa-check"></i>
+                @if(Session() -> get('language') == 'hindi')
+                मेरी गाड़ी
+                @else
+                Order Tracking
+                @endif
+                </a>
+              </li>
               <li><a href="{{ route('view.checkout') }}"><i class="icon fa fa-check"></i>
               @if(Session() -> get('language') == 'hindi')
               मेरी गाड़ी
@@ -278,4 +286,27 @@
     <!-- ============================================== NAVBAR : END ============================================== --> 
     
   </header>
+
+
+  <!-- order Tacking Modal -->
+<div class="modal fade" centerd id="orderTracking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Order Tracking</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('order.tracking') }}" method="POST">
+          @csrf
+          <input class="form-control" type="text" name="invoice" placeholder="Invoice Number"><br>
+          <button type="submit" class="btn btn-info">Track Now</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 

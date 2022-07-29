@@ -109,7 +109,7 @@ class OrderController extends Controller
      */
     public function StatusConfirmed($order_id){
 
-        $confirm = Order::find($order_id) -> first();
+        $confirm = Order::find($order_id);
         $confirm -> status = 'confirmed';
         $confirm -> update();
 
@@ -128,7 +128,7 @@ class OrderController extends Controller
      */
     public function StatusProcessing($order_id){
 
-        $confirm = Order::find($order_id) -> first();
+        $confirm = Order::find($order_id);
         $confirm -> status = 'processing';
         $confirm -> update();
 
@@ -147,7 +147,7 @@ class OrderController extends Controller
      */
     public function StatusPicked($order_id){
 
-        $confirm = Order::find($order_id) -> first();
+        $confirm = Order::find($order_id);
         $confirm -> status = 'picked';
         $confirm -> update();
 
@@ -166,7 +166,7 @@ class OrderController extends Controller
      */
     public function StatusShipped($order_id){
 
-        $confirm = Order::find($order_id) -> first();
+        $confirm = Order::find($order_id);
         $confirm -> status = 'shipped';
         $confirm -> update();
 
@@ -195,7 +195,7 @@ class OrderController extends Controller
         }
         
         // data update
-        $confirm = Order::find($order_id) -> first();
+        $confirm = Order::find($order_id);
         $confirm -> status = 'delivered';
         $confirm -> update();
 
