@@ -3,7 +3,7 @@
 @section('content')
 
 @section('title')
-Sub-subcategory wise Product
+Product Search Page
 @endsection
 
 
@@ -13,12 +13,7 @@ Sub-subcategory wise Product
       <div class="breadcrumb-inner">
         <ul class="list-inline list-unstyled">
           <li><a href="#">Home</a></li>
-          @foreach($subsubcat as $item)
-          <li class=''><a href="">{{ $item -> category -> category_name_eng }}</a></li>
-          <li class=''><a href="">{{ $item -> subcategory -> subcategory_name_eng }}</a></li>
-          <li class='active'><a href="">{{ $item -> subsubcategory_name_eng }}</a></li>
-          @endforeach
-          {{-- <li class='active'>Handbags</li> --}}
+          <li class='active'>Handbags</li>
         </ul>
       </div>
       <!-- /.breadcrumb-inner --> 
@@ -54,9 +49,9 @@ Sub-subcategory wise Product
                         <div class="accordion-inner">
                           <ul>
                             @php
-                                $subsubcategory = App\Models\SubCategory::where('category_id', $item -> id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
+                                $subcategory = App\Models\SubCategory::where('category_id', $item -> id) -> orderBy('subcategory_name_eng', 'DESC') -> get();
                             @endphp
-                            @foreach($subsubcategory as $item)
+                            @foreach($subcategory as $item)
                             <li><a href="{{ url('subcategory/product/'.$item -> id.'/'.$item -> subcategory_slug_eng) }}">{{ $item -> subcategory_name_eng }}</a></li>
                             @endforeach
                           </ul>
@@ -182,15 +177,7 @@ Sub-subcategory wise Product
             </div>
           </div>
           
-
-          @foreach($subsubcat as $item)
-          <span class="badge badge-info" style="background: #00457e">{{ $item -> category -> category_name_eng }}</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
-
-          <span class="badge badge-info" style="background: #008a35">{{ $item -> subcategory -> subcategory_name_eng }}</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
-
-          <span class="badge badge-primary" style="background: #99009e">{{ $item -> subsubcategory_name_eng }}</span>
-          @endforeach
-       
+          <h4><b>Total Search :</b> <span class="badge badge-light" style="background: rgb(0, 11, 110)">{{ count($product) }}</span> </h4>
        
           <div class="clearfix filters-container m-t-10">
             <div class="row">
@@ -263,7 +250,7 @@ Sub-subcategory wise Product
                 <div class="category-product">
                   <div class="row">
 
-                    @foreach($subsubcat_product as $item)
+                    @foreach($product as $item)
 
                     <div class="col-sm-6 col-md-4 wow fadeInUp">
                       <div class="products">
@@ -277,7 +264,7 @@ Sub-subcategory wise Product
                             @php
                               $amount = $item -> selling_price - $item -> discount_price;
                               $discount = ($amount/$item -> selling_price) * 100;
-                          @endphp
+                            @endphp
 
                           @if($item -> discount_price == NULL)
                           <div class="tag new"><span>new</span></div>
@@ -344,7 +331,7 @@ Sub-subcategory wise Product
               <div class="tab-pane "  id="list-container">
                 <div class="category-product">
 
-                @foreach($subsubcat_product as $item)
+                @foreach($product as $item)
 
                   <div class="category-product-inner wow fadeInUp">
                     <div class="products">
@@ -428,12 +415,7 @@ Sub-subcategory wise Product
             <div class="clearfix filters-container">
               <div class="text-right">
                 <div class="pagination-container">
-
-
                   {{-- {{ $subcat_product -> links(); }} --}}
-
-
-
                   <!-- /.list-inline --> 
                 </div>
                 <!-- /.pagination-container --> </div>
@@ -450,44 +432,7 @@ Sub-subcategory wise Product
       </div>
       <!-- /.row --> 
       <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-      <div id="brands-carousel" class="logo-slider wow fadeInUp">
-        <div class="logo-slider-inner">
-          <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-            <div class="item m-t-15"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt=""> </a> </div>
-            <!--/.item-->
-            
-            <div class="item m-t-10"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt=""> </a> </div>
-            <!--/.item-->
-            
-            <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand3.png" src="assets/images/blank.gif" alt=""> </a> </div>
-            <!--/.item-->
-            
-            <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt=""> </a> </div>
-            <!--/.item-->
-            
-            <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt=""> </a> </div>
-            <!--/.item-->
-            
-            <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand6.png" src="assets/images/blank.gif" alt=""> </a> </div>
-            <!--/.item-->
-            
-            <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt=""> </a> </div>
-            <!--/.item-->
-            
-            <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt=""> </a> </div>
-            <!--/.item-->
-            
-            <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt=""> </a> </div>
-            <!--/.item-->
-            
-            <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt=""> </a> </div>
-            <!--/.item--> 
-          </div>
-          <!-- /.owl-carousel #logo-slider --> 
-        </div>
-        <!-- /.logo-slider-inner --> 
-        
-      </div>
+      @include('frontend.common.brand')
       <!-- /.logo-slider --> 
       <!-- ============================================== BRANDS CAROUSEL : END ============================================== --> </div>
     <!-- /.container --> 

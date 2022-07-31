@@ -12,8 +12,12 @@ Subcategory wise Product
     <div class="container">
       <div class="breadcrumb-inner">
         <ul class="list-inline list-unstyled">
-          <li><a href="#">Home</a></li>
-          <li class='active'>Handbags</li>
+          <li><a href="#">Hoem</a></li>
+          @foreach($breadcum as $item)
+          <li><a href="#">{{ $item -> category -> category_name_eng }}</a></li>
+          <li class='active'>{{ $item -> subcategory_name_eng }}</li>
+          @endforeach
+
         </ul>
       </div>
       <!-- /.breadcrumb-inner --> 
@@ -177,6 +181,11 @@ Subcategory wise Product
             </div>
           </div>
           
+          @foreach($breadcum as $item)
+          <span class="badge badge-info" style="background: #00457e">{{ $item -> category -> category_name_eng }}</span> <i class="fa fa-arrow-right" aria-hidden="true"></i>
+
+          <span class="badge badge-primary" style="background: #99009e">{{ $item -> subcategory_name_eng }}</span>
+          @endforeach
        
           <div class="clearfix filters-container m-t-10">
             <div class="row">

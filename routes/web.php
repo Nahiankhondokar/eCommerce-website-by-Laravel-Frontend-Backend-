@@ -543,10 +543,12 @@ Route::prefix('adminuserrole') -> group(function(){
 
     Route::post('/update/{user_id}', [AdminUserController::class, 'AdminUserUpdate']) -> name('admin.user.update');
 
-
-
 });
 
 
+/**
+ *  product search
+ */
+Route::post('/search', [IndexController::class, 'ProductSearch']) -> name('product.search');
 
 

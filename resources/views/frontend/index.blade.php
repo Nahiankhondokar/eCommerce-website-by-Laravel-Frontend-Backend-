@@ -406,10 +406,8 @@ Home Online Shop
                                   onclick="productView(this.id)"
                                 ><i class="fa fa-shopping-cart"></i>
                                 </button>
-                                <button
-                                  class="btn btn-primary cart-btn"
-                                  type="button"
-                                >
+                                <button class="btn btn-primary cart-btn"
+                                  type="button">
                                   Add to cart
                                 </button>
                               </li>
@@ -420,8 +418,7 @@ Home Online Shop
                                   class="btn btn-primary"
                                   title="Wishlist"
                                   id="{{ $item -> id }}"
-                                  onclick="AddToWishlist(this.id)"
-                                >
+                                  onclick="AddToWishlist(this.id)">
                                   <i class="fa fa-heart"></i>
                                 </button>
                             
@@ -431,12 +428,10 @@ Home Online Shop
                                   data-toggle="tooltip"
                                   class="add-to-cart"
                                   href="detail.html"
-                                  title="Compare"
-                                >
-                                  <i
-                                    class="fa fa-signal"
-                                    aria-hidden="true"
-                                  ></i>
+                                  title="Compare">
+                                  <i class="fa fa-signal"
+                                    aria-hidden="true">
+                                  </i>
                                 </a>
                               </li>
 
@@ -691,32 +686,34 @@ Home Online Shop
                 <div class="cart clearfix animate-effect">
                   <div class="action">
                     <ul class="list-unstyled">
+
                       <li class="add-cart-button btn-group">
                         <button
-                          data-toggle="tooltip"
                           class="btn btn-primary icon"
                           type="button"
                           title="Add Cart"
-                        >
-                          <i class="fa fa-shopping-cart"></i>
+                          data-toggle="modal" 
+                          data-target="#exampleModal"
+                          id="{{ $item -> id }}"
+                          onclick="productView(this.id)"
+                        ><i class="fa fa-shopping-cart"></i>
                         </button>
-                        <button
-                          class="btn btn-primary cart-btn"
-                          type="button"
-                        >
+                        <button class="btn btn-primary cart-btn"
+                          type="button">
                           Add to cart
                         </button>
                       </li>
-                      <li class="lnk wishlist">
-                        <a
-                          data-toggle="tooltip"
-                          class="add-to-cart"
-                          href="detail.html"
+
+                      
+                        <button 
+                          type="button"
+                          class="btn btn-primary"
                           title="Wishlist"
-                        >
-                          <i class="icon fa fa-heart"></i>
-                        </a>
-                      </li>
+                          id="{{ $item -> id }}"
+                          onclick="AddToWishlist(this.id)">
+                          <i class="fa fa-heart"></i>
+                        </button>
+
                       <li class="lnk">
                         <a
                           data-toggle="tooltip"
@@ -809,32 +806,34 @@ Home Online Shop
                 <div class="cart clearfix animate-effect">
                   <div class="action">
                     <ul class="list-unstyled">
+
                       <li class="add-cart-button btn-group">
                         <button
-                          data-toggle="tooltip"
                           class="btn btn-primary icon"
                           type="button"
                           title="Add Cart"
-                        >
-                          <i class="fa fa-shopping-cart"></i>
+                          data-toggle="modal" 
+                          data-target="#exampleModal"
+                          id="{{ $item -> id }}"
+                          onclick="productView(this.id)"
+                        ><i class="fa fa-shopping-cart"></i>
                         </button>
-                        <button
-                          class="btn btn-primary cart-btn"
-                          type="button"
-                        >
+                        <button class="btn btn-primary cart-btn"
+                          type="button">
                           Add to cart
                         </button>
                       </li>
-                      <li class="lnk wishlist">
-                        <a
-                          data-toggle="tooltip"
-                          class="add-to-cart"
-                          href="detail.html"
+
+                      
+                        <button 
+                          type="button"
+                          class="btn btn-primary"
                           title="Wishlist"
-                        >
-                          <i class="icon fa fa-heart"></i>
-                        </a>
-                      </li>
+                          id="{{ $item -> id }}"
+                          onclick="AddToWishlist(this.id)">
+                          <i class="fa fa-heart"></i>
+                        </button>
+                     
                       <li class="lnk">
                         <a
                           data-toggle="tooltip"
@@ -966,32 +965,34 @@ Home Online Shop
                 <div class="cart clearfix animate-effect">
                   <div class="action">
                     <ul class="list-unstyled">
+
                       <li class="add-cart-button btn-group">
                         <button
-                          data-toggle="tooltip"
                           class="btn btn-primary icon"
                           type="button"
                           title="Add Cart"
-                        >
-                          <i class="fa fa-shopping-cart"></i>
+                          data-toggle="modal" 
+                          data-target="#exampleModal"
+                          id="{{ $item -> id }}"
+                          onclick="productView(this.id)"
+                        ><i class="fa fa-shopping-cart"></i>
                         </button>
-                        <button
-                          class="btn btn-primary cart-btn"
-                          type="button"
-                        >
+                        <button class="btn btn-primary cart-btn"
+                          type="button">
                           Add to cart
                         </button>
                       </li>
-                      <li class="lnk wishlist">
-                        <a
-                          data-toggle="tooltip"
-                          class="add-to-cart"
-                          href="detail.html"
-                          title="Wishlist"
-                        >
-                          <i class="icon fa fa-heart"></i>
-                        </a>
-                      </li>
+
+                      
+                      <button 
+                        type="button"
+                        class="btn btn-primary"
+                        title="Wishlist"
+                        id="{{ $item -> id }}"
+                        onclick="AddToWishlist(this.id)">
+                        <i class="fa fa-heart"></i>
+                      </button>
+
                       <li class="lnk">
                         <a
                           data-toggle="tooltip"

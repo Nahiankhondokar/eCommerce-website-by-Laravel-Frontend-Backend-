@@ -12,6 +12,7 @@ use App\Models\MultiImg;
 use App\Models\Product;
 use App\Models\Slider;
 use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -241,7 +242,9 @@ class IndexController extends Controller
         $subcat_product = Product::where('status', 1) -> where('subcategory_id',  $subcat_id) -> orderBy('product_name_eng', 'DESC') -> get();
         $categories = Category::orderBy('category_name_eng', 'ASC') -> get();
 
-        return view('frontend.product.subcat_product', compact('subcat_product', 'categories'));
+        $breadcum = SubCategory::where('id', $subcat_id) -> get();
+
+        return view('frontend.product.subcat_product', compact('subcat_product', 'categories', 'breadcum'));
     }
 
 
@@ -252,8 +255,10 @@ class IndexController extends Controller
 
         $subsubcat_product = Product::where('status', 1) -> where('subsubcategory_id',  $subsubcat_id) -> orderBy('product_name_eng', 'DESC') -> get();
         $categories = Category::orderBy('category_name_eng', 'ASC') -> get();
+        
+        $subsubcat = SubSubCategory::where('id', $subsubcat_id) -> get();
 
-        return view('frontend.product.subsubcat_product', compact('subsubcat_product', 'categories'));
+        return view('frontend.product.subsubcat_product', compact('subsubcat_product', 'categories', 'subsubcat'));
     }
 
 
@@ -282,6 +287,19 @@ class IndexController extends Controller
 
     }
 
+
+    /**
+     *   product search
+     */
+    public function ProductSearch(Request $request){
+
+        $item = $request -> search;
+
+        $categories = Category::orderBy('category_name_eng', 'ASC') -> get();
+        $product = Product::where('product_name_eng', 'LIKE', "%$item%") -> get();
+
+        return view('frontend.product.product_search', compact('product', 'categories'));
+    }
 
 
 
