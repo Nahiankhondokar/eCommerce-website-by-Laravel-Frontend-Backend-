@@ -30,9 +30,9 @@
 	<form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
             @csrf
 		<div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-		    <input type="email" name="email" id="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
-			@error('email')
+		    <label class="info-title" for="exampleInputEmail1">User Name <span>*</span></label>
+		    <input type="text" name="name" id="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+			@error('name')
 				<span class="invalid-feedback" role="alert">
 					<strong>{{ $message }}</strong>
 				</span>

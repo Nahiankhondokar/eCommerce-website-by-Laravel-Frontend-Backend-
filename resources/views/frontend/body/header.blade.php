@@ -105,6 +105,8 @@
 
             @php
                 $setting = App\Models\SiteSetting::find(1);
+
+                $categories = App\Models\Category::orderBy('category_name_eng', 'ASC') -> get();
             @endphp
 
             <div class="logo"> <a href="{{ url('/') }}"> <img src="{{ asset($setting -> logo) }}" alt="logo" width="150"> </a> </div>
